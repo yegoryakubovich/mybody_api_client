@@ -45,7 +45,7 @@ class Article(BaseSection):
 
         return response
 
-    async def translation_create(self, articles_id, language):
+    async def create_translation(self, articles_id, language):
         path = f'/{articles_id}/translations/create'
         response = await self.request(
             type_=RequestTypes.POST,
@@ -67,8 +67,8 @@ class Article(BaseSection):
         )
         return response
 
-    async def update_md(self, articles_id, md, language=None):
-        path = f'/{articles_id}/update/md'
+    async def update_md(self, article_id, md, language=None):
+        path = f'/{article_id}/md/update'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
