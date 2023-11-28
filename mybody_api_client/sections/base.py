@@ -50,7 +50,7 @@ class BaseSection:
     ):
         parameters = parameters or {}
         json = {}
-        if token_required or self.token:
+        if (token_required and self.token) or self.token:
             parameters['token'] = self.token
 
         if type_ == RequestTypes.POST:

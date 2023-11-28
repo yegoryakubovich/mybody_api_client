@@ -52,4 +52,4 @@ class MyBodyApiClient:
 
     def __init__(self, token: str = None):
         for section in sections:
-            exec(f'self.{section.__name__.lower()} = section(token="{token}")')
+            exec (f'self.{section.__name__.lower()} = section(token=token)')
