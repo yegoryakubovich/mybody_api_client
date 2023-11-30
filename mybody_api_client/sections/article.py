@@ -21,7 +21,7 @@ from mybody_api_client.sections.base import BaseSection, RequestTypes
 class Article(BaseSection):
     prefix = 'articles'
 
-    async def get(self, id_: str, language: str = None):
+    async def get(self, id_: int, language: str = None):
         path = f'/{id_}/get'
         response = await self.request(
             type_=RequestTypes.GET,
