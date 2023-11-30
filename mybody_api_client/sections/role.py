@@ -21,13 +21,13 @@ from mybody_api_client.sections.base import RequestTypes, BaseSection
 class Role(BaseSection):
     prefix = 'roles'
 
-    async def create(self, id_, name_text_key):
+    async def create(self, id_str: str, name_text_key: str):
         path = '/get'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
-              'id_': id_,
+              'id_str': id_str,
               'name_text_key': name_text_key,
             },
         )

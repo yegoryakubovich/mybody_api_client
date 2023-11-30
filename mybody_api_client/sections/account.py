@@ -31,15 +31,15 @@ class Account(BaseSection):
 
     async def create(
             self,
-            username,
-            password,
-            firstname,
-            lastname,
-            country,
-            language,
-            timezone,
-            currency,
-            surname=None,
+            username: str,
+            password: str,
+            firstname: str,
+            lastname: str,
+            country: str,
+            language: str,
+            timezone: str,
+            currency: str,
+            surname: str = None,
     ):
         path = '/create'
         response = await self.request(

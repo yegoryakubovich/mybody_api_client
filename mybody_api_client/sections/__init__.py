@@ -20,7 +20,7 @@ from .article import Article
 from .country import Country
 from .currency import Currency
 from .language import Language
-from .notification import Notification
+from .notification_service import ServiceNotification
 from .role import Role
 from .session import Session
 from .timezone import Timezone
@@ -32,7 +32,7 @@ __all__ = [
     'Country',
     'Currency',
     'Language',
-    'Notification',
+    'ServiceNotification',
     'Role',
     'Session',
     'Timezone',

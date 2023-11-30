@@ -21,7 +21,7 @@ from mybody_api_client.sections.base import RequestTypes, BaseSection
 class Language(BaseSection):
     prefix = 'languages'
 
-    async def get(self):
+    async def get_list(self):
         path = '/get'
         response = await self.request(
             type_=RequestTypes.GET,

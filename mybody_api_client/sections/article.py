@@ -21,8 +21,8 @@ from mybody_api_client.sections.base import BaseSection, RequestTypes
 class Article(BaseSection):
     prefix = 'articles'
 
-    async def get(self, article_id, language=None):
-        path = f'/{article_id}/get'
+    async def get(self, id_: str, language: str = None):
+        path = f'/{id_}/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
@@ -33,7 +33,7 @@ class Article(BaseSection):
         )
         return response
 
-    async def create(self, name):
+    async def create(self, name: str):
         path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
@@ -45,8 +45,8 @@ class Article(BaseSection):
 
         return response
 
-    async def create_translation(self, articles_id, language):
-        path = f'/{articles_id}/translations/create'
+    async def create_translation(self, id_: int, language: str):
+        path = f'/{id_}/translations/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
@@ -56,8 +56,8 @@ class Article(BaseSection):
         )
         return response
 
-    async def update(self, articles_id, is_hide=None):
-        path = f'/{articles_id}/update'
+    async def update(self, id_: int, is_hide: bool = None):
+        path = f'/{id_}/update'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
@@ -67,8 +67,8 @@ class Article(BaseSection):
         )
         return response
 
-    async def update_md(self, article_id, md, language=None):
-        path = f'/{article_id}/md/update'
+    async def update_md(self, id_: int, md: str, language: str = None):
+        path = f'/{id_}/md/update'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,

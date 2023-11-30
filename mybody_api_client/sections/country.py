@@ -21,7 +21,7 @@ from mybody_api_client.sections.base import BaseSection, RequestTypes
 class Country(BaseSection):
     prefix = 'countries'
 
-    async def get(self):
+    async def get_list(self):
         path = '/get'
         response = await self.request(
             type_=RequestTypes.GET,

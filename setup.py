@@ -21,7 +21,7 @@ from setuptools import setup, PEP420PackageFinder
 
 
 NAME = 'mybody_api_client'
-VERSION = '0.1.3'
+VERSION = '0.2'
 DESCRIPTION = ''
 URL = 'https://yegoryakubovich.com'
 PACKAGE_ROOT = path.abspath(path.dirname(__file__))
@@ -52,7 +52,7 @@ setup(
     python_requires='>=3.7',
 
     packages=packages,
-    install_requires=['httpx', 'furl'],
+    install_requires=['aiohttp', 'furl'],
     include_package_data=True,
     zip_safe=False,
 )

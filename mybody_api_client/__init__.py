@@ -20,7 +20,7 @@ from .sections import Article
 from .sections import Country
 from .sections import Currency
 from .sections import Language
-from .sections import Notification
+from .sections import ServiceNotification
 from .sections import Role
 from .sections import Session
 from .sections import Timezone
@@ -32,7 +32,7 @@ sections = [
     Country,
     Currency,
     Language,
-    Notification,
+    ServiceNotification,
     Role,
     Session,
     Timezone,
@@ -45,11 +45,11 @@ class MyBodyApiClient:
     country: Country
     currency: Currency
     language: Language
-    notification: Notification
+    notification_service: ServiceNotification
     role: Role
     session: Session
     timezone: Timezone
 
     def __init__(self, token: str = None):
         for section in sections:
-            exec (f'self.{section.__name__.lower()} = section(token=token)')
+            exec(f'self.{section.__name__.lower()} = section(token=token)')

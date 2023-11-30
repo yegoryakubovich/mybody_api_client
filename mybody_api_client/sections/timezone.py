@@ -21,7 +21,7 @@ from mybody_api_client.sections.base import BaseSection, RequestTypes
 class Timezone(BaseSection):
     prefix = 'timezones'
 
-    async def get(self):
+    async def get_list(self):
         path = '/get'
         response = await self.request(
             type_=RequestTypes.GET,

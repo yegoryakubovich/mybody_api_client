@@ -21,7 +21,7 @@ from mybody_api_client.sections.base import RequestTypes, BaseSection
 class Session(BaseSection):
     prefix = 'sessions'
 
-    async def create(self, username, password):
+    async def create(self, username: str, password: str):
         path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,

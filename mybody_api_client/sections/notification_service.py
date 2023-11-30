@@ -18,8 +18,8 @@
 from mybody_api_client.sections.base import RequestTypes, BaseSection
 
 
-class Notification(BaseSection):
-    prefix = 'notifications'
+class ServiceNotification(BaseSection):
+    prefix = 'notifications/services'
 
     async def get(self):
         path = '/get'
@@ -30,8 +30,8 @@ class Notification(BaseSection):
         )
         return response
 
-    async def create(self, name, value=None):
-        path = '/services/request/create'
+    async def create(self, name: str, value: str = None):
+        path = '/request/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,

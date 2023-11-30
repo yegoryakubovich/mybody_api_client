@@ -17,7 +17,7 @@
 
 from types import SimpleNamespace
 
-import httpx
+from aiohttp import ClientSession
 from furl import furl
 
 
@@ -62,11 +62,12 @@ class BaseSection:
             parameters=parameters,
         )
 
-        async with httpx.AsyncClient() as client:
-            if type_ == RequestTypes.GET:
-                response = await client.get(url)
-            elif type_ == RequestTypes.POST:
-                response = await client.post(url, json=json)
+        async with ClientSession() as session:
 
-        response_json = response.json()
+            if type_ == RequestTypes.GET:
+                response = await session.get(url=url)
+            elif type_ == RequestTypes.POST:
+                response = await session.post(url=url, json=json)
+
+        response_json = await response.json()
         return SimpleNamespace(**response_json)
