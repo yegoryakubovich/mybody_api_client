@@ -22,12 +22,13 @@ class Article(BaseSection):
     prefix = 'articles'
 
     async def get(self, id_: int, language: str = None):
-        path = f'/{id_}/get'
+        path = f'/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
             parameters={
+                'article_id': id_,
                 'language': language,
             },
         )
@@ -46,33 +47,36 @@ class Article(BaseSection):
         return response
 
     async def create_translation(self, id_: int, language: str):
-        path = f'/{id_}/translations/create'
+        path = f'/translations/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
+                'article_id': id_,
                 'language': language,
             },
         )
         return response
 
     async def update(self, id_: int, is_hide: bool = None):
-        path = f'/{id_}/update'
+        path = f'/update'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
+                'article_id': id_,
                 'is_hide': is_hide,
             },
         )
         return response
 
     async def update_md(self, id_: int, md: str, language: str = None):
-        path = f'/{id_}/md/update'
+        path = f'/md/update'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
+                'article_id': id_,
                 'language': language,
                 'md': md,
             },
