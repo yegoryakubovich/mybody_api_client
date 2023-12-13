@@ -59,3 +59,15 @@ class Account(BaseSection):
             },
         )
         return response
+
+    async def check_username(self, username):
+        path = '/username/check'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            token_required=False,
+            parameters={
+                'username': username,
+            }
+        )
+        return response

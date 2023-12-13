@@ -21,6 +21,15 @@ from mybody_api_client.sections.base import BaseSection, RequestTypes
 class Text(BaseSection):
     prefix = 'texts'
 
+    async def get_list(self):
+        path = '/list/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+        )
+
+        return response
+
     async def create(self, key: str, value_default: str):
         path = '/create'
         response = await self.request(
@@ -36,15 +45,14 @@ class Text(BaseSection):
 
     async def update(self, key: str, value_default: str = None, new_key: str = None):
         path = '/update'
-        parameters = {
-            'key': key,
-            'value_default': value_default,
-            'new_key': new_key,
-        }
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
-            parameters=parameters,
+            parameters={
+                'key': key,
+                'value_default': value_default,
+                'new_key': new_key,
+            },
         )
 
         return response
@@ -97,6 +105,43 @@ class Text(BaseSection):
             parameters={
                 'text_key': text_key,
                 'language': language,
+            },
+        )
+
+        return response
+
+    async def get_pack(self, language: str):
+        path = '/packs/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            token_required=False,
+            parameters={
+                'language': language,
+            },
+        )
+
+        return response
+
+    async def create_pack(self, language: str):
+        path = '/packs/create'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'language': language,
+            },
+        )
+
+        return response
+
+    async def delete_pack(self, id_: int):
+        path = '/packs/delete'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'pack_id': id_,
             },
         )
 
