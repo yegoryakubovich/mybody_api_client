@@ -15,7 +15,9 @@
 #
 
 
-from .sections import Account, Text
+from .sections import Account
+from .sections import Text
+from .sections import Service
 from .sections import Article
 from .sections import Country
 from .sections import Currency
@@ -34,6 +36,7 @@ sections = [
     Language,
     ServiceNotification,
     Role,
+    Service,
     Session,
     Text,
     Timezone,
@@ -48,6 +51,7 @@ class MyBodyApiClient:
     language: Language
     notification_service: ServiceNotification
     role: Role
+    service: Service
     session: Session
     text: Text
     timezone: Timezone

@@ -18,108 +18,107 @@
 from mybody_api_client.sections.base import BaseSection, RequestTypes
 
 
-class Account(BaseSection):
-    prefix = 'accounts'
+class Service(BaseSection):
+    prefix = 'services'
 
     async def get(self):
         path = '/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
+            token_required=False,
         )
+
         return response
 
-    async def create(
-            self,
-            username: str,
-            password: str,
-            firstname: str,
-            lastname: str,
-            country: str,
-            language: str,
-            timezone: str,
-            currency: str,
-            surname: str = None,
-    ):
+    async def get_costs_list(self, service_id_str: str):
+        path = '/costs/list/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            parameters={
+                'service_id_str': service_id_str
+            },
+            token_required=False,
+        )
+
+        return response
+
+    async def create(self, id_str: str, name: str, questions: str):
         path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
-            token_required=False,
             parameters={
-                'username': username,
-                'password': password,
-                'firstname': firstname,
-                'lastname': lastname,
-                'surname': surname,
-                'country': country,
-                'language': language,
-                'timezone': timezone,
-                'currency': currency,
+                'id_str': id_str,
+                'name': name,
+                'questions': questions,
             },
         )
+
         return response
 
-    async def check_username(self, username):
-        path = '/username/check'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            token_required=False,
-            parameters={
-                'username': username,
-            }
-        )
-        return response
-
-    async def create_service(
-            self,
-            account_username: str,
-            service_id_str: str,
-            answers: str,
-            state: str,
-    ):
-        path = '/services/create'
+    async def update(self, id_str: str, name: str = None, questions: str = None):
+        path = '/update'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
-                'account_username': account_username,
+                'id_str': id_str,
+                'name': name,
+                'questions': questions,
+            },
+        )
+
+        return response
+
+    async def delete(self, id_str: str):
+        path = '/delete'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id_str': id_str,
+            },
+        )
+
+        return response
+
+    async def create_cost(self, service_id_str: str, currency_id_str: str, cost: float):
+        path = '/create'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
                 'service_id_str': service_id_str,
-                'answers': answers,
-                'state': state,
-            }
+                'currency_id_str': currency_id_str,
+                'cost': cost,
+            },
         )
+
         return response
 
-    async def update_service(
-            self,
-            id_: int,
-            answers: str,
-            state: str,
-    ):
-        path = '/services/update'
+    async def update_cost(self, id_: int, cost: float):
+        path = '/update'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
                 'id_': id_,
-                'answers': answers,
-                'state': state,
-            }
+                'cost': cost,
+            },
         )
+
         return response
 
-    async def delete_service(
-            self,
-            id_: int,
-    ):
-        path = '/services/delete'
+    async def delete_cost(self, id_: int):
+        path = '/delete'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
                 'id_': id_,
-            }
+            },
         )
+
         return response

@@ -22,6 +22,7 @@ from .currency import Currency
 from .language import Language
 from .notification_service import ServiceNotification
 from .role import Role
+from .service import Service
 from .session import Session
 from .text import Text
 from .timezone import Timezone
@@ -35,6 +36,7 @@ __all__ = [
     'Language',
     'ServiceNotification',
     'Role',
+    'Service',
     'Session',
     'Text',
     'Timezone',
