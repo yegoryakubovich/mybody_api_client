@@ -34,6 +34,15 @@ class Article(BaseSection):
         )
         return response
 
+    async def get_list(self):
+        path = '/list/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+        )
+
+        return response
+
     async def create(self, name: str):
         path = '/create'
         response = await self.request(
