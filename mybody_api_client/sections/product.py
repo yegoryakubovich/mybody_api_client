@@ -22,19 +22,19 @@ class Product(BaseSection):
     prefix = 'products'
 
     async def get(self, id_: int):
-        path = f'/get'
+        path = '/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
             parameters={
-                'id_': id_,
+                'id': id_,
             },
         )
         return response
 
     async def get_list(self, nutrient_type: str = None):
-        path = f'/list/get'
+        path = '/list/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
@@ -46,7 +46,7 @@ class Product(BaseSection):
         return response
 
     async def create(self, name: str, nutrient_type: str = None):
-        path = f'/create'
+        path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
@@ -58,23 +58,23 @@ class Product(BaseSection):
         return response
 
     async def delete(self, id_: int):
-        path = f'/delete'
+        path = '/delete'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
-                'id_': id_,
+                'id': id_,
             },
         )
         return response
 
     async def update(self, id_: int, nutrient_type: str):
-        path = f'/update'
+        path = '/update'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
-                'id_': id_,
+                'id': id_,
                 'nutrient_type': nutrient_type,
             },
         )

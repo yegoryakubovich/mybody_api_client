@@ -21,6 +21,18 @@ from mybody_api_client.sections.base import BaseSection, RequestTypes
 class Text(BaseSection):
     prefix = 'texts'
 
+    async def get(self, id_: int):
+        path = '/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            parameters={
+                'id': id_,
+            },
+        )
+
+        return response
+
     async def get_list(self):
         path = '/list/get'
         response = await self.request(

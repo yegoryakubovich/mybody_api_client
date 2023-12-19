@@ -22,7 +22,7 @@ class Article(BaseSection):
     prefix = 'articles'
 
     async def get(self, id_: int):
-        path = f'/get'
+        path = '/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
@@ -33,11 +33,10 @@ class Article(BaseSection):
         return response
 
     async def get_additional(self, id_: int, language: str = None):
-        path = f'/get_additional/get'
+        path = '/additional/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
-            token_required=False,
             parameters={
                 'id': id_,
                 'language': language,
@@ -55,7 +54,7 @@ class Article(BaseSection):
         return response
 
     async def create(self, name: str):
-        path = f'/create'
+        path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
@@ -67,7 +66,7 @@ class Article(BaseSection):
         return response
 
     async def create_translation(self, id_: int, language: str):
-        path = f'/translations/create'
+        path = '/translations/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
@@ -79,7 +78,7 @@ class Article(BaseSection):
         return response
 
     async def update(self, id_: int, is_hide: bool = None):
-        path = f'/update'
+        path = '/update'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
@@ -91,7 +90,7 @@ class Article(BaseSection):
         return response
 
     async def update_md(self, id_: int, md: str, language: str = None):
-        path = f'/md/update'
+        path = '/md/update'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
