@@ -21,8 +21,19 @@ from mybody_api_client.sections.base import BaseSection, RequestTypes
 class Article(BaseSection):
     prefix = 'articles'
 
-    async def get(self, id_: int, language: str = None):
-        path = f'/additional/get'
+    async def get(self, id_: int):
+        path = f'/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            parameters={
+                'id': id_,
+            },
+        )
+        return response
+
+    async def get_additional(self, id_: int, language: str = None):
+        path = f'/get_additional/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
@@ -30,18 +41,6 @@ class Article(BaseSection):
             parameters={
                 'id': id_,
                 'language': language,
-            },
-        )
-        return response
-
-    async def get_additional(self, id_: int):
-        path = f'/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            token_required=False,
-            parameters={
-                'id': id_,
             },
         )
         return response
@@ -56,7 +55,7 @@ class Article(BaseSection):
         return response
 
     async def create(self, name: str):
-        path = '/create'
+        path = f'/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,

@@ -21,29 +21,32 @@ from mybody_api_client.sections.base import RequestTypes, BaseSection
 class Product(BaseSection):
     prefix = 'products'
 
+    async def get(self, id_: int):
+        path = f'/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            token_required=False,
+            parameters={
+                'id_': id_,
+            },
+        )
+        return response
+
     async def get_list(self, nutrient_type: str = None):
-        path = '/list/get'
+        path = f'/list/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
             parameters={
                 'nutrient_type': nutrient_type,
-            }
-        )
-        return response
-
-    async def get(self):
-        path = '/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            token_required=False,
+            },
         )
         return response
 
     async def create(self, name: str, nutrient_type: str = None):
-        path = '/request/create'
+        path = f'/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
@@ -55,7 +58,7 @@ class Product(BaseSection):
         return response
 
     async def delete(self, id_: int):
-        path = '/request/create'
+        path = f'/delete'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
@@ -64,3 +67,16 @@ class Product(BaseSection):
             },
         )
         return response
+
+    async def update(self, id_: int, nutrient_type: str):
+        path = f'/update'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id_': id_,
+                'nutrient_type': nutrient_type,
+            },
+        )
+        return response
+    
