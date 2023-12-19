@@ -21,6 +21,7 @@ from .country import Country
 from .currency import Currency
 from .language import Language
 from .notification_service import ServiceNotification
+from .product import Product
 from .role import Role
 from .service import Service
 from .session import Session
@@ -40,4 +41,5 @@ __all__ = [
     'Session',
     'Text',
     'Timezone',
+    'Product',
 ]
