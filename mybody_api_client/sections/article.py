@@ -22,14 +22,26 @@ class Article(BaseSection):
     prefix = 'articles'
 
     async def get(self, id_: int, language: str = None):
+        path = f'/additional/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            token_required=False,
+            parameters={
+                'id': id_,
+                'language': language,
+            },
+        )
+        return response
+
+    async def get_additional(self, id_: int):
         path = f'/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
             parameters={
-                'article_id': id_,
-                'language': language,
+                'id': id_,
             },
         )
         return response
@@ -61,7 +73,7 @@ class Article(BaseSection):
             type_=RequestTypes.POST,
             path=path,
             parameters={
-                'article_id': id_,
+                'id': id_,
                 'language': language,
             },
         )
@@ -73,7 +85,7 @@ class Article(BaseSection):
             type_=RequestTypes.POST,
             path=path,
             parameters={
-                'article_id': id_,
+                'id': id_,
                 'is_hide': is_hide,
             },
         )
@@ -85,7 +97,7 @@ class Article(BaseSection):
             type_=RequestTypes.POST,
             path=path,
             parameters={
-                'article_id': id_,
+                'id': id_,
                 'language': language,
                 'md': md,
             },

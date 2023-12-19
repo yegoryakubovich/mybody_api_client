@@ -141,7 +141,7 @@ class Text(BaseSection):
             type_=RequestTypes.POST,
             path=path,
             parameters={
-                'pack_id': id_,
+                'id': id_,
             },
         )
 
