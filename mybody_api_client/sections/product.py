@@ -33,26 +33,26 @@ class Product(BaseSection):
         )
         return response
 
-    async def get_list(self, nutrient_type: str = None):
+    async def get_list(self, type_: str = None):
         path = '/list/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
             parameters={
-                'nutrient_type': nutrient_type,
+                'nutrient_type': type_,
             },
         )
         return response
 
-    async def create(self, name: str, nutrient_type: str = None):
+    async def create(self, name: str, type_: str = None):
         path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
                 'name': name,
-                'nutrient_type': nutrient_type,
+                'nutrient_type': type_,
             },
         )
         return response
@@ -68,14 +68,14 @@ class Product(BaseSection):
         )
         return response
 
-    async def update(self, id_: int, nutrient_type: str):
+    async def update(self, id_: int, type_: str):
         path = '/update'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
                 'id': id_,
-                'nutrient_type': nutrient_type,
+                'nutrient_type': type_,
             },
         )
         return response

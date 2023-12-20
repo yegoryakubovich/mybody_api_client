@@ -65,16 +65,16 @@ class Article(BaseSection):
 
         return response
 
-    async def create_translation(self, id_: int, language: str):
-        path = '/translations/create'
+    async def delete(self, id_: int):
+        path = '/delete'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
                 'id': id_,
-                'language': language,
             },
         )
+
         return response
 
     async def update(self, id_: int, is_hide: bool = None):
@@ -98,6 +98,31 @@ class Article(BaseSection):
                 'id': id_,
                 'language': language,
                 'md': md,
+            },
+        )
+        return response
+
+    async def create_translation(self, id_: int, language: str, name: str):
+        path = '/translations/create'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'article_id': id_,
+                'language': language,
+                'name': name,
+            },
+        )
+        return response
+
+    async def delete_translation(self, id_: int, language: str):
+        path = '/translations/delete'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'article_id': id_,
+                'language': language,
             },
         )
         return response
