@@ -60,7 +60,7 @@ class Account(BaseSection):
         )
         return response
 
-    async def check_username(self, username):
+    async def check_username(self, username: str):
         path = '/username/check'
         response = await self.request(
             type_=RequestTypes.GET,
@@ -69,6 +69,27 @@ class Account(BaseSection):
             parameters={
                 'username': username,
             }
+        )
+        return response
+
+    async def get_service(self, id_: int):
+        path = '/services/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            token_required=False,
+            parameters={
+                'id': id_,
+            }
+        )
+        return response
+
+    async def get_list(self):
+        path = '/services/list/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            token_required=False,
         )
         return response
 
@@ -92,12 +113,7 @@ class Account(BaseSection):
         )
         return response
 
-    async def update_service(
-            self,
-            id_: int,
-            answers: str,
-            state: str,
-    ):
+    async def update_service(self, id_: int, answers: str, state: str):
         path = '/services/update'
         response = await self.request(
             type_=RequestTypes.POST,
@@ -110,10 +126,7 @@ class Account(BaseSection):
         )
         return response
 
-    async def delete_service(
-            self,
-            id_: int,
-    ):
+    async def delete_service(self, id_: int):
         path = '/services/delete'
         response = await self.request(
             type_=RequestTypes.POST,

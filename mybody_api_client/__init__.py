@@ -27,6 +27,8 @@ from .sections import Role
 from .sections import Session
 from .sections import Timezone
 from .sections import Product
+from .sections import Exercise
+from .sections import Training
 
 sections = [
     Account,
@@ -41,6 +43,8 @@ sections = [
     Text,
     Timezone,
     Product,
+    Training,
+    Exercise,
 ]
 
 
@@ -57,6 +61,8 @@ class MyBodyApiClient:
     text: Text
     timezone: Timezone
     product: Product
+    training: Training
+    exercise: Exercise
 
     def __init__(self, token: str = None):
         for section in sections:

@@ -19,6 +19,7 @@ from .account import Account
 from .article import Article
 from .country import Country
 from .currency import Currency
+from .exercise import Exercise
 from .language import Language
 from .notification_service import ServiceNotification
 from .product import Product
@@ -27,7 +28,7 @@ from .service import Service
 from .session import Session
 from .text import Text
 from .timezone import Timezone
-
+from .training import Training
 
 __all__ = [
     'Account',
@@ -42,4 +43,6 @@ __all__ = [
     'Text',
     'Timezone',
     'Product',
+    'Training',
+    'Exercise',
 ]
