@@ -21,13 +21,25 @@ from mybody_api_client.sections.base import BaseSection, RequestTypes
 class Exercise(BaseSection):
     prefix = 'exercises'
 
+    async def get(self, id_: str):
+        path = '/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            token_required=False,
+            parameters={
+                'id': id_,
+            },
+        )
+        return response
+
     async def get_list(self):
         path = '/list/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
+            token_required=False,
         )
-
         return response
 
     async def create(self, name: str, type_: str):
@@ -37,10 +49,9 @@ class Exercise(BaseSection):
             path=path,
             parameters={
                 'name': name,
-                'type': type_
+                'type': type_,
             },
         )
-
         return response
 
     async def update(self, id_: int, type_: str):
@@ -53,7 +64,6 @@ class Exercise(BaseSection):
                 'type': type_,
             },
         )
-
         return response
 
     async def delete(self, id_: int):
@@ -65,5 +75,4 @@ class Exercise(BaseSection):
                 'id': id_,
             },
         )
-
         return response

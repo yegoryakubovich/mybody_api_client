@@ -40,19 +40,19 @@ class Product(BaseSection):
             path=path,
             token_required=False,
             parameters={
-                'nutrient_type': type_,
+                'type': type_,
             },
         )
         return response
 
-    async def create(self, name: str, type_: str = None):
+    async def create(self, name: str, type_: str):
         path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
                 'name': name,
-                'nutrient_type': type_,
+                'type': type_,
             },
         )
         return response
@@ -75,7 +75,7 @@ class Product(BaseSection):
             path=path,
             parameters={
                 'id': id_,
-                'nutrient_type': type_,
+                'type': type_,
             },
         )
         return response

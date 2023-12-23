@@ -21,29 +21,51 @@ from mybody_api_client.sections.base import BaseSection, RequestTypes
 class Training(BaseSection):
     prefix = 'trainings'
 
-    async def create(self, id_: int):
+    async def get(self, id_: int):
+        path = '/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            token_required=False,
+            parameters={
+                'id': id_,
+            },
+        )
+        return response
+
+    async def get_list(self):
+        path = 'list/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            token_required=False,
+        )
+        return response
+
+    async def create(self, account_service_id: int, date: str, article_id: int):
         path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
-                'account_service_id': id_,
+                'account_service_id': account_service_id,
+                'date': date,
+                'article_id': article_id,
             },
         )
-
         return response
 
-    async def update(self, id_: int, date: str):
-        path = '/list/get'
+    async def update(self, id_: int, date: str, article_id: int):
+        path = '/update'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
                 'id': id_,
                 'date': date,
+                'article_id': article_id,
             },
         )
-
         return response
 
     async def delete(self, id_: int):
@@ -55,5 +77,83 @@ class Training(BaseSection):
                 'id': id_,
             },
         )
+        return response
 
+    async def get_exercise(self, id_: int):
+        path = 'exercises/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            token_required=False,
+            parameters={
+                'id': id_,
+            },
+        )
+        return response
+
+    async def get_list_exercise(self, training_id: int):
+        path = '/exercises/list/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            token_required=False,
+            parameters={
+                'training_id': training_id,
+            },
+        )
+        return response
+
+    async def create_exercise(
+            self,
+            training_id: int,
+            exercise_id: int,
+            priority: int,
+            value: int,
+            rest: int,
+    ):
+        path = '/exercises/create'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'training_id': training_id,
+                'exercise_id': exercise_id,
+                'priority': priority,
+                'value': value,
+                'rest': rest,
+            },
+        )
+        return response
+
+    async def update_exercise(
+            self,
+            id_: int,
+            exercise_id: int,
+            priority: int,
+            value: int,
+            rest: int,
+    ):
+        path = '/exercises/update'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id': id_,
+                'exercise_id': exercise_id,
+                'priority': priority,
+                'value': value,
+                'rest': rest,
+            },
+        )
+        return response
+
+    async def delete_exercise(self, id_: int):
+        path = '/exercises/delete'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id': id_,
+            },
+        )
         return response

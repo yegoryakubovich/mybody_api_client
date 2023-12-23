@@ -21,27 +21,25 @@ from mybody_api_client.sections.base import BaseSection, RequestTypes
 class Service(BaseSection):
     prefix = 'services'
 
-    async def get(self):
+    async def get(self, id_: str):
         path = '/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
+            parameters={
+                'id_str': id_,
+            },
         )
-
         return response
 
-    async def get_costs_list(self, service_id_str: str):
-        path = '/costs/list/get'
+    async def get_list(self):
+        path = '/list/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
-            parameters={
-                'service_id_str': service_id_str
-            },
             token_required=False,
         )
-
         return response
 
     async def create(self, id_str: str, name: str, questions: str):
@@ -55,7 +53,6 @@ class Service(BaseSection):
                 'questions': questions,
             },
         )
-
         return response
 
     async def update(self, id_str: str, name: str = None, questions: str = None):
@@ -69,7 +66,6 @@ class Service(BaseSection):
                 'questions': questions,
             },
         )
-
         return response
 
     async def delete(self, id_str: str):
@@ -81,7 +77,18 @@ class Service(BaseSection):
                 'id_str': id_str,
             },
         )
+        return response
 
+    async def get_costs_list(self, service_id_str: str):
+        path = '/costs/list/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            parameters={
+                'service_id_str': service_id_str
+            },
+            token_required=False,
+        )
         return response
 
     async def create_cost(self, service_id_str: str, currency_id_str: str, cost: float):
@@ -95,7 +102,6 @@ class Service(BaseSection):
                 'cost': cost,
             },
         )
-
         return response
 
     async def update_cost(self, id_: int, cost: float):
@@ -108,7 +114,6 @@ class Service(BaseSection):
                 'cost': cost,
             },
         )
-
         return response
 
     async def delete_cost(self, id_: int):
@@ -120,5 +125,4 @@ class Service(BaseSection):
                 'id_': id_,
             },
         )
-
         return response
