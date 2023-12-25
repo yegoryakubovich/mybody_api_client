@@ -34,7 +34,7 @@ class Country(BaseSection):
         return response
 
     async def get_list(self):
-        path = 'list/get'
+        path = '/list/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,

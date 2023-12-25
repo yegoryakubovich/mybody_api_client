@@ -55,7 +55,7 @@ class Exercise(BaseSection):
         return response
 
     async def update(self, id_: int, type_: str):
-        path = '/list/get'
+        path = '/update'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,

@@ -34,7 +34,7 @@ class Training(BaseSection):
         return response
 
     async def get_list(self):
-        path = 'list/get'
+        path = '/list/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
@@ -80,7 +80,7 @@ class Training(BaseSection):
         return response
 
     async def get_exercise(self, id_: int):
-        path = 'exercises/get'
+        path = '/exercises/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,

@@ -21,11 +21,35 @@ from mybody_api_client.sections.base import BaseSection, RequestTypes
 class Account(BaseSection):
     prefix = 'accounts'
 
-    async def get(self):
+    async def get(self, id_: int = None):
         path = '/get'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id': id_,
+            },
+        )
+        return response
+
+    async def get_additional(self):
+        path = '/additional/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
+        )
+        return response
+
+    async def search(self, id_: int = None, username: str = None, page: int = None):
+        path = '/search'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id': id_,
+                'username': username,
+                'page': page,
+            },
         )
         return response
 
@@ -84,12 +108,11 @@ class Account(BaseSection):
         )
         return response
 
-    async def get_list(self):
+    async def services_get_list(self):
         path = '/services/list/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
-            token_required=False,
         )
         return response
 
