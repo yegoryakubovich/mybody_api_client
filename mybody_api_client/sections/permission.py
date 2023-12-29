@@ -18,8 +18,8 @@
 from mybody_api_client.sections.base import RequestTypes, BaseSection
 
 
-class Currency(BaseSection):
-    prefix = 'currencies'
+class Permission(BaseSection):
+    prefix = 'permissions'
 
     async def get(self, id_str: str):
         path = '/get'
@@ -42,13 +42,14 @@ class Currency(BaseSection):
         )
         return response
 
-    async def create(self, id_str: str):
+    async def create(self, id_str: str, name: str):
         path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
                 'id_str': id_str,
+                'name': name,
             },
         )
         return response
@@ -63,5 +64,4 @@ class Currency(BaseSection):
             },
         )
         return response
-
 

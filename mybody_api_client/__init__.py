@@ -15,6 +15,7 @@
 #
 
 
+from .sections import Permission
 from .sections import Account
 from .sections import Text
 from .sections import Service
@@ -45,6 +46,7 @@ sections = [
     Product,
     Training,
     Exercise,
+    Permission,
 ]
 
 
@@ -63,6 +65,7 @@ class MyBodyApiClient:
     product: Product
     training: Training
     exercise: Exercise
+    permission: Permission
 
     def __init__(self, token: str = None):
         for section in sections:

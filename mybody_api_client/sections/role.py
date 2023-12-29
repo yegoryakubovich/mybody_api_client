@@ -21,14 +21,88 @@ from mybody_api_client.sections.base import RequestTypes, BaseSection
 class Role(BaseSection):
     prefix = 'roles'
 
-    async def create(self, id_str: str, name_text_key: str):
+    async def get(self, id_: int):
+        path = '/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            parameters={
+              'id': id_,
+            },
+        )
+        return response
+
+    async def get_list(self):
+        path = '/list/get'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            token_required=False,
+        )
+        return response
+
+    async def create(self, name: str):
+        path = '/create'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+              'name': name,
+            },
+        )
+        return response
+
+    async def delete(self, id_: int):
         path = '/get'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
-              'id_str': id_str,
-              'name_text_key': name_text_key,
+              'id': id_,
+            },
+        )
+        return response
+
+    async def get_permission(self, id_: int):
+        path = '/permission/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            token_required=False,
+            parameters={
+              'id': id_,
+            },
+        )
+        return response
+
+    async def get_list_permission(self):
+        path = '/permission/list/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            token_required=False,
+        )
+        return response
+
+    async def create_permission(self, id_: int, permission: str):
+        path = '/permission/create'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'role_id': id_,
+                'permission': permission,
+            }
+        )
+        return response
+
+    async def delete_permission(self, id_: int):
+        path = '/permission/delete'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            parameters={
+                'id': id_,
             },
         )
         return response

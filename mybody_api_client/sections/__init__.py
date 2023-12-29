@@ -22,6 +22,7 @@ from .currency import Currency
 from .exercise import Exercise
 from .language import Language
 from .notification_service import ServiceNotification
+from .permission import Permission
 from .product import Product
 from .role import Role
 from .service import Service
@@ -45,4 +46,5 @@ __all__ = [
     'Product',
     'Training',
     'Exercise',
+    'Permission'
 ]
