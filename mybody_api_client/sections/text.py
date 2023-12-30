@@ -21,13 +21,13 @@ from mybody_api_client.sections.base import BaseSection, RequestTypes
 class Text(BaseSection):
     prefix = 'texts'
 
-    async def get(self, id_: int):
+    async def get(self, key: str):
         path = '/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
             parameters={
-                'id': id_,
+                'key': key,
             },
         )
 
