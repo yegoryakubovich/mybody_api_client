@@ -45,7 +45,7 @@ class Product(BaseSection):
         )
         return response
 
-    async def create(self, name: str, type_: str, article_id: int):
+    async def create(self, name: str, type_: str, article_id: int, unit: str):
         path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
@@ -53,6 +53,21 @@ class Product(BaseSection):
             parameters={
                 'name': name,
                 'type': type_,
+                'unit': unit,
+                'article_id': article_id,
+            },
+        )
+        return response
+
+    async def update(self, id_: int, type_: str, article_id: int, unit: str):
+        path = '/update'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id': id_,
+                'type': type_,
+                'unit': unit,
                 'article_id': article_id,
             },
         )
@@ -65,19 +80,6 @@ class Product(BaseSection):
             path=path,
             parameters={
                 'id': id_,
-            },
-        )
-        return response
-
-    async def update(self, id_: int, type_: str, article_id: int):
-        path = '/update'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            parameters={
-                'id': id_,
-                'type': type_,
-                'article_id': article_id,
             },
         )
         return response
