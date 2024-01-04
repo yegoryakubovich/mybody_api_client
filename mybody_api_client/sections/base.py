@@ -15,13 +15,12 @@
 #
 
 
-from types import SimpleNamespace
-
 from aiohttp import ClientSession
+from addict import Dict
 from furl import furl
 
 
-HOST = 'api.mybody.by'
+HOST = 'api.mybody.one'
 
 
 class RequestTypes:
@@ -70,4 +69,4 @@ class BaseSection:
                 response = await session.post(url=url, json=json)
 
         response_json = await response.json()
-        return SimpleNamespace(**response_json)
+        return Dict(**response_json)
