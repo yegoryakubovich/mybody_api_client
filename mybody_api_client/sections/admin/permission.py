@@ -15,21 +15,32 @@
 #
 
 
-from mybody_api_client.sections.base import RequestTypes, BaseSection
+from mybody_api_client.sections.admin.base import RequestTypes, BaseSection
 
 
-class Session(BaseSection):
-    prefix = 'sessions'
+class Permission(BaseSection):
+    prefix = 'permissions'
 
-    async def create(self, username: str, password: str):
+    async def create(self, id_str: str, name: str):
         path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
-            token_required=False,
             parameters={
-                'username': username,
-                'password': password,
+                'id_str': id_str,
+                'name': name,
             },
         )
         return response
+
+    async def delete(self, id_str: str):
+        path = '/delete'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id_str': id_str,
+            },
+        )
+        return response
+

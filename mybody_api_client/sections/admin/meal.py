@@ -15,18 +15,17 @@
 #
 
 
-from mybody_api_client.sections.base import BaseSection, RequestTypes
+from mybody_api_client.sections.admin.base import RequestTypes, BaseSection
 
 
-class Training(BaseSection):
-    prefix = 'trainings'
+class Meal(BaseSection):
+    prefix = 'meals'
 
     async def get(self, id_: int):
         path = '/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
-            token_required=False,
             parameters={
                 'id': id_,
             },
@@ -38,11 +37,10 @@ class Training(BaseSection):
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
-            token_required=False,
         )
         return response
 
-    async def create(self, account_service_id: int, date: str, article_id: int):
+    async def create(self, account_service_id: int, date: str, type_: str):
         path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
@@ -50,12 +48,12 @@ class Training(BaseSection):
             parameters={
                 'account_service_id': account_service_id,
                 'date': date,
-                'article_id': article_id,
+                'type': type_
             },
         )
         return response
 
-    async def update(self, id_: int, date: str, article_id: int):
+    async def update(self, id_: int, date: str, type_: str):
         path = '/update'
         response = await self.request(
             type_=RequestTypes.POST,
@@ -63,7 +61,8 @@ class Training(BaseSection):
             parameters={
                 'id': id_,
                 'date': date,
-                'article_id': article_id,
+                'type': type_,
+
             },
         )
         return response
@@ -79,76 +78,53 @@ class Training(BaseSection):
         )
         return response
 
-    async def get_exercise(self, id_: int):
-        path = '/exercises/get'
+    async def get_product(self, id_: int):
+        path = '/products/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
-            token_required=False,
             parameters={
                 'id': id_,
             },
         )
         return response
 
-    async def get_list_exercise(self, training_id: int):
-        path = '/exercises/list/get'
+    async def get_list_products(self):
+        path = '/products/list/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
-            token_required=False,
-            parameters={
-                'training_id': training_id,
-            },
         )
         return response
 
-    async def create_exercise(
-            self,
-            training_id: int,
-            exercise_id: int,
-            priority: int,
-            value: int,
-            rest: int,
-    ):
-        path = '/exercises/create'
+    async def create_product(self, meal_id: int, product_id: int, value: int):
+        path = '/products/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
-                'training_id': training_id,
-                'exercise_id': exercise_id,
-                'priority': priority,
-                'value': value,
-                'rest': rest,
+                'meal_id': meal_id,
+                'product_id': product_id,
+                'value': value
             },
         )
         return response
 
-    async def update_exercise(
-            self,
-            id_: int,
-            exercise_id: int,
-            priority: int,
-            value: int,
-            rest: int,
-    ):
-        path = '/exercises/update'
+    async def update_product(self, id_: int, product_id: int, value: int):
+        path = '/products/update'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
                 'id': id_,
-                'exercise_id': exercise_id,
-                'priority': priority,
-                'value': value,
-                'rest': rest,
+                'product_id': product_id,
+                'value': value
             },
         )
         return response
 
-    async def delete_exercise(self, id_: int):
-        path = '/exercises/delete'
+    async def delete_product(self, id_: int):
+        path = '/products/delete'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,

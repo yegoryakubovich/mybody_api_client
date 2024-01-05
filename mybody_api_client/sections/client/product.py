@@ -15,53 +15,33 @@
 #
 
 
-from mybody_api_client.sections.base import RequestTypes, BaseSection
+from mybody_api_client.sections.admin.base import RequestTypes, BaseSection
 
 
-class Currency(BaseSection):
-    prefix = 'currencies'
+class Product(BaseSection):
+    prefix = 'products'
 
-    async def get(self, id_str: str):
+    async def get(self, id_: int):
         path = '/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
             parameters={
-                'id_str': id_str,
+                'id': id_,
             },
         )
         return response
 
-    async def get_list(self):
+    async def get_list(self, type_: str = None):
         path = '/list/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
-        )
-        return response
-
-    async def create(self, id_str: str):
-        path = '/create'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
             parameters={
-                'id_str': id_str,
+                'type': type_,
             },
         )
         return response
-
-    async def delete(self, id_str: str):
-        path = '/delete'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            parameters={
-                'id_str': id_str,
-            },
-        )
-        return response
-
-
+    

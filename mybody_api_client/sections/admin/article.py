@@ -15,55 +15,22 @@
 #
 
 
-from mybody_api_client.sections.base import BaseSection, RequestTypes
+from mybody_api_client.sections.admin.base import BaseSection, RequestTypes
 
 
-class Exercise(BaseSection):
-    prefix = 'exercises'
+class Article(BaseSection):
+    prefix = 'articles'
 
-    async def get(self, id_: str):
-        path = '/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            token_required=False,
-            parameters={
-                'id': id_,
-            },
-        )
-        return response
-
-    async def get_list(self):
-        path = '/list/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            token_required=False,
-        )
-        return response
-
-    async def create(self, name: str, type_: str):
+    async def create(self, name: str):
         path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
                 'name': name,
-                'type': type_,
             },
         )
-        return response
 
-    async def update(self, id_: int, type_: str):
-        path = '/update'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            parameters={
-                'id': id_,
-                'type': type_,
-            },
-        )
         return response
 
     async def delete(self, id_: int):
@@ -73,6 +40,57 @@ class Exercise(BaseSection):
             path=path,
             parameters={
                 'id': id_,
+            },
+        )
+
+        return response
+
+    async def update(self, id_: int, is_hide: bool = None):
+        path = '/update'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id': id_,
+                'is_hide': is_hide,
+            },
+        )
+        return response
+
+    async def update_md(self, id_: int, md: str, language: str = None):
+        path = '/md/update'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id': id_,
+                'language': language,
+                'md': md,
+            },
+        )
+        return response
+
+    async def create_translation(self, id_: int, language: str, name: None):
+        path = '/translations/create'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'article_id': id_,
+                'language': language,
+                'name': name,
+            },
+        )
+        return response
+
+    async def delete_translation(self, id_: int, language: str):
+        path = '/translations/delete'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'article_id': id_,
+                'language': language,
             },
         )
         return response

@@ -15,114 +15,128 @@
 #
 
 
-from mybody_api_client.sections.base import BaseSection, RequestTypes
+from mybody_api_client.sections.admin.base import BaseSection, RequestTypes
 
 
-class Service(BaseSection):
-    prefix = 'services'
+class Account(BaseSection):
+    prefix = 'accounts'
 
-    async def get(self, id_: str):
+    async def get(self, id_: int = None):
         path = '/get'
         response = await self.request(
-            type_=RequestTypes.GET,
+            type_=RequestTypes.POST,
             path=path,
-            token_required=False,
             parameters={
-                'id_str': id_,
+                'id': id_,
             },
         )
         return response
 
-    async def get_list(self):
-        path = '/list/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            token_required=False,
-        )
-        return response
-
-    async def create(self, id_str: str, name: str, questions: str):
-        path = '/create'
+    async def search(self, id_: int = None, username: str = None, page: int = None):
+        path = '/search'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
-                'id_str': id_str,
-                'name': name,
-                'questions': questions,
+                'id': id_,
+                'username': username,
+                'page': page,
             },
         )
         return response
 
-    async def update(self, id_str: str, name: str = None, questions: str = None):
-        path = '/update'
+    async def create_service(self, account_id: int, service: str, answers: str):
+        path = '/services/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
-                'id_str': id_str,
-                'name': name,
-                'questions': questions,
+                'account_id': account_id,
+                'service': service,
+                'answers': answers,
             },
         )
         return response
 
-    async def delete(self, id_str: str):
-        path = '/delete'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            parameters={
-                'id_str': id_str,
-            },
-        )
-        return response
-
-    async def get_costs_list(self, service_id_str: str):
-        path = '/costs/list/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            parameters={
-                'service_id_str': service_id_str
-            },
-            token_required=False,
-        )
-        return response
-
-    async def create_cost(self, service_id_str: str, currency_id_str: str, cost: float):
-        path = '/create'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            parameters={
-                'service_id_str': service_id_str,
-                'currency_id_str': currency_id_str,
-                'cost': cost,
-            },
-        )
-        return response
-
-    async def update_cost(self, id_: int, cost: float):
-        path = '/update'
+    async def update_service(
+            self,
+            id_: int,
+            answers: str,
+            state: str,
+            datetime_from: str,
+            datetime_to: str,
+    ):
+        path = '/services/update'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
                 'id_': id_,
-                'cost': cost,
+                'answers': answers,
+                'state': state,
+                'datetime_from': datetime_from,
+                'datetime_to': datetime_to,
             },
         )
         return response
 
-    async def delete_cost(self, id_: int):
-        path = '/delete'
+    async def delete_service(self, id_: int):
+        path = '/services/delete'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
                 'id_': id_,
+            }
+        )
+        return response
+
+    async def get_service(self, id_: int):
+        path = '/services/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            parameters={
+                'id': id_,
+            },
+        )
+        return response
+
+    async def get_list_services(self):
+        path = '/services/list/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+        )
+        return response
+
+    async def get_list_roles(self):
+        path = '/services/list/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+        )
+        return response
+
+    async def create_role(self, account_id: int, role_id: int):
+        path = '/roles/create'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'account_id': account_id,
+                'role_id': role_id,
+            },
+        )
+        return response
+
+    async def delete_role(self, id_: int):
+        path = '/roles/delete'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id': id_,
             },
         )
         return response

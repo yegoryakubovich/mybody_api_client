@@ -15,11 +15,11 @@
 #
 
 
-from mybody_api_client.sections.base import RequestTypes, BaseSection
+from mybody_api_client.sections.admin.base import BaseSection, RequestTypes
 
 
-class Permission(BaseSection):
-    prefix = 'permissions'
+class Timezone(BaseSection):
+    prefix = 'timezones'
 
     async def get(self, id_str: str):
         path = '/get'
@@ -41,27 +41,3 @@ class Permission(BaseSection):
             token_required=False,
         )
         return response
-
-    async def create(self, id_str: str, name: str):
-        path = '/create'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            parameters={
-                'id_str': id_str,
-                'name': name,
-            },
-        )
-        return response
-
-    async def delete(self, id_str: str):
-        path = '/delete'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            parameters={
-                'id_str': id_str,
-            },
-        )
-        return response
-

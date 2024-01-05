@@ -15,32 +15,11 @@
 #
 
 
-from mybody_api_client.sections.base import BaseSection, RequestTypes
+from mybody_api_client.sections.admin.base import BaseSection, RequestTypes
 
 
 class Text(BaseSection):
     prefix = 'texts'
-
-    async def get(self, key: str):
-        path = '/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            parameters={
-                'key': key,
-            },
-        )
-
-        return response
-
-    async def get_list(self):
-        path = '/list/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-        )
-
-        return response
 
     async def create(self, key: str, value_default: str):
         path = '/create'
@@ -52,7 +31,6 @@ class Text(BaseSection):
                 'value_default': value_default,
             },
         )
-
         return response
 
     async def update(self, key: str, value_default: str = None, new_key: str = None):
@@ -66,7 +44,6 @@ class Text(BaseSection):
                 'new_key': new_key,
             },
         )
-
         return response
 
     async def delete(self, key: str):
@@ -78,7 +55,6 @@ class Text(BaseSection):
                 'key': key,
             },
         )
-
         return response
 
     async def create_translation(self, text_key: str, language: str, value: str):
@@ -92,7 +68,6 @@ class Text(BaseSection):
                 'value': value,
             },
         )
-
         return response
 
     async def update_translation(self, text_key: str, language: str, value: str):
@@ -106,7 +81,6 @@ class Text(BaseSection):
                 'value': value,
             },
         )
-
         return response
 
     async def delete_translation(self, text_key: str, language: str):
@@ -119,20 +93,6 @@ class Text(BaseSection):
                 'language': language,
             },
         )
-
-        return response
-
-    async def get_pack(self, language: str):
-        path = '/packs/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            token_required=False,
-            parameters={
-                'language': language,
-            },
-        )
-
         return response
 
     async def create_pack(self, language: str):
@@ -144,7 +104,6 @@ class Text(BaseSection):
                 'language': language,
             },
         )
-
         return response
 
     async def delete_pack(self, id_: int):
@@ -156,5 +115,4 @@ class Text(BaseSection):
                 'id': id_,
             },
         )
-
         return response

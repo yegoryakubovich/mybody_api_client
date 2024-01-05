@@ -15,38 +15,39 @@
 #
 
 
-from .account import Account
-from .article import Article
-from .country import Country
-from .currency import Currency
-from .exercise import Exercise
-from .language import Language
-from .meal import Meal
-from .notification_service import ServiceNotification
-from .permission import Permission
-from .product import Product
-from .role import Role
-from .service import Service
-from .session import Session
-from .text import Text
-from .timezone import Timezone
-from .training import Training
+from .admin import Account
+from .admin import Country
+from .admin import Currency
+from .admin import Language
+from .admin import ServiceNotification
+from .admin import Service
+from .admin import Role
+from .admin import Session
+from .admin import Text
+from .admin import Article
+from .admin import Product
+from .admin import Timezone
+from .admin import Training
+from .admin import Exercise
+from .admin import Permission
+from .admin import Meal
 
-__all__ = [
-    'Account',
-    'Article',
-    'Country',
-    'Currency',
-    'Language',
-    'ServiceNotification',
-    'Role',
-    'Service',
-    'Session',
-    'Text',
-    'Timezone',
-    'Product',
-    'Training',
-    'Exercise',
-    'Permission',
-    'Meal',
+
+admin = [
+    Account,
+    Article,
+    Country,
+    Currency,
+    Language,
+    ServiceNotification,
+    Role,
+    Service,
+    Session,
+    Text,
+    Timezone,
+    Product,
+    Training,
+    Exercise,
+    Permission,
+    Meal,
 ]

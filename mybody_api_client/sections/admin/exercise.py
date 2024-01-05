@@ -15,42 +15,32 @@
 #
 
 
-from mybody_api_client.sections.base import RequestTypes, BaseSection
+from mybody_api_client.sections.admin.base import BaseSection, RequestTypes
 
 
-class Meal(BaseSection):
-    prefix = 'meals'
+class Exercise(BaseSection):
+    prefix = 'exercises'
 
-    async def get(self, id_: int):
-        path = '/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            token_required=False,
-            parameters={
-                'id': id_,
-            },
-        )
-        return response
-
-    async def get_list(self):
-        path = '/list/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            token_required=False,
-        )
-        return response
-
-    async def create(self, account_service_id: int, date: str, type_: str):
+    async def create(self, name: str, type_: str):
         path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
-                'account_service_id': account_service_id,
-                'date': date,
-                'type': type_
+                'name': name,
+                'type': type_,
+            },
+        )
+        return response
+
+    async def update(self, id_: int, type_: str):
+        path = '/update'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id': id_,
+                'type': type_,
             },
         )
         return response
@@ -65,18 +55,3 @@ class Meal(BaseSection):
             },
         )
         return response
-
-    async def update(self, id_: int, date: str, type_: str):
-        path = '/update'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            parameters={
-                'id': id_,
-                'date': date,
-                'type': type_,
-
-            },
-        )
-        return response
-

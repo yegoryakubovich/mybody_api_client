@@ -15,11 +15,11 @@
 #
 
 
-from mybody_api_client.sections.base import RequestTypes, BaseSection
+from mybody_api_client.sections.admin.base import RequestTypes, BaseSection
 
 
-class Product(BaseSection):
-    prefix = 'products'
+class Role(BaseSection):
+    prefix = 'roles'
 
     async def get(self, id_: int):
         path = '/get'
@@ -28,59 +28,40 @@ class Product(BaseSection):
             path=path,
             token_required=False,
             parameters={
-                'id': id_,
+              'id': id_,
             },
         )
         return response
 
-    async def get_list(self, type_: str = None):
+    async def get_list(self):
         path = '/list/get'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            token_required=False,
+        )
+        return response
+
+    async def get_permission(self, id_: int):
+        path = '/permission/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
             parameters={
-                'type': type_,
+              'id': id_,
             },
         )
         return response
 
-    async def create(self, name: str, type_: str, article_id: int, unit: str):
-        path = '/create'
+    async def get_list_permissions(self, role_id: int):
+        path = '/permission/list/get'
         response = await self.request(
-            type_=RequestTypes.POST,
+            type_=RequestTypes.GET,
             path=path,
+            token_required=False,
             parameters={
-                'name': name,
-                'type': type_,
-                'unit': unit,
-                'article_id': article_id,
+                'role_id': role_id,
             },
         )
         return response
-
-    async def update(self, id_: int, type_: str, article_id: int, unit: str):
-        path = '/update'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            parameters={
-                'id': id_,
-                'type': type_,
-                'unit': unit,
-                'article_id': article_id,
-            },
-        )
-        return response
-
-    async def delete(self, id_: int):
-        path = '/delete'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            parameters={
-                'id': id_,
-            },
-        )
-        return response
-    

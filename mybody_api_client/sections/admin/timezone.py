@@ -15,29 +15,31 @@
 #
 
 
-from mybody_api_client.sections.base import RequestTypes, BaseSection
+from mybody_api_client.sections.admin.base import BaseSection, RequestTypes
 
 
-class ServiceNotification(BaseSection):
-    prefix = 'notifications/services'
+class Timezone(BaseSection):
+    prefix = 'timezones'
 
-    async def get(self):
-        path = '/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            token_required=False,
-        )
-        return response
-
-    async def create(self, name: str, value: str = None):
-        path = '/request/create'
+    async def create(self, id_str: str, deviation: int):
+        path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
             parameters={
-                'name': name,
-                'value': value,
+                'id_str': id_str,
+                'deviation': deviation,
+            },
+        )
+        return response
+
+    async def delete(self, id_str: str):
+        path = '/delete'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id_str': id_str,
             },
         )
         return response

@@ -15,32 +15,11 @@
 #
 
 
-from mybody_api_client.sections.base import RequestTypes, BaseSection
+from mybody_api_client.sections.admin.base import RequestTypes, BaseSection
 
 
 class Language(BaseSection):
     prefix = 'languages'
-
-    async def get(self, id_str: str):
-        path = '/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            token_required=False,
-            parameters={
-                'id_str': id_str,
-            },
-        )
-        return response
-
-    async def get_list(self):
-        path = '/list/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            token_required=False,
-        )
-        return response
 
     async def create(self, id_str: str, name: str):
         path = '/create'
