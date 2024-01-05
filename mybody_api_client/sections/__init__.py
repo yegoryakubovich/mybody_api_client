@@ -15,39 +15,5 @@
 #
 
 
-from .admin import Account
-from .admin import Country
-from .admin import Currency
-from .admin import Language
-from .admin import ServiceNotification
-from .admin import Service
-from .admin import Role
-from .admin import Session
-from .admin import Text
-from .admin import Article
-from .admin import Product
-from .admin import Timezone
-from .admin import Training
-from .admin import Exercise
-from .admin import Permission
-from .admin import Meal
-
-
-admin = [
-    Account,
-    Article,
-    Country,
-    Currency,
-    Language,
-    ServiceNotification,
-    Role,
-    Service,
-    Session,
-    Text,
-    Timezone,
-    Product,
-    Training,
-    Exercise,
-    Permission,
-    Meal,
-]
+from .client import Client
+from .admin import Admin

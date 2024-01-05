@@ -15,21 +15,5 @@
 #
 
 
-from mybody_api_client.utils.base_section import RequestTypes, BaseSection
-
-
-class Session(BaseSection):
-    prefix = 'sessions'
-
-    async def create(self, username: str, password: str):
-        path = '/create'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            token_required=False,
-            parameters={
-                'username': username,
-                'password': password,
-            },
-        )
-        return response
+from .base_catalog import BaseCatalog
+from .base_section import BaseSection

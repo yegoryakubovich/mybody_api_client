@@ -15,7 +15,7 @@
 #
 
 
-from mybody_api_client.sections.admin.base import RequestTypes, BaseSection
+from mybody_api_client.utils.base_section import RequestTypes, BaseSection
 
 
 class Product(BaseSection):

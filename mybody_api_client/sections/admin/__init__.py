@@ -19,35 +19,40 @@ from .account import Account
 from .article import Article
 from .country import Country
 from .currency import Currency
-from .exercise import Exercise
 from .language import Language
-from .meal import Meal
-from .notification_service import ServiceNotification
-from .permission import Permission
-from .product import Product
 from .role import Role
 from .service import Service
-from .session import Session
 from .text import Text
 from .timezone import Timezone
+from .product import Product
 from .training import Training
+from .exercise import Exercise
+from .permission import Permission
+from .meal import Meal
+from ...utils import BaseCatalog
 
 
-__all__ = [
-    'Account',
-    'Article',
-    'Country',
-    'Currency',
-    'Language',
-    'ServiceNotification',
-    'Role',
-    'Service',
-    'Session',
-    'Text',
-    'Timezone',
-    'Product',
-    'Training',
-    'Exercise',
-    'Permission',
-    'Meal',
-]
+class Admin(BaseCatalog):
+    prefix = 'admin'
+
+    account: Account()
+    article: Article
+    country: Country
+    currency: Currency
+    language: Language
+    role: Role
+    service: Service
+    text: Text
+    timezone: Timezone
+    product: Product
+    training: Training
+    exercise: Exercise
+    permission: Permission
+    meal: Meal
+
+    sections = [
+        Account, Article, Country, Currency, Language,
+        Role, Service,
+        Text, Timezone, Product, Training, Exercise,
+        Permission, Meal,
+    ]

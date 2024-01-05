@@ -15,62 +15,18 @@
 #
 
 
-from .sections import Permission
-from .sections import Account
-from .sections import Text
-from .sections import Service
-from .sections import Article
-from .sections import Country
-from .sections import Currency
-from .sections import Language
-from .sections import ServiceNotification
-from .sections import Role
-from .sections import Session
-from .sections import Timezone
-from .sections import Product
-from .sections import Exercise
-from .sections import Training
-from .sections import Meal
-
-
-sections = [
-    Account,
-    Article,
-    Country,
-    Currency,
-    Language,
-    ServiceNotification,
-    Role,
-    Service,
-    Session,
-    Text,
-    Timezone,
-    Product,
-    Training,
-    Exercise,
-    Permission,
-    Meal,
-]
+from .sections import Client, Admin
 
 
 class MyBodyApiClient:
-    account: Account
-    article: Article
-    country: Country
-    currency: Currency
-    language: Language
-    notification_service: ServiceNotification
-    role: Role
-    service: Service
-    session: Session
-    text: Text
-    timezone: Timezone
-    product: Product
-    training: Training
-    exercise: Exercise
-    permission: Permission
-    meal: Meal
+    client: Client
+    admin: Admin
+
+    catalogs = [
+        Client,
+        Admin,
+    ]
 
     def __init__(self, token: str = None):
-        for section in sections:
-            exec(f'self.{section.__name__.lower()} = section(token=token)')
+        for catalog in self.catalogs:
+            exec(f'self.{catalog.__name__.lower()} = catalog(token=token)')

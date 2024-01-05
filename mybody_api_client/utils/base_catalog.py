@@ -15,21 +15,18 @@
 #
 
 
-from mybody_api_client.utils.base_section import RequestTypes, BaseSection
+from mybody_api_client.utils.base_section import BaseSection
 
 
-class Session(BaseSection):
-    prefix = 'sessions'
+class BaseCatalog:
+    prefix: str = ''
+    sections: list[BaseSection]
 
-    async def create(self, username: str, password: str):
-        path = '/create'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            token_required=False,
-            parameters={
-                'username': username,
-                'password': password,
-            },
-        )
-        return response
+    def __init__(self, token: str):
+        for section in self.sections:
+            exec(f'self.{section.__name__.lower()} = section(token=token)')
+            if self.prefix:
+                exec(
+                    f'self.{section.__name__.lower()}.prefix = '
+                    f'self.prefix + "/" + self.{section.__name__.lower()}.prefix'
+                )
