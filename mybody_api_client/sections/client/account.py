@@ -26,6 +26,7 @@ class Account(BaseSection):
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
+            response_key='account',
         )
         return response
 
@@ -57,6 +58,7 @@ class Account(BaseSection):
                 'timezone': timezone,
                 'currency': currency,
             },
+            response_key='id',
         )
         return response
 

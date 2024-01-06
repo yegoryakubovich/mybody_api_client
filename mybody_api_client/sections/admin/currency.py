@@ -21,18 +21,6 @@ from mybody_api_client.utils.base_section import RequestTypes, BaseSection
 class Currency(BaseSection):
     prefix = 'currencies'
 
-    async def get(self, id_str: str):
-        path = '/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            token_required=False,
-            parameters={
-                'id_str': id_str,
-            },
-        )
-        return response
-
     async def get_list(self):
         path = '/list/get'
         response = await self.request(
@@ -50,6 +38,7 @@ class Currency(BaseSection):
             parameters={
                 'id_str': id_str,
             },
+            response_key='id_str',
         )
         return response
 

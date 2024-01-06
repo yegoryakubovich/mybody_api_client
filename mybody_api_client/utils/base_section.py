@@ -28,6 +28,10 @@ class RequestTypes:
     POST = 'post'
 
 
+class ApiException(Exception):
+    pass
+
+
 class BaseSection:
     prefix: str = ''
     token: str
@@ -46,6 +50,7 @@ class BaseSection:
             type_: str = RequestTypes.GET,
             token_required: bool = True,
             parameters: dict = None,
+            response_key: str = None,
     ):
         parameters = parameters or {}
         json = {}
@@ -69,4 +74,12 @@ class BaseSection:
                 response = await session.post(url=url, json=json)
 
         response_json = await response.json()
-        return Dict(**response_json)
+        response = Dict(**response_json)
+
+        if response.state == 'successful':
+            if response_key:
+                response = response.get(response_key)
+
+            return response
+        elif response.state == 'error':
+            raise ApiException(response.message)

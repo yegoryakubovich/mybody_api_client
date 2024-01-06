@@ -30,6 +30,7 @@ class Currency(BaseSection):
             parameters={
                 'id_str': id_str,
             },
+            response_key='currency',
         )
         return response
 
