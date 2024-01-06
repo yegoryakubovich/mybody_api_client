@@ -31,5 +31,6 @@ class Session(BaseSection):
                 'username': username,
                 'password': password,
             },
+            response_key='token',
         )
         return response

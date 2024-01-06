@@ -29,6 +29,7 @@ class Training(BaseSection):
             parameters={
                 'id': id_,
             },
+            response_key='',
         )
         return response
 
@@ -37,6 +38,7 @@ class Training(BaseSection):
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
+            response_key='',
         )
         return response
 
@@ -50,6 +52,7 @@ class Training(BaseSection):
                 'date': date,
                 'article_id': article_id,
             },
+            response_key='',
         )
         return response
 
@@ -63,6 +66,7 @@ class Training(BaseSection):
                 'date': date,
                 'article_id': article_id,
             },
+            response_key='',
         )
         return response
 
@@ -74,6 +78,7 @@ class Training(BaseSection):
             parameters={
                 'id': id_,
             },
+            response_key='',
         )
         return response
 
@@ -85,6 +90,7 @@ class Training(BaseSection):
             parameters={
                 'id': id_,
             },
+            response_key='',
         )
         return response
 
@@ -96,6 +102,7 @@ class Training(BaseSection):
             parameters={
                 'training_id': training_id,
             },
+            response_key='',
         )
         return response
 
@@ -118,6 +125,7 @@ class Training(BaseSection):
                 'value': value,
                 'rest': rest,
             },
+            response_key='',
         )
         return response
 
@@ -140,6 +148,7 @@ class Training(BaseSection):
                 'value': value,
                 'rest': rest,
             },
+            response_key='',
         )
         return response
 
@@ -151,5 +160,6 @@ class Training(BaseSection):
             parameters={
                 'id': id_,
             },
+            response_key='',
         )
         return response

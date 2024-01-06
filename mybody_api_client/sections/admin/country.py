@@ -39,7 +39,8 @@ class Country(BaseSection):
                 'language': language,
                 'timezone': timezone,
                 'currency': currency,
-            }
+            },
+            response_key='id_str',
         )
         return response
 
@@ -59,7 +60,7 @@ class Country(BaseSection):
                 'language': language,
                 'timezone': timezone,
                 'currency': currency,
-            }
+            },
         )
         return response
 

@@ -29,6 +29,7 @@ class Account(BaseSection):
             parameters={
                 'id': id_,
             },
+            response_key='account',
         )
         return response
 
@@ -42,6 +43,7 @@ class Account(BaseSection):
                 'username': username,
                 'page': page,
             },
+            response_key='',
         )
         return response
 
@@ -55,6 +57,7 @@ class Account(BaseSection):
                 'service': service,
                 'answers': answers,
             },
+            response_key='id',
         )
         return response
 
@@ -87,7 +90,7 @@ class Account(BaseSection):
             path=path,
             parameters={
                 'id_': id_,
-            }
+            },
         )
         return response
 
@@ -99,6 +102,7 @@ class Account(BaseSection):
             parameters={
                 'id': id_,
             },
+            response_key='account_service',
         )
         return response
 
@@ -107,6 +111,7 @@ class Account(BaseSection):
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
+            response_key='account_services',
         )
         return response
 
@@ -115,6 +120,7 @@ class Account(BaseSection):
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
+            response_key='roles',
         )
         return response
 
@@ -127,6 +133,7 @@ class Account(BaseSection):
                 'account_id': account_id,
                 'role_id': role_id,
             },
+            response_key='id',
         )
         return response
 

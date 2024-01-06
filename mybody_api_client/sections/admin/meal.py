@@ -29,6 +29,7 @@ class Meal(BaseSection):
             parameters={
                 'id': id_,
             },
+            response_key='meal',
         )
         return response
 
@@ -37,6 +38,7 @@ class Meal(BaseSection):
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
+            response_key='meals',
         )
         return response
 
@@ -50,6 +52,7 @@ class Meal(BaseSection):
                 'date': date,
                 'type': type_
             },
+            response_key='id',
         )
         return response
 
@@ -86,6 +89,7 @@ class Meal(BaseSection):
             parameters={
                 'id': id_,
             },
+            response_key='meal_product',
         )
         return response
 
@@ -94,6 +98,7 @@ class Meal(BaseSection):
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
+            response_key='meal_products',
         )
         return response
 
@@ -107,6 +112,7 @@ class Meal(BaseSection):
                 'product_id': product_id,
                 'value': value
             },
+            response_key='id',
         )
         return response
 
@@ -125,6 +131,131 @@ class Meal(BaseSection):
 
     async def delete_product(self, id_: int):
         path = '/products/delete'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id': id_,
+            },
+        )
+        return response
+
+    async def get_report(self, id_: int):
+        path = '/reports/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            parameters={
+                'id': id_,
+            },
+            response_key='report',
+        )
+        return response
+
+    async def create_report(
+            self,
+            meal_id: int,
+            comment: str,
+            images,
+            products,
+    ):
+        path = '/reports/create'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'meal_id': meal_id,
+                'comment': comment,
+                'images': images,
+                'products': products,
+            },
+            response_key='id',
+        )
+        return response
+
+    async def delete_report(self, id_: int):
+        path = '/reports/delete'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id': id_,
+            },
+        )
+        return response
+
+    async def get_list_images_reports(self, meal_report_id: int):
+        path = 'reports/images/list/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            parameters={
+                'meal_report_id': meal_report_id,
+            },
+        )
+        return response
+
+    async def create_image_report(
+            self,
+            meal_report_id: int,
+            image: str,
+    ):
+        path = '/reports/images/create'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'meal_report_id': meal_report_id,
+                'image': image,
+            },
+            response_key='id',
+        )
+        return response
+
+    async def delete_image_report(self, id_: int):
+        path = '/reports/images/delete'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id': id_,
+            },
+        )
+        return response
+
+    async def get_list_product_reports(self, meal_report_id: int):
+        path = 'reports/products/list/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            parameters={
+                'meal_report_id': meal_report_id,
+            },
+            response_key='meal_report_products',
+        )
+        return response
+
+    async def create_product_report(
+            self,
+            meal_report_id: int,
+            product_id: int,
+            value: int,
+    ):
+        path = '/reports/products/create'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'meal_report_id': meal_report_id,
+                'product_id': product_id,
+                'value': value,
+            },
+            response_key='id',
+        )
+        return response
+
+    async def delete_product_report(self, id_: int):
+        path = '/reports/products/delete'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,

@@ -15,33 +15,21 @@
 #
 
 
-from mybody_api_client.utils.base_section import RequestTypes, BaseSection
+from mybody_api_client.utils.base_section import BaseSection, RequestTypes
 
 
-class Currency(BaseSection):
-    prefix = 'currencies'
+class Image(BaseSection):
+    prefix = 'images'
 
-    async def create(self, id_str: str):
-        path = '/create'
+    async def get(self, id_str: str):
+        path = '/get'
         response = await self.request(
-            type_=RequestTypes.POST,
+            type_=RequestTypes.GET,
             path=path,
+            token_required=False,
             parameters={
                 'id_str': id_str,
             },
-            response_key='id_str',
+            response_key='image',
         )
         return response
-
-    async def delete(self, id_str: str):
-        path = '/delete'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            parameters={
-                'id_str': id_str,
-            },
-        )
-        return response
-
-

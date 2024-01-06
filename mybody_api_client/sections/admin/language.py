@@ -30,6 +30,7 @@ class Language(BaseSection):
                 'id_str': id_str,
                 'name': name,
             },
+            response_key='id_str',
         )
         return response
 

@@ -32,6 +32,7 @@ class Product(BaseSection):
                 'unit': unit,
                 'article_id': article_id,
             },
+            response_key='id',
         )
         return response
 

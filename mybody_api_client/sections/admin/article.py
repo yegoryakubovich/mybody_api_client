@@ -29,6 +29,7 @@ class Article(BaseSection):
             parameters={
                 'name': name,
             },
+            response_key='id',
         )
 
         return response
@@ -80,6 +81,7 @@ class Article(BaseSection):
                 'language': language,
                 'name': name,
             },
+            response_key='id',
         )
         return response
 

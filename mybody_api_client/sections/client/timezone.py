@@ -30,6 +30,7 @@ class Timezone(BaseSection):
             parameters={
                 'id_str': id_str,
             },
+            response_key='timezone',
         )
         return response
 
@@ -39,5 +40,6 @@ class Timezone(BaseSection):
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
+            response_key='timezones',
         )
         return response

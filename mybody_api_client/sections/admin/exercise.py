@@ -30,6 +30,7 @@ class Exercise(BaseSection):
                 'name': name,
                 'type': type_,
             },
+            response_key='id',
         )
         return response
 

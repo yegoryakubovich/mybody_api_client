@@ -30,6 +30,7 @@ class Language(BaseSection):
             parameters={
                 'id_str': id_str,
             },
+            response_key='language',
         )
         return response
 
@@ -39,5 +40,6 @@ class Language(BaseSection):
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
+            response_key='languages',
         )
         return response

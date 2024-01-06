@@ -29,6 +29,7 @@ class Training(BaseSection):
             parameters={
                 'id': id_,
             },
+            response_key='training',
         )
         return response
 
@@ -40,6 +41,7 @@ class Training(BaseSection):
             parameters={
                 'account_service_id': account_service_id,
             },
+            response_key='trainings',
         )
         return response
 
@@ -52,6 +54,7 @@ class Training(BaseSection):
             parameters={
                 'id': id_,
             },
+            response_key='training_exercise',
         )
         return response
 
@@ -64,5 +67,6 @@ class Training(BaseSection):
             parameters={
                 'training_id': training_id,
             },
+            response_key='training_exercises',
         )
         return response

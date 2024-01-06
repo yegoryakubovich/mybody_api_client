@@ -30,6 +30,7 @@ class Permission(BaseSection):
             parameters={
                 'id_str': id_str,
             },
+            response_key='permission',
         )
         return response
 
@@ -39,5 +40,6 @@ class Permission(BaseSection):
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
+            response_key='permissions',
         )
         return response

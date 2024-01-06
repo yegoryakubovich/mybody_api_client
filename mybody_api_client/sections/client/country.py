@@ -30,6 +30,7 @@ class Country(BaseSection):
             parameters={
                 'id_str': id_str,
             },
+            response_key='country',
         )
         return response
 
@@ -39,58 +40,6 @@ class Country(BaseSection):
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
-        )
-        return response
-
-    async def create(
-            self,
-            id_str: str,
-            name: str,
-            language: str,
-            timezone: str,
-            currency: str,
-    ):
-        path = '/create'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            parameters={
-                'id_str': id_str,
-                'name': name,
-                'language': language,
-                'timezone': timezone,
-                'currency': currency,
-            }
-        )
-        return response
-
-    async def update(
-            self,
-            id_str: str,
-            language: str,
-            timezone: str,
-            currency: str,
-    ):
-        path = '/update'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            parameters={
-                'id_str': id_str,
-                'language': language,
-                'timezone': timezone,
-                'currency': currency,
-            }
-        )
-        return response
-
-    async def delete(self, id_str: str):
-        path = '/delete'
-        response = await self.request(
-            type_=RequestTypes.POST,
-            path=path,
-            parameters={
-                'id_str': id_str,
-            },
+            response_key='countries',
         )
         return response

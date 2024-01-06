@@ -31,6 +31,7 @@ class Service(BaseSection):
                 'name': name,
                 'questions': questions,
             },
+            response_key='id',
         )
         return response
 
@@ -68,6 +69,7 @@ class Service(BaseSection):
                 'currency': currency,
                 'cost': cost,
             },
+            response_key='id',
         )
         return response
 

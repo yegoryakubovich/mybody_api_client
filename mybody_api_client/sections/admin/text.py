@@ -30,6 +30,7 @@ class Text(BaseSection):
                 'key': key,
                 'value_default': value_default,
             },
+            response_key='key',
         )
         return response
 
@@ -67,6 +68,7 @@ class Text(BaseSection):
                 'language': language,
                 'value': value,
             },
+            response_key='id',
         )
         return response
 
@@ -103,6 +105,7 @@ class Text(BaseSection):
             parameters={
                 'language': language,
             },
+            response_key='id',
         )
         return response
 

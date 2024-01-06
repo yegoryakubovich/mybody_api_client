@@ -30,6 +30,7 @@ class Timezone(BaseSection):
                 'id_str': id_str,
                 'deviation': deviation,
             },
+            response_key='id_str',
         )
         return response
 

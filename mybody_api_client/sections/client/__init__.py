@@ -19,6 +19,7 @@ from .account import Account
 from .article import Article
 from .country import Country
 from .currency import Currency
+from .image import Image
 from .language import Language
 from .notification_service import ServiceNotification
 from .role import Role
@@ -53,10 +54,11 @@ class Client(BaseCatalog):
     exercise: Exercise
     permission: Permission
     meal: Meal
+    image: Image
 
     sections = [
         Account, Article, Country, Currency, Language,
         ServiceNotification, Role, Service, Session,
         Text, Timezone, Product, Training, Exercise,
-        Permission, Meal,
+        Permission, Meal, Image,
     ]

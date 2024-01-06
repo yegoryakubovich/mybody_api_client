@@ -40,5 +40,6 @@ class Currency(BaseSection):
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
+            response_key='currencies',
         )
         return response

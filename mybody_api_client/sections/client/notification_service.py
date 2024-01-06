@@ -27,6 +27,7 @@ class ServiceNotification(BaseSection):
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
+            response_key='notification_services',
         )
         return response
 
@@ -39,5 +40,6 @@ class ServiceNotification(BaseSection):
                 'name': name,
                 'value': value,
             },
+            response_key='id',
         )
         return response

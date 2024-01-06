@@ -30,6 +30,7 @@ class Product(BaseSection):
             parameters={
                 'id': id_,
             },
+            response_key='product',
         )
         return response
 
@@ -42,6 +43,7 @@ class Product(BaseSection):
             parameters={
                 'type': type_,
             },
+            response_key='products',
         )
         return response
     

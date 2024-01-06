@@ -30,6 +30,7 @@ class Role(BaseSection):
             parameters={
               'id': id_,
             },
+            response_key='role',
         )
         return response
 
@@ -39,6 +40,7 @@ class Role(BaseSection):
             type_=RequestTypes.POST,
             path=path,
             token_required=False,
+            response_key='roles',
         )
         return response
 
@@ -51,6 +53,7 @@ class Role(BaseSection):
             parameters={
               'id': id_,
             },
+            response_key='role_permission',
         )
         return response
 
@@ -63,5 +66,6 @@ class Role(BaseSection):
             parameters={
                 'role_id': role_id,
             },
+            response_key='role_permissions',
         )
         return response

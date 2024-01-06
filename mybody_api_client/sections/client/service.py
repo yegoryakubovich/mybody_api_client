@@ -30,6 +30,7 @@ class Service(BaseSection):
             parameters={
                 'id_str': id_,
             },
+            response_key='service',
         )
         return response
 
@@ -39,6 +40,7 @@ class Service(BaseSection):
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
+            response_key='services',
         )
         return response
 
@@ -51,5 +53,6 @@ class Service(BaseSection):
             parameters={
                 'service': service
             },
+            response_key='service_costs',
         )
         return response

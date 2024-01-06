@@ -30,6 +30,7 @@ class Exercise(BaseSection):
             parameters={
                 'id': id_,
             },
+            response_key='exercise',
         )
         return response
 
@@ -39,5 +40,6 @@ class Exercise(BaseSection):
             type_=RequestTypes.GET,
             path=path,
             token_required=False,
+            response_key='exercises',
         )
         return response

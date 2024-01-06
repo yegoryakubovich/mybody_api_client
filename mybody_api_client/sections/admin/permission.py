@@ -30,6 +30,7 @@ class Permission(BaseSection):
                 'id_str': id_str,
                 'name': name,
             },
+            response_key='id',
         )
         return response
 

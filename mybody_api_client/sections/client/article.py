@@ -29,6 +29,7 @@ class Article(BaseSection):
             parameters={
                 'id': id_,
             },
+            response_key='article',
         )
         return response
 
@@ -41,6 +42,7 @@ class Article(BaseSection):
                 'id': id_,
                 'language': language,
             },
+            response_key='article'
         )
         return response
 
@@ -49,6 +51,7 @@ class Article(BaseSection):
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
+            response_key='articles',
         )
 
         return response

@@ -29,6 +29,7 @@ class Text(BaseSection):
             parameters={
                 'key': key,
             },
+            response_key='text',
         )
         return response
 
@@ -37,6 +38,7 @@ class Text(BaseSection):
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
+            response_key='texts',
         )
         return response
 
@@ -49,5 +51,6 @@ class Text(BaseSection):
             parameters={
                 'language': language,
             },
+            response_key='text_pack',
         )
         return response

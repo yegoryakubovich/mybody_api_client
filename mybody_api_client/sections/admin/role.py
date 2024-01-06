@@ -29,6 +29,7 @@ class Role(BaseSection):
             parameters={
               'name': name,
             },
+            response_key='id',
         )
         return response
 
@@ -51,14 +52,15 @@ class Role(BaseSection):
             parameters={
                 'role_id': role_id,
                 'permission': permission,
-            }
+            },
+            response_key='id',
         )
         return response
 
     async def delete_permission(self, id_: int):
         path = '/permission/delete'
         response = await self.request(
-            type_=RequestTypes.GET,
+            type_=RequestTypes.POST,
             path=path,
             parameters={
                 'id': id_,

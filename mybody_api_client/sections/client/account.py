@@ -81,7 +81,8 @@ class Account(BaseSection):
             path=path,
             parameters={
                 'id': id_,
-            }
+            },
+            response_key='account_service',
         )
         return response
 
@@ -90,5 +91,6 @@ class Account(BaseSection):
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
+            response_key='account_services',
         )
         return response
