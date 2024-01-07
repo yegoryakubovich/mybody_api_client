@@ -45,7 +45,7 @@ class Role(BaseSection):
         return response
 
     async def create_permission(self, role_id: int, permission: str):
-        path = '/permission/create'
+        path = '/permissions/create'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
@@ -58,7 +58,7 @@ class Role(BaseSection):
         return response
 
     async def delete_permission(self, id_: int):
-        path = '/permission/delete'
+        path = '/permissions/delete'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
