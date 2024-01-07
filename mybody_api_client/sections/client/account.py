@@ -24,7 +24,7 @@ class Account(BaseSection):
     async def get(self):
         path = '/get'
         response = await self.request(
-            type_=RequestTypes.POST,
+            type_=RequestTypes.GET,
             path=path,
             response_key='account',
         )

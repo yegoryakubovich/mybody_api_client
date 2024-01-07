@@ -22,9 +22,9 @@ class BaseCatalog:
     prefix: str = ''
     sections: list[BaseSection]
 
-    def __init__(self, token: str):
+    def __init__(self, token: str, is_test: bool):
         for section in self.sections:
-            exec(f'self.{section.__name__.lower()} = section(token=token)')
+            exec(f'self.{section.__name__.lower()} = section(token=token, is_test=is_test)')
             if self.prefix:
                 exec(
                     f'self.{section.__name__.lower()}.prefix = '

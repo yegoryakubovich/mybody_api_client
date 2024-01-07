@@ -21,6 +21,7 @@ from furl import furl
 
 
 HOST = 'api.mybody.one'
+HOST_TEST = 'api.test.mybody.one'
 
 
 class RequestTypes:
@@ -36,11 +37,12 @@ class BaseSection:
     prefix: str = ''
     token: str
 
-    def __init__(self, token: str = None):
+    def __init__(self, token: str = None, is_test: bool = False):
         self.token = token
+        self.is_test = is_test
 
     async def create_url(self, path: str, parameters: dict) -> str:
-        f = furl(scheme='https', netloc=HOST, path=self.prefix + path)
+        f = furl(scheme='https', netloc=HOST_TEST if self.is_test else HOST, path=self.prefix + path)
         f.set(args=parameters)
         return f.url
 

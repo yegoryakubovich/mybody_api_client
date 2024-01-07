@@ -37,7 +37,7 @@ class Role(BaseSection):
     async def get_list(self):
         path = '/list/get'
         response = await self.request(
-            type_=RequestTypes.POST,
+            type_=RequestTypes.GET,
             path=path,
             token_required=False,
             response_key='roles',

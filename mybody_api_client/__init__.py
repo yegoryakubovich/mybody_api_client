@@ -27,6 +27,6 @@ class MyBodyApiClient:
         Admin,
     ]
 
-    def __init__(self, token: str = None):
+    def __init__(self, token: str = None, is_test=False):
         for catalog in self.catalogs:
-            exec(f'self.{catalog.__name__.lower()} = catalog(token=token)')
+            exec(f'self.{catalog.__name__.lower()} = catalog(token=token, is_test=is_test)')

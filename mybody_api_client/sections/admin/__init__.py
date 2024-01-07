@@ -35,7 +35,7 @@ from ...utils import BaseCatalog
 class Admin(BaseCatalog):
     prefix = 'admin'
 
-    account: Account()
+    account: Account
     article: Article
     country: Country
     currency: Currency

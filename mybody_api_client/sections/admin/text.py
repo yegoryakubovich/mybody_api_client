@@ -34,6 +34,27 @@ class Text(BaseSection):
         )
         return response
 
+    async def get(self, key: str):
+        path = '/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            parameters={
+                'key': key,
+            },
+            response_key='text',
+        )
+        return response
+
+    async def get_list(self):
+        path = '/list/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            response_key='texts',
+        )
+        return response
+
     async def update(self, key: str, value_default: str = None, new_key: str = None):
         path = '/update'
         response = await self.request(
