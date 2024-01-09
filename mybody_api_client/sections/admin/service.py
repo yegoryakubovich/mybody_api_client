@@ -31,7 +31,7 @@ class Service(BaseSection):
                 'name': name,
                 'questions': questions,
             },
-            response_key='id',
+            response_key='id_str',
         )
         return response
 
