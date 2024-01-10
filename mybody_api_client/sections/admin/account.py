@@ -116,11 +116,23 @@ class Account(BaseSection):
         return response
 
     async def get_list_roles(self):
-        path = '/services/list/get'
+        path = '/roles/list/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
             response_key='roles',
+        )
+        return response
+
+    async def get_role(self, account_id: int):
+        path = '/roles/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            parameters={
+                'account_id': account_id
+            },
+            response_key='accounts_roles',
         )
         return response
 
