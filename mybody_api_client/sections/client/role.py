@@ -45,7 +45,7 @@ class Role(BaseSection):
         return response
 
     async def get_permission(self, id_: int):
-        path = '/permission/get'
+        path = '/permissions/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
@@ -58,7 +58,7 @@ class Role(BaseSection):
         return response
 
     async def get_list_permissions(self, role_id: int):
-        path = '/permission/list/get'
+        path = '/permissions/list/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,

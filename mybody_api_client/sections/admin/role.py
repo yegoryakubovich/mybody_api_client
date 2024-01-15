@@ -34,7 +34,7 @@ class Role(BaseSection):
         return response
 
     async def delete(self, id_: int):
-        path = '/get'
+        path = '/delete'
         response = await self.request(
             type_=RequestTypes.POST,
             path=path,
