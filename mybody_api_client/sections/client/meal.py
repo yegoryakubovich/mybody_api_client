@@ -35,13 +35,13 @@ class Meal(BaseSection):
 
     async def get_list(self, account_service_id: int, date: str = None):
         path = '/list/get'
+        parameters = {'account_service_id': account_service_id}
+        if date is not None:
+            parameters['date'] = date
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
-            parameters={
-                'account_service_id ': account_service_id,
-                'date': date,
-            },
+            parameters=parameters,
             response_key='meals',
         )
         return response
