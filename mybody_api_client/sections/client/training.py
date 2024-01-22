@@ -33,14 +33,15 @@ class Training(BaseSection):
         )
         return response
 
-    async def get_list(self, account_service_id: int):
+    async def get_list(self, account_service_id: int, date: str = None):
         path = '/list/get'
+        parameters = {'account_service_id': account_service_id}
+        if date is not None:
+            parameters['date'] = date
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
-            parameters={
-                'account_service_id': account_service_id,
-            },
+            parameters=parameters,
             response_key='trainings',
         )
         return response
@@ -68,5 +69,50 @@ class Training(BaseSection):
                 'training_id': training_id,
             },
             response_key='training_exercises',
+        )
+        return response
+
+    async def get_report(self, id_: int):
+        path = '/reports/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            parameters={
+                'id': id_,
+            },
+            response_key='training_report',
+        )
+        return response
+
+    async def get_list_reports(self):
+        path = '/reports/list/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            response_key='training_reports',
+        )
+        return response
+
+    async def create_report(self, training_id: int, comment: str):
+        path = '/reports/create'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'training_id': training_id,
+                'comment': comment,
+            },
+            response_key='id',
+        )
+        return response
+
+    async def delete_reports(self, id_: int):
+        path = '/reports/delete'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id': id_,
+            },
         )
         return response

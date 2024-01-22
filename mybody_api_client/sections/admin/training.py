@@ -29,16 +29,29 @@ class Training(BaseSection):
             parameters={
                 'id': id_,
             },
-            response_key='',
+            response_key='training',
         )
         return response
 
-    async def get_list(self):
+    async def get_list(self, account_service_id: int, date: str = None):
         path = '/list/get'
+        parameters = {'account_service_id': account_service_id}
+        if date is not None:
+            parameters['date'] = date
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
-            response_key='',
+            parameters=parameters,
+            response_key='trainings',
+        )
+        return response
+
+    async def get_list_all(self):
+        path = '/list/get/all'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            response_key='trainings',
         )
         return response
 
@@ -52,7 +65,7 @@ class Training(BaseSection):
                 'date': date,
                 'article_id': article_id,
             },
-            response_key='',
+            response_key='id',
         )
         return response
 
@@ -66,7 +79,6 @@ class Training(BaseSection):
                 'date': date,
                 'article_id': article_id,
             },
-            response_key='',
         )
         return response
 
@@ -78,7 +90,6 @@ class Training(BaseSection):
             parameters={
                 'id': id_,
             },
-            response_key='',
         )
         return response
 
@@ -90,7 +101,7 @@ class Training(BaseSection):
             parameters={
                 'id': id_,
             },
-            response_key='',
+            response_key='training_exercise',
         )
         return response
 
@@ -102,7 +113,7 @@ class Training(BaseSection):
             parameters={
                 'training_id': training_id,
             },
-            response_key='',
+            response_key='training_exercises',
         )
         return response
 
@@ -125,7 +136,7 @@ class Training(BaseSection):
                 'value': value,
                 'rest': rest,
             },
-            response_key='',
+            response_key='id',
         )
         return response
 
@@ -148,7 +159,6 @@ class Training(BaseSection):
                 'value': value,
                 'rest': rest,
             },
-            response_key='',
         )
         return response
 
@@ -160,6 +170,50 @@ class Training(BaseSection):
             parameters={
                 'id': id_,
             },
-            response_key='',
+        )
+        return response
+
+    async def get_report(self, id_: int):
+        path = '/reports/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            parameters={
+                'id': id_,
+            },
+            response_key='training_report',
+        )
+        return response
+
+    async def get_list_reports(self):
+        path = '/reports/list/get'
+        response = await self.request(
+            type_=RequestTypes.GET,
+            path=path,
+            response_key='training_reports',
+        )
+        return response
+
+    async def create_report(self, training_id: int, comment: str):
+        path = '/reports/create'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'training_id': training_id,
+                'comment': comment,
+            },
+            response_key='id',
+        )
+        return response
+
+    async def delete_report(self, id_: int):
+        path = '/reports/delete'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'id': id_,
+            },
         )
         return response
