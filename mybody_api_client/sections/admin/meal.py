@@ -55,7 +55,15 @@ class Meal(BaseSection):
         )
         return response
 
-    async def create(self, account_service_id: int, date: str, type_: str):
+    async def create(
+            self,
+            account_service_id: int,
+            date: str,
+            type_: str,
+            fats: int,
+            proteins: int,
+            carbohydrates: int,
+    ):
         path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
@@ -63,13 +71,24 @@ class Meal(BaseSection):
             parameters={
                 'account_service_id': account_service_id,
                 'date': date,
-                'type': type_
+                'type': type_,
+                'fats': fats,
+                'proteins': proteins,
+                'carbohydrates': carbohydrates,
             },
             response_key='id',
         )
         return response
 
-    async def update(self, id_: int, date: str, type_: str):
+    async def update(
+            self,
+            id_: int,
+            date: str,
+            type_: str,
+            fats: int,
+            proteins: int,
+            carbohydrates: int,
+    ):
         path = '/update'
         response = await self.request(
             type_=RequestTypes.POST,
@@ -78,7 +97,9 @@ class Meal(BaseSection):
                 'id': id_,
                 'date': date,
                 'type': type_,
-
+                'fats': fats,
+                'proteins': proteins,
+                'carbohydrates': carbohydrates,
             },
         )
         return response

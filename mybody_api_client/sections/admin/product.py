@@ -21,7 +21,17 @@ from mybody_api_client.utils.base_section import RequestTypes, BaseSection
 class Product(BaseSection):
     prefix = 'products'
 
-    async def create(self, name: str, type_: str, unit: str, article_id: int = None):
+    async def create(
+            self,
+            name: str,
+            type_: str,
+            unit: str,
+            fats: int,
+            proteins: int,
+            carbohydrates: int,
+            calories: int = None,
+            article_id: int = None,
+    ):
         path = '/create'
         response = await self.request(
             type_=RequestTypes.POST,
@@ -30,13 +40,27 @@ class Product(BaseSection):
                 'name': name,
                 'type': type_,
                 'unit': unit,
+                'fats': fats,
+                'proteins': proteins,
+                'carbohydrates': carbohydrates,
+                'calories': calories,
                 'article_id': article_id,
             },
             response_key='id',
         )
         return response
 
-    async def update(self, id_: int, type_: str, unit: str, article_id: int = None):
+    async def update(
+            self,
+            id_: str,
+            type_: str,
+            unit: str,
+            fats: int,
+            proteins: int,
+            carbohydrates: int,
+            calories: int = None,
+            article_id: int = None,
+    ):
         path = '/update'
         response = await self.request(
             type_=RequestTypes.POST,
@@ -45,6 +69,10 @@ class Product(BaseSection):
                 'id': id_,
                 'type': type_,
                 'unit': unit,
+                'fats': fats,
+                'proteins': proteins,
+                'carbohydrates': carbohydrates,
+                'calories': calories,
                 'article_id': article_id,
             },
         )
