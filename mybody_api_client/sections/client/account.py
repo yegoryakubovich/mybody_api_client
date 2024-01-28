@@ -94,3 +94,17 @@ class Account(BaseSection):
             response_key='account_services',
         )
         return response
+
+    async def create_service(self, service: str, answers: str):
+        path = '/services/create'
+        response = await self.request(
+            type_=RequestTypes.POST,
+            path=path,
+            parameters={
+                'service': service,
+                'answers': answers,
+            },
+            response_key='id',
+        )
+        return response
+    
