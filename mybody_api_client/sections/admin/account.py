@@ -106,11 +106,14 @@ class Account(BaseSection):
         )
         return response
 
-    async def get_list_services(self):
+    async def get_list_services(self, account_id: int = None):
         path = '/services/list/get'
         response = await self.request(
             type_=RequestTypes.GET,
             path=path,
+            parameters={
+                'account_id': account_id,
+            },
             response_key='account_services',
         )
         return response
