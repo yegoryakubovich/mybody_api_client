@@ -30,7 +30,10 @@ class RequestTypes:
 
 
 class ApiException(Exception):
-    pass
+    def __init__(self, code=-1, message=None, kwargs=None):
+        self.code = code
+        self.message = message
+        self.kwargs = kwargs
 
 
 class BaseSection:
@@ -84,4 +87,4 @@ class BaseSection:
 
             return response
         elif response.state == 'error':
-            raise ApiException(response.message)
+            raise ApiException(code=response.error.code, message=response.error.message, kwargs=response.error.kwargs)
