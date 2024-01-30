@@ -1,5 +1,5 @@
 #
-# (c) 2023, Yegor Yakubovich, yegoryakubovich.com, personal@yegoryakybovich.com
+# (c) 2024, Yegor Yakubovich, yegoryakubovich.com, personal@yegoryakybovich.com
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,21 +15,9 @@
 #
 
 
-from mybody_api_client.utils.base_section import BaseSection, RequestTypes
+from .account import ClientAccountRoute
+from mybody_api_client.utils import BaseRoute
 
 
-class Image(BaseSection):
-    prefix = 'images'
-
-    async def get(self, id_str: str):
-        path = '/get'
-        response = await self.request(
-            type_=RequestTypes.GET,
-            path=path,
-            token_required=False,
-            parameters={
-                'id_str': id_str,
-            },
-            response_key='image',
-        )
-        return response
+class ClientRoute(BaseRoute):
+    account = ClientAccountRoute()

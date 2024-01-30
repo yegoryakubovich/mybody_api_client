@@ -1,5 +1,5 @@
 #
-# (c) 2023, Yegor Yakubovich, yegoryakubovich.com, personal@yegoryakybovich.com
+# (c) 2024, Yegor Yakubovich, yegoryakubovich.com, personal@yegoryakybovich.com
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,5 +15,19 @@
 #
 
 
-from .client import Client
-from .admin import Admin
+class BaseRoute:
+    url: str = ''
+    prefix: str = ''
+    token: str = None
+
+    def __init__(self, url: str = None):
+        if not url:
+            return
+
+        self.url = url + self.prefix
+        for i in dir(self):
+            if issubclass(eval(f'type(self.{i})'), BaseRoute):
+                route: BaseRoute = eval(f'self.{i}')
+                route.__init__(url=self.url)
+
+        print(self.url)

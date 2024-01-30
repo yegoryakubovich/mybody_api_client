@@ -15,11 +15,8 @@
 #
 
 
-from mybody_api_client.utils import BaseApiClient
-from mybody_api_client.client import ClientRoute
-from mybody_api_client.admin import AdminRoute
+from mybody_api_client.utils import BaseRoute
 
 
-class MyBodyApiClient(BaseApiClient):
-    client = ClientRoute()
-    admin = AdminRoute()
+class ClientAccountRoute(BaseRoute):
+    prefix = '/account'
