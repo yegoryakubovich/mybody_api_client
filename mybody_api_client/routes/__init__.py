@@ -15,11 +15,5 @@
 #
 
 
-from mybody_api_client.utils import BaseApiClient
-from mybody_api_client.routes.client import ClientRoute
-from mybody_api_client.routes.admin import AdminRoute
-
-
-class MyBodyApiClient(BaseApiClient):
-    client = ClientRoute()
-    admin = AdminRoute()
+from .client import ClientRoute
+from .admin import AdminRoute
