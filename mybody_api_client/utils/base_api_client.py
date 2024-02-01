@@ -21,4 +21,7 @@ from mybody_api_client.utils.base_route import BaseRoute
 class BaseApiClient(BaseRoute):
     def __init__(self, url: str, token: str = None):
         self.url = url
-        super().__init__(url=url)
+        super().__init__(
+            url=url,
+            token=token,
+        )

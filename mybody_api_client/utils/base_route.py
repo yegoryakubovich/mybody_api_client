@@ -15,19 +15,28 @@
 #
 
 
+class RequestTypes:
+    GET = 'get'
+    POST = 'post'
+    UPDATE = 'update'
+    DELETE = 'delete'
+
+
 class BaseRoute:
     url: str = ''
     prefix: str = ''
     token: str = None
 
-    def __init__(self, url: str = None):
+    def __init__(self, url: str = None, token: str = None):
         if not url:
             return
 
         self.url = url + self.prefix
+        self.token = token
         for i in dir(self):
             if issubclass(eval(f'type(self.{i})'), BaseRoute):
                 route: BaseRoute = eval(f'self.{i}')
-                route.__init__(url=self.url)
+                route.__init__(url=self.url, token=self.token)
 
-        print(self.url)
+    def request(self, type_: RequestTypes):
+        pass
