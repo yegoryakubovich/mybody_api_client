@@ -15,5 +15,6 @@
 #
 
 
-from .base_route import BaseRoute
+from .base_route import BaseRoute, RequestTypes
 from .base_api_client import BaseApiClient
+from .exceptions import *

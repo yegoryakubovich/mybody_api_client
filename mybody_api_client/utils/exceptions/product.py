@@ -15,11 +15,19 @@
 #
 
 
-from .client import ClientRoute
-from .admin import AdminRoute
-from mybody_api_client.utils import BaseApiClient
+from .base import ApiException
 
 
-class MyBodyApiClient(BaseApiClient):
-    client = ClientRoute()
-    admin = AdminRoute()
+class InvalidProductType(ApiException):
+    code = 5000
+    message = 'Invalid product type. Available: {all}'
+
+
+class InvalidUnit(ApiException):
+    code = 5001
+    message = 'Invalid unit. Available: {all}'
+
+
+class InvalidProductList(ApiException):
+    code = 5002
+    message = 'Invalid product list'

@@ -16,7 +16,18 @@
 
 
 from mybody_api_client.utils import BaseRoute
+from mybody_api_client.utils import RequestTypes
 
 
 class ClientAccountRoute(BaseRoute):
-    prefix = '/account'
+    prefix = '/accounts'
+
+    async def check_username(self, username):
+        return await self.request(
+            type_=RequestTypes.GET,
+            prefix='/username/check',
+            parameters={
+                'username': username,
+            },
+            token_required=False,
+        )

@@ -15,11 +15,24 @@
 #
 
 
-from .client import ClientRoute
-from .admin import AdminRoute
-from mybody_api_client.utils import BaseApiClient
+from .base import ApiException
 
 
-class MyBodyApiClient(BaseApiClient):
-    client = ClientRoute()
-    admin = AdminRoute()
+class ModelDoesNotExist(ApiException):
+    code = 1000
+    message = '{model} with {id_type} "{id_value}" does not exist'
+
+
+class NotEnoughPermissions(ApiException):
+    code = 1001
+    message = 'Not enough permissions to execute'
+
+
+class NoRequiredParameters(ApiException):
+    code = 1002
+    message = 'One of the following parameters must be filled in: {parameters}'
+
+
+class ModelAlreadyExist(ApiException):
+    code = 1003
+    message = '{model} with {id_type} "{id_value}" already exist'

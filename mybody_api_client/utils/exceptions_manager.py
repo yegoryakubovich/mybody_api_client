@@ -15,11 +15,18 @@
 #
 
 
-from .client import ClientRoute
-from .admin import AdminRoute
-from mybody_api_client.utils import BaseApiClient
+from inspect import isclass
+
+from mybody_api_client.utils.exceptions import ApiException
+from mybody_api_client.utils.exceptions import account, article, exercise, image, main, meal, product
 
 
-class MyBodyApiClient(BaseApiClient):
-    client = ClientRoute()
-    admin = AdminRoute()
+groups = [account, article, exercise, image, main, meal, product]
+exceptions = {}
+
+
+for module in groups:
+    for e in [e for e in [eval(f'module.{exception}') for exception in dir(module)] if isclass(e)]:
+        if not issubclass(e, ApiException):
+            pass
+        exceptions[e.code] = e

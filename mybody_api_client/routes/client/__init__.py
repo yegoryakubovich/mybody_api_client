@@ -17,7 +17,9 @@
 
 from .account import ClientAccountRoute
 from mybody_api_client.utils import BaseRoute
+from .languages import ClientLanguagesRoute
 
 
 class ClientRoute(BaseRoute):
     account = ClientAccountRoute()
+    languages = ClientLanguagesRoute()

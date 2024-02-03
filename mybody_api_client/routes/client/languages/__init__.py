@@ -15,11 +15,16 @@
 #
 
 
-from .client import ClientRoute
-from .admin import AdminRoute
-from mybody_api_client.utils import BaseApiClient
+from mybody_api_client.utils import BaseRoute
+from mybody_api_client.utils import RequestTypes
 
 
-class MyBodyApiClient(BaseApiClient):
-    client = ClientRoute()
-    admin = AdminRoute()
+class ClientLanguagesRoute(BaseRoute):
+    prefix = '/languages'
+
+    async def get_list(self):
+        return await self.request(
+            type_=RequestTypes.GET,
+            prefix='/get',
+            token_required=False,
+        )

@@ -15,11 +15,9 @@
 #
 
 
-from .client import ClientRoute
-from .admin import AdminRoute
-from mybody_api_client.utils import BaseApiClient
+from .base import ApiException
 
 
-class MyBodyApiClient(BaseApiClient):
-    client = ClientRoute()
-    admin = AdminRoute()
+class InvalidMealType(ApiException):
+    code = 6000
+    message = 'Invalid meal type. Available: {all}'

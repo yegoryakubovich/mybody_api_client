@@ -15,11 +15,14 @@
 #
 
 
-from .client import ClientRoute
-from .admin import AdminRoute
-from mybody_api_client.utils import BaseApiClient
+from .base import ApiException
 
 
-class MyBodyApiClient(BaseApiClient):
-    client = ClientRoute()
-    admin = AdminRoute()
+class InvalidFileType(ApiException):
+    code = 7000
+    message = 'Invalid file type. Please upload an image'
+
+
+class TooLargeFile(ApiException):
+    code = 7001
+    message = 'Uploaded file is too large. Available size up to 16MB'

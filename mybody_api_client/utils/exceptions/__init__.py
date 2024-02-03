@@ -15,11 +15,13 @@
 #
 
 
-from .client import ClientRoute
-from .admin import AdminRoute
-from mybody_api_client.utils import BaseApiClient
+from .account import AccountMissingPermission, InvalidAccountServiceAnswerList, InvalidPassword, InvalidUsername, \
+    WrongPassword
+from .article import ArticleSessionRequired
+from .base import ApiException
+from .exercise import InvalidExerciseType
+from .image import InvalidFileType, TooLargeFile
+from .main import ModelAlreadyExist, ModelDoesNotExist, NoRequiredParameters, NotEnoughPermissions
+from .meal import InvalidMealType
+from .product import InvalidProductList, InvalidProductType, InvalidUnit
 
-
-class MyBodyApiClient(BaseApiClient):
-    client = ClientRoute()
-    admin = AdminRoute()

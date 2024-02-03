@@ -15,11 +15,15 @@
 #
 
 
-from .client import ClientRoute
-from .admin import AdminRoute
-from mybody_api_client.utils import BaseApiClient
+class ApiException(Exception):
+    code: int = 0
+    message: str
+    kwargs: dict = {}
 
-
-class MyBodyApiClient(BaseApiClient):
-    client = ClientRoute()
-    admin = AdminRoute()
+    def __init__(self, message: str = None, kwargs: dict = None):
+        if not kwargs:
+            kwargs = {}
+        self.kwargs = kwargs
+        if message:
+            self.message = message
+            super().__init__(message)

@@ -15,11 +15,9 @@
 #
 
 
-from .client import ClientRoute
-from .admin import AdminRoute
-from mybody_api_client.utils import BaseApiClient
+from .base import ApiException
 
 
-class MyBodyApiClient(BaseApiClient):
-    client = ClientRoute()
-    admin = AdminRoute()
+class ArticleSessionRequired(ApiException):
+    code = 3000
+    message = 'To read this article enter a token'

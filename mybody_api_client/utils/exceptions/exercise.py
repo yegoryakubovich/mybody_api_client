@@ -15,11 +15,9 @@
 #
 
 
-from .client import ClientRoute
-from .admin import AdminRoute
-from mybody_api_client.utils import BaseApiClient
+from .base import ApiException
 
 
-class MyBodyApiClient(BaseApiClient):
-    client = ClientRoute()
-    admin = AdminRoute()
+class InvalidExerciseType(ApiException):
+    code = 4000
+    message = 'Invalid exercise type. Available: {all}'
