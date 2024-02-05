@@ -53,13 +53,14 @@ class BaseRoute:
 
     async def create_data(self, parameters, token_required, type_):
         parameters = parameters or {}
+
         json = {}
+        url_parameters = {}
         data = {}
         if (token_required and self.token) or self.token:
-            parameters['token'] = self.token
+            url_parameters['token'] = self.token
 
         have_data = False
-        url_parameters = {}
         for pk, pv in parameters.items():
             if isinstance(pv, BufferedReader):
                 have_data = True
