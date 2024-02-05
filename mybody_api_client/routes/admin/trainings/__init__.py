@@ -37,13 +37,13 @@ class AdminTrainingRoute(BaseRoute):
         )
 
     async def get_list(self, account_service_id: int, date: str = None):
+        parameters = {'account_service_id': account_service_id}
+        if date is not None:
+            parameters['date'] = date
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/list/get',
-            parameters={
-                'account_service_id': account_service_id,
-                'date': date,
-            },
+            parameters=parameters,
             response_key='trainings',
         )
 
@@ -67,6 +67,12 @@ class AdminTrainingRoute(BaseRoute):
         )
 
     async def update(self, id_: int, date: str = None, article_id: int = None):
+        parameters = {
+            'id': id_,
+            'article_id': article_id,
+        }
+        if date:
+            parameters['date'] = date
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/update',

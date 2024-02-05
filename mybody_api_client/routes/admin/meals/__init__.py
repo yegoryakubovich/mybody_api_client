@@ -101,13 +101,15 @@ class AdminMealRoute(BaseRoute):
             account_service_id: int,
             date: str = None,
     ):
+        parameters = {
+            'account_service_id': account_service_id,
+        }
+        if date:
+            parameters['date'] = date
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/list/get',
-            parameters={
-                'account_service_id': account_service_id,
-                'date': date,
-            },
+            parameters=parameters,
             response_key='meals',
         )
 

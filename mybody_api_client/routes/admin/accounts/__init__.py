@@ -33,7 +33,7 @@ class AdminAccountRoute(BaseRoute):
             parameters={
                 'id': id_,
             },
-            response_key='accounts',
+            response_key='account',
         )
 
     async def search(self, id_: int = None, username: str = None, page: int = None):

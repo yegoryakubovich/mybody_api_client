@@ -36,6 +36,6 @@ class ClientLanguageRoute(BaseRoute):
     async def get_list(self):
         return await self.request(
             type_=RequestTypes.GET,
-            prefix='/get',
+            prefix='/list/get',
             token_required=False,
         )

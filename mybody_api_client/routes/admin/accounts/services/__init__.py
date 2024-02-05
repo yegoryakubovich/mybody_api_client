@@ -29,7 +29,7 @@ class AdminAccountServiceRoute(BaseRoute):
     ):
         return await self.request(
             type_=RequestTypes.POST,
-            prefix='/services/create',
+            prefix='/create',
             parameters={
                 'account_id': account_id,
                 'service': service,
@@ -48,7 +48,7 @@ class AdminAccountServiceRoute(BaseRoute):
     ):
         return await self.request(
             type_=RequestTypes.POST,
-            prefix='/services/update',
+            prefix='/update',
             parameters={
                 'id_': id_,
                 'answers': answers,
@@ -64,7 +64,7 @@ class AdminAccountServiceRoute(BaseRoute):
     ):
         return await self.request(
             type_=RequestTypes.POST,
-            prefix='/services/delete',
+            prefix='/delete',
             parameters={
                 'id_': id_,
             },
@@ -76,7 +76,7 @@ class AdminAccountServiceRoute(BaseRoute):
     ):
         return await self.request(
             type_=RequestTypes.GET,
-            prefix='/services/get',
+            prefix='/get',
             parameters={
                 'id': id_,
             },
@@ -89,7 +89,7 @@ class AdminAccountServiceRoute(BaseRoute):
     ):
         return await self.request(
             type_=RequestTypes.GET,
-            prefix='/services/list/get',
+            prefix='/list/get',
             parameters={
                 'account_id': account_id,
             },
