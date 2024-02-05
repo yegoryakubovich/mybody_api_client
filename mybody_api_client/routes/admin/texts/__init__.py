@@ -26,13 +26,14 @@ class AdminTextRoute(BaseRoute):
     translations = AdminTextTranslationRoute()
     packs = AdminTextPackRoute()
 
-    async def create(self, key: str, value_default: str):
+    async def create(self, key: str, value_default: str, create_text_pack: bool = True):
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
                 'key': key,
                 'value_default': value_default,
+                'create_text_pack': create_text_pack,
             },
             response_key='key',
         )

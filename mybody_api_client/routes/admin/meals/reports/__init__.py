@@ -41,8 +41,8 @@ class AdminMealReportRoute(BaseRoute):
     async def create(
             self,
             meal_id: int,
-            comment: str,
-            products_dict: str,
+            comment: str = None,
+            products_dict: str = None,
     ):
         return await self.request(
             type_=RequestTypes.POST,

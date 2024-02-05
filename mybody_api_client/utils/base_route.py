@@ -15,6 +15,8 @@
 #
 
 
+from io import BufferedReader
+
 from addict import Dict
 from aiohttp import ClientSession
 from furl import furl
@@ -49,6 +51,29 @@ class BaseRoute:
         f.set(args=parameters)
         return f.url
 
+    async def create_data(self, parameters, token_required, type_):
+        parameters = parameters or {}
+        json = {}
+        data = {}
+        if (token_required and self.token) or self.token:
+            parameters['token'] = self.token
+
+        have_data = False
+        url_parameters = {}
+        for pk, pv in parameters.items():
+            if isinstance(pv, BufferedReader):
+                have_data = True
+                data[pk] = pv
+                continue
+
+            url_parameters[pk] = pv
+
+        if type_ == RequestTypes.POST and not have_data:
+            json = url_parameters
+            url_parameters = {}
+
+        return json, url_parameters, data
+
     async def request(
             self,
             type_: str = RequestTypes.GET,
@@ -57,24 +82,22 @@ class BaseRoute:
             parameters: dict = None,
             response_key: str = None,
     ):
-        parameters = parameters or {}
-        json = {}
-        if (token_required and self.token) or self.token:
-            parameters['token'] = self.token
-
-        if type_ == RequestTypes.POST:
-            json = parameters
-            parameters = {}
+        json, url_parameters, data = await self.create_data(
+            parameters=parameters,
+            token_required=token_required,
+            type_=type_,
+        )
 
         url = await self.create_url(
             prefix=prefix,
-            parameters=parameters,
+            parameters=url_parameters,
         )
 
         async with ClientSession() as session:
-
             if type_ == RequestTypes.GET:
                 response = await session.get(url=url)
+            elif type_ == RequestTypes.POST and url_parameters:
+                response = await session.post(url=url, data=data)
             elif type_ == RequestTypes.POST:
                 response = await session.post(url=url, json=json)
 

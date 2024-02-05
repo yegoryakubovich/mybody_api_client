@@ -21,7 +21,7 @@ from setuptools import setup, PEP420PackageFinder
 
 
 NAME = 'mybody_api_client'
-VERSION = '0.3.28'
+VERSION = '0.4'
 DESCRIPTION = ''
 URL = 'https://yegoryakubovich.com'
 PACKAGE_ROOT = path.abspath(path.dirname(__file__))
