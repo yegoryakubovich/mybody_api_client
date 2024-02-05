@@ -15,18 +15,58 @@
 #
 
 
+from mybody_api_client.routes.client.accounts.services import ClientAccountServiceRoute
 from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class ClientAccountRoute(BaseRoute):
     prefix = '/accounts'
 
-    async def check_username(self, username):
+    services = ClientAccountServiceRoute()
+
+    async def get(self):
+        return await self.request(
+            type_=RequestTypes.GET,
+            prefix='/get',
+            response_key='account',
+        )
+
+    async def create(
+            self,
+            username: str,
+            password: str,
+            firstname: str,
+            lastname: str,
+            country: str,
+            language: str,
+            timezone: str,
+            currency: str,
+            surname: str = None,
+    ):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/create',
+            token_required=False,
+            parameters={
+                'username': username,
+                'password': password,
+                'firstname': firstname,
+                'lastname': lastname,
+                'surname': surname,
+                'country': country,
+                'language': language,
+                'timezone': timezone,
+                'currency': currency,
+            },
+            response_key='id',
+        )
+
+    async def check_username(self, username: str):
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/username/check',
+            token_required=False,
             parameters={
                 'username': username,
-            },
-            token_required=False,
+            }
         )
