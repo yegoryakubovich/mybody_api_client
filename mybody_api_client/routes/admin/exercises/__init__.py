@@ -21,6 +21,7 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 class AdminExerciseRoute(BaseRoute):
     prefix = '/exercises'
 
+    async def create(self, name: str, type_: str):
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/create',
