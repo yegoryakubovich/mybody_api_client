@@ -15,27 +15,28 @@
 #
 
 
-from mybody_api_client.utils import BaseRoute
-from mybody_api_client.utils import RequestTypes
+from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class ClientLanguageRoute(BaseRoute):
+class AdminLanguageRoute(BaseRoute):
     prefix = '/languages'
 
-    async def get(self, id_str: str):
+    async def create(self, id_str: str, name: str):
         return await self.request(
-            type_=RequestTypes.GET,
-            prefix='/get',
-            token_required=False,
+            type_=RequestTypes.POST,
+            prefix='/create',
+            parameters={
+                'id_str': id_str,
+                'name': name,
+            },
+            response_key='id_str',
+        )
+
+    async def delete(self, id_str: str):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/delete',
             parameters={
                 'id_str': id_str,
             },
-            response_key='language',
-        )
-
-    async def get_list(self):
-        return await self.request(
-            type_=RequestTypes.GET,
-            prefix='/get',
-            token_required=False,
         )

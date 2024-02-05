@@ -15,27 +15,34 @@
 #
 
 
-from mybody_api_client.utils import BaseRoute
-from mybody_api_client.utils import RequestTypes
+from mybody_api_client.utils import BaseRoute, RequestTypes
+from .services import AdminAccountServiceRoute
+from .roles import AdminAccountRolesRoute
 
 
-class ClientLanguageRoute(BaseRoute):
-    prefix = '/languages'
+class AdminAccountRoute(BaseRoute):
+    prefix = '/accounts'
 
-    async def get(self, id_str: str):
+    services = AdminAccountServiceRoute()
+    roles = AdminAccountRolesRoute()
+
+    async def get(self, id_: int = None):
         return await self.request(
-            type_=RequestTypes.GET,
+            type_=RequestTypes.POST,
             prefix='/get',
-            token_required=False,
             parameters={
-                'id_str': id_str,
+                'id': id_,
             },
-            response_key='language',
+            response_key='accounts',
         )
 
-    async def get_list(self):
+    async def search(self, id_: int = None, username: str = None, page: int = None):
         return await self.request(
-            type_=RequestTypes.GET,
-            prefix='/get',
-            token_required=False,
+            type_=RequestTypes.POST,
+            prefix='/search',
+            parameters={
+                'id': id_,
+                'username': username,
+                'page': page,
+            },
         )

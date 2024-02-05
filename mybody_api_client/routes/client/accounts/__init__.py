@@ -15,8 +15,7 @@
 #
 
 
-from mybody_api_client.utils import BaseRoute
-from mybody_api_client.utils import RequestTypes
+from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class ClientAccountRoute(BaseRoute):

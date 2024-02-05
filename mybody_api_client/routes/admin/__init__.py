@@ -15,11 +15,39 @@
 #
 
 
-from .account import AdminAccountRoute
 from mybody_api_client.utils import BaseRoute
+from .accounts import AdminAccountRoute
+from .articles import AdminArticleRoute
+from .countries import AdminCountryRoute
+from .currencies import AdminCurrencyRoute
+from .exercises import AdminExerciseRoute
+from .images import AdminImageRoute
+from .languages import AdminLanguageRoute
+from .meals import AdminMealRoute
+from .permissions import AdminPermissionRoute
+from .products import AdminProductRoute
+from .roles import AdminRoleRoute
+from .services import AdminServiceRoute
+from .texts import AdminTextRoute
+from .timezones import AdminTimezoneRoute
+from .trainings import AdminTrainingRoute
 
 
 class AdminRoute(BaseRoute):
     prefix = '/admin'
 
-    account = AdminAccountRoute()
+    accounts = AdminAccountRoute()
+    articles = AdminArticleRoute()
+    countries = AdminCountryRoute()
+    currencies = AdminCurrencyRoute()
+    exercises = AdminExerciseRoute()
+    images = AdminImageRoute()
+    languages = AdminLanguageRoute()
+    meals = AdminMealRoute()
+    permissions = AdminPermissionRoute()
+    products = AdminProductRoute()
+    roles = AdminRoleRoute()
+    services = AdminServiceRoute()
+    texts = AdminTextRoute()
+    timezones = AdminTimezoneRoute()
+    trainings = AdminTrainingRoute()

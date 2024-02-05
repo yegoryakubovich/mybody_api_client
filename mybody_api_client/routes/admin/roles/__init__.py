@@ -15,27 +15,49 @@
 #
 
 
-from mybody_api_client.utils import BaseRoute
-from mybody_api_client.utils import RequestTypes
+from .permissions import AdminRolePermissionRoute
+from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class ClientLanguageRoute(BaseRoute):
-    prefix = '/languages'
+class AdminRoleRoute(BaseRoute):
+    prefix = '/roles'
 
-    async def get(self, id_str: str):
+    permissions = AdminRolePermissionRoute()
+
+    async def create(self, name: str):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/create',
+            parameters={
+              'name': name,
+            },
+            response_key='id',
+        )
+
+    async def delete(self, id_: int):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/delete',
+            parameters={
+              'id': id_,
+            },
+        )
+
+    async def get(self, id_: int):
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/get',
             token_required=False,
             parameters={
-                'id_str': id_str,
+              'id': id_,
             },
-            response_key='language',
+            response_key='role',
         )
 
     async def get_list(self):
         return await self.request(
             type_=RequestTypes.GET,
-            prefix='/get',
+            prefix='/list/get',
             token_required=False,
+            response_key='roles',
         )

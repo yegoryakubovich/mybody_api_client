@@ -15,8 +15,20 @@
 #
 
 
-from mybody_api_client.utils import BaseRoute
+from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class AdminAccountRoute(BaseRoute):
-    prefix = '/account'
+class ClientSessionRoute(BaseRoute):
+    prefix = '/sessions'
+
+    async def create(self, username: str, password: str):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/create',
+            token_required=False,
+            parameters={
+                'username': username,
+                'password': password,
+            },
+            response_key='session',
+        )

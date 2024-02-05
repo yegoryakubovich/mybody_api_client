@@ -15,12 +15,11 @@
 #
 
 
-from mybody_api_client.utils import BaseRoute
-from mybody_api_client.utils import RequestTypes
+from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class ClientLanguageRoute(BaseRoute):
-    prefix = '/languages'
+class ClientCountryRoute(BaseRoute):
+    prefix = '/countries'
 
     async def get(self, id_str: str):
         return await self.request(
@@ -30,12 +29,13 @@ class ClientLanguageRoute(BaseRoute):
             parameters={
                 'id_str': id_str,
             },
-            response_key='language',
+            response_key='country',
         )
 
     async def get_list(self):
         return await self.request(
             type_=RequestTypes.GET,
-            prefix='/get',
+            prefix='/list/get',
             token_required=False,
+            response_key='countries',
         )

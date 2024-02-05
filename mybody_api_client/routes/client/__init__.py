@@ -15,11 +15,35 @@
 #
 
 
-from .account import ClientAccountRoute
+from .accounts import ClientAccountRoute
+from .articles import ClientArticleRoute
+from .countries import ClientCountryRoute
+from .currencies import ClientCurrencyRoute
+from .exercises import ClientExerciseRoute
+from .images import ClientImageRoute
+from .languages import ClientLanguageRoute
+from .meals import ClientMealRoute
+from .products import ClientProductRoute
+from .services import ClientServiceRoute
+from .sessions import ClientSessionRoute
+from .texts import ClientTextRoute
+from .timezones import ClientTimezoneRoute
+from .trainings import ClientTrainingRoute
 from mybody_api_client.utils import BaseRoute
-from .languages import ClientLanguagesRoute
 
 
 class ClientRoute(BaseRoute):
-    account = ClientAccountRoute()
-    languages = ClientLanguagesRoute()
+    accounts = ClientAccountRoute()
+    articles = ClientArticleRoute()
+    countries = ClientCountryRoute()
+    currencies = ClientCurrencyRoute()
+    exercises = ClientExerciseRoute()
+    images = ClientImageRoute()
+    languages = ClientLanguageRoute()
+    meals = ClientMealRoute()
+    products = ClientProductRoute()
+    services = ClientServiceRoute()
+    sessions = ClientSessionRoute()
+    texts = ClientTextRoute()
+    timezones = ClientTimezoneRoute()
+    trainings = ClientTrainingRoute()

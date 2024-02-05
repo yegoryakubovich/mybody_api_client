@@ -15,27 +15,35 @@
 #
 
 
-from mybody_api_client.utils import BaseRoute
-from mybody_api_client.utils import RequestTypes
+from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class ClientLanguageRoute(BaseRoute):
-    prefix = '/languages'
+class AdminTimezoneRoute(BaseRoute):
+    prefix = '/timezones'
 
-    async def get(self, id_str: str):
+    async def create(
+            self,
+            id_str: str,
+            deviation: int,
+    ):
         return await self.request(
-            type_=RequestTypes.GET,
-            prefix='/get',
-            token_required=False,
+            type_=RequestTypes.POST,
+            prefix='/create',
+            parameters={
+                'id_str': id_str,
+                'deviation': deviation,
+            },
+            response_key='id_str',
+        )
+
+    async def delete(
+            self,
+            id_str: str,
+    ):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/delete',
             parameters={
                 'id_str': id_str,
             },
-            response_key='language',
-        )
-
-    async def get_list(self):
-        return await self.request(
-            type_=RequestTypes.GET,
-            prefix='/get',
-            token_required=False,
         )

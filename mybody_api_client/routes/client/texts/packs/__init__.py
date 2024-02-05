@@ -15,27 +15,19 @@
 #
 
 
-from mybody_api_client.utils import BaseRoute
-from mybody_api_client.utils import RequestTypes
+from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class ClientLanguageRoute(BaseRoute):
-    prefix = '/languages'
+class ClientTextPackRoute(BaseRoute):
+    prefix = '/packs'
 
-    async def get(self, id_str: str):
+    async def get(self, language: str):
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/get',
             token_required=False,
             parameters={
-                'id_str': id_str,
+                'language': language,
             },
-            response_key='language',
-        )
-
-    async def get_list(self):
-        return await self.request(
-            type_=RequestTypes.GET,
-            prefix='/get',
-            token_required=False,
+            response_key='text_pack',
         )

@@ -15,12 +15,28 @@
 #
 
 
-from mybody_api_client.utils import BaseRoute
-from mybody_api_client.utils import RequestTypes
+from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class ClientLanguageRoute(BaseRoute):
-    prefix = '/languages'
+class ClientImageRoute(BaseRoute):
+    prefix = '/images'
+
+    async def create(
+            self,
+            model: str,
+            model_id: int | str,
+            file: bytes,
+    ):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/create',
+            parameters={
+                'model': model,
+                'model_id': model_id,
+                'file': file,
+            },
+            response_key='id_str',
+        )
 
     async def get(self, id_str: str):
         return await self.request(
@@ -30,12 +46,5 @@ class ClientLanguageRoute(BaseRoute):
             parameters={
                 'id_str': id_str,
             },
-            response_key='language',
-        )
-
-    async def get_list(self):
-        return await self.request(
-            type_=RequestTypes.GET,
-            prefix='/get',
-            token_required=False,
+            response_key='image',
         )

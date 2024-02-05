@@ -15,27 +15,44 @@
 #
 
 
-from mybody_api_client.utils import BaseRoute
-from mybody_api_client.utils import RequestTypes
+from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class ClientLanguageRoute(BaseRoute):
-    prefix = '/languages'
+class ClientMealReportRoute(BaseRoute):
+    prefix = '/reports'
 
-    async def get(self, id_str: str):
+    async def get(self, id_: int):
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/get',
-            token_required=False,
             parameters={
-                'id_str': id_str,
+                'id': id_,
             },
-            response_key='language',
+            response_key='report',
         )
 
-    async def get_list(self):
+    async def create(
+            self,
+            meal_id: int,
+            comment: str = None,
+            products: str = None,
+    ):
         return await self.request(
-            type_=RequestTypes.GET,
-            prefix='/get',
-            token_required=False,
+            type_=RequestTypes.POST,
+            prefix='/create',
+            parameters={
+                'meal_id': meal_id,
+                'comment': comment,
+                'products': products,
+            },
+            response_key='id',
+        )
+
+    async def delete(self, id_: int):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/delete',
+            parameters={
+                'id': id_,
+            },
         )

@@ -15,27 +15,31 @@
 #
 
 
-from mybody_api_client.utils import BaseRoute
-from mybody_api_client.utils import RequestTypes
+from mybody_api_client.routes.client.services.costs import ClientServiceCostRoute
+from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class ClientLanguageRoute(BaseRoute):
-    prefix = '/languages'
+class ClientServiceRoute(BaseRoute):
+    prefix = '/services'
 
-    async def get(self, id_str: str):
+    costs = ClientServiceCostRoute()
+
+    async def get(self, id_: str):
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/get',
             token_required=False,
             parameters={
-                'id_str': id_str,
+                'id_str': id_,
             },
-            response_key='language',
+            response_key='service',
         )
 
     async def get_list(self):
         return await self.request(
             type_=RequestTypes.GET,
-            prefix='/get',
+            prefix='/list/get',
             token_required=False,
+            response_key='services',
         )
+

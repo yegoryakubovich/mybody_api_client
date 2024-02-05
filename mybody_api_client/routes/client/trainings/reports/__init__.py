@@ -15,27 +15,45 @@
 #
 
 
-from mybody_api_client.utils import BaseRoute
-from mybody_api_client.utils import RequestTypes
+from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class ClientLanguageRoute(BaseRoute):
-    prefix = '/languages'
+class ClientTrainingReportRoute(BaseRoute):
+    prefix = '/reports'
 
-    async def get(self, id_str: str):
+    async def get(self, id_: int):
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/get',
-            token_required=False,
             parameters={
-                'id_str': id_str,
+                'id': id_,
             },
-            response_key='language',
+            response_key='training_report',
         )
 
     async def get_list(self):
         return await self.request(
             type_=RequestTypes.GET,
-            prefix='/get',
-            token_required=False,
+            prefix='/list/get',
+            response_key='training_reports',
+        )
+
+    async def create(self, training_id: int, comment: str):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/create',
+            parameters={
+                'training_id': training_id,
+                'comment': comment,
+            },
+            response_key='id',
+        )
+
+    async def delete(self, id_: int):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/delete',
+            parameters={
+                'id': id_,
+            },
         )
