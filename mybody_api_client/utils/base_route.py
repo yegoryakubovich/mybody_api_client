@@ -102,8 +102,8 @@ class BaseRoute:
             elif type_ == RequestTypes.POST:
                 response = await session.post(url=url, json=json)
 
-        response_json = await response.json()
-        response = Dict(**response_json)
+            response_json = await response.json()
+            response = Dict(**response_json)
 
         if response.state == 'successful':
             if response_key:
