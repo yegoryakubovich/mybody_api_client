@@ -38,4 +38,5 @@ class ClientLanguageRoute(BaseRoute):
             type_=RequestTypes.GET,
             prefix='/list/get',
             token_required=False,
+            response_key='languages',
         )
