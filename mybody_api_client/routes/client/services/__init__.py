@@ -42,4 +42,3 @@ class ClientServiceRoute(BaseRoute):
             token_required=False,
             response_key='services',
         )
-

@@ -36,6 +36,21 @@ class AdminTrainingRoute(BaseRoute):
             response_key='training',
         )
 
+    async def get_by_date(
+            self,
+            account_service_id: int,
+            date: str,
+    ):
+        return await self.request(
+            type_=RequestTypes.GET,
+            prefix='/by-date/get',
+            parameters={
+                'account_service_id': account_service_id,
+                'date': date,
+            },
+            response_key='training',
+        )
+
     async def get_list(self, account_service_id: int, date: str = None):
         parameters = {'account_service_id': account_service_id}
         if date is not None:
@@ -54,22 +69,20 @@ class AdminTrainingRoute(BaseRoute):
             response_key='trainings',
         )
 
-    async def create(self, account_service_id: int, date: str, article_id: int = None):
+    async def create(self, account_service_id: int, date: str):
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
                 'account_service_id': account_service_id,
                 'date': date,
-                'article_id': article_id,
             },
             response_key='id',
         )
 
-    async def update(self, id_: int, date: str = None, article_id: int = None):
+    async def update(self, id_: int, date: str = None):
         parameters = {
             'id': id_,
-            'article_id': article_id,
         }
         if date:
             parameters['date'] = date
@@ -79,7 +92,6 @@ class AdminTrainingRoute(BaseRoute):
             parameters={
                 'id': id_,
                 'date': date,
-                'article_id': article_id,
             },
         )
 
