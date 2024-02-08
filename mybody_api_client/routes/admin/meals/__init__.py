@@ -58,17 +58,19 @@ class AdminMealRoute(BaseRoute):
             proteins: int = None,
             carbohydrates: int = None,
     ):
+        parameters = {
+            'id': id_,
+            'type': type_,
+            'fats': fats,
+            'proteins': proteins,
+            'carbohydrates': carbohydrates,
+        }
+        if date:
+            parameters['date'] = date
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/update',
-            parameters={
-                'id': id_,
-                'date': date,
-                'type': type_,
-                'fats': fats,
-                'proteins': proteins,
-                'carbohydrates': carbohydrates,
-            },
+            parameters=parameters,
         )
 
     async def delete(
