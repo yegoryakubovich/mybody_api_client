@@ -28,7 +28,7 @@ class AdminAccountRolesRoute(BaseRoute):
     ):
         return await self.request(
             type_=RequestTypes.POST,
-            prefix='/roles/create',
+            prefix='/create',
             parameters={
                 'account_id': account_id,
                 'role_id': role_id,
@@ -42,7 +42,7 @@ class AdminAccountRolesRoute(BaseRoute):
     ):
         return await self.request(
             type_=RequestTypes.POST,
-            prefix='/roles/delete',
+            prefix='/delete',
             parameters={
                 'id': id_,
             },
@@ -54,7 +54,7 @@ class AdminAccountRolesRoute(BaseRoute):
     ):
         return await self.request(
             type_=RequestTypes.GET,
-            prefix='/roles/get',
+            prefix='/get',
             parameters={
                 'account_id': account_id
             },
@@ -64,6 +64,6 @@ class AdminAccountRolesRoute(BaseRoute):
     async def get_list(self):
         return await self.request(
             type_=RequestTypes.GET,
-            prefix='/roles/list/get',
+            prefix='/list/get',
             response_key='roles',
         )
