@@ -35,7 +35,7 @@ class AdminMealReportRoute(BaseRoute):
             parameters={
                 'id': id_,
             },
-            response_key='report',
+            response_key='meal_report',
         )
 
     async def create(

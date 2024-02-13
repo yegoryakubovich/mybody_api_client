@@ -46,3 +46,14 @@ class AdminAccountRoute(BaseRoute):
                 'page': page,
             },
         )
+
+    async def change_password(self, account_id: int):
+        return await self.request(
+            type_=RequestTypes.GET,
+            prefix='/password/change',
+            parameters={
+                'account_id': account_id,
+            },
+            response_key='new_password',
+        )
+

@@ -70,3 +70,23 @@ class ClientAccountRoute(BaseRoute):
                 'username': username,
             }
         )
+
+    async def check_password(self, password: str):
+        return await self.request(
+            type_=RequestTypes.GET,
+            prefix='/password/check',
+            token_required=False,
+            parameters={
+                'password': password,
+            }
+        )
+
+    async def change_password(self, current_password: str, new_password: str):
+        return await self.request(
+            type_=RequestTypes.GET,
+            prefix='/password/change',
+            parameters={
+                'current_password': current_password,
+                'new_password': new_password,
+            }
+        )
