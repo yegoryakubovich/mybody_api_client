@@ -18,7 +18,7 @@
 from io import BufferedReader
 
 from addict import Dict
-from aiohttp import ClientSession
+from aiohttp import ClientSession, ContentTypeError
 from furl import furl
 
 from mybody_api_client.utils.exceptions import ApiException
@@ -57,7 +57,7 @@ class BaseRoute:
         json = {}
         url_parameters = {}
         data = {}
-        if (token_required and self.token) or self.token:
+        if token_required and self.token:
             url_parameters['token'] = self.token
 
         have_data = False
@@ -102,8 +102,11 @@ class BaseRoute:
             elif type_ == RequestTypes.POST:
                 response = await session.post(url=url, json=json)
 
-            response_json = await response.json()
-            response = Dict(**response_json)
+            try:
+                response_json = await response.json()
+                response = Dict(**response_json)
+            except ContentTypeError:
+                return response
 
         if response.state == 'successful':
             if response_key:
