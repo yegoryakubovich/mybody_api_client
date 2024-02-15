@@ -49,7 +49,7 @@ class AdminAccountRoute(BaseRoute):
 
     async def change_password(self, account_id: int):
         return await self.request(
-            type_=RequestTypes.GET,
+            type_=RequestTypes.POST,
             prefix='/password/change',
             parameters={
                 'account_id': account_id,

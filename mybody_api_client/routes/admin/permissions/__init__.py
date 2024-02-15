@@ -45,7 +45,6 @@ class AdminPermissionRoute(BaseRoute):
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/get',
-            token_required=False,
             parameters={
                 'id_str': id_str,
             },
@@ -56,6 +55,5 @@ class AdminPermissionRoute(BaseRoute):
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/list/get',
-            token_required=False,
             response_key='permissions',
         )
