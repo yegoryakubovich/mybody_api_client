@@ -51,14 +51,13 @@ class AdminTrainingRoute(BaseRoute):
             response_key='training',
         )
 
-    async def get_list(self, account_service_id: int, date: str = None):
-        parameters = {'account_service_id': account_service_id}
-        if date is not None:
-            parameters['date'] = date
+    async def get_list(self, account_service_id: int):
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/list/get',
-            parameters=parameters,
+            parameters={
+                'account_service_id': account_service_id,
+            },
             response_key='trainings',
         )
 
