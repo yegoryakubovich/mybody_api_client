@@ -15,59 +15,57 @@
 #
 
 
+from mybody_api_client.routes.admin.payments.methods import AdminPaymentMethodRoute
 from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class AdminCountryRoute(BaseRoute):
-    prefix = '/countries'
+class AdminPaymentRoute(BaseRoute):
+    prefix = '/payments'
+
+    methods = AdminPaymentMethodRoute()
 
     async def create(
             self,
-            id_str: str,
-            name: str,
-            language_default: str,
-            timezone_default: str,
-            currency_default: str,
+            account_service_id: int,
+            service_cost_id: int,
+            payment_method: str,
+            payment_method_currency_id: int,
     ):
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
-                'id_str': id_str,
-                'name': name,
-                'language_default': language_default,
-                'timezone_default': timezone_default,
-                'currency_default': currency_default,
+                'account_service_id': account_service_id,
+                'service_cost_id': service_cost_id,
+                'payment_method': payment_method,
+                'payment_method_currency_id': payment_method_currency_id,
             },
             response_key='id_str',
         )
 
     async def update(
             self,
-            id_str: str,
-            language_default: str,
-            timezone_default: str,
-            currency_default: str,
+            id_: int,
+            state: str,
     ):
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/update',
             parameters={
-                'id_str': id_str,
-                'language_default': language_default,
-                'timezone_default': timezone_default,
-                'currency_default': currency_default,
+                'id': id_,
+                'state': state,
             },
         )
 
     async def delete(
             self,
-            id_str: str,
+            id_: int,
     ):
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={
-                'id_str': id_str,
+                'id': id_,
             },
         )
+

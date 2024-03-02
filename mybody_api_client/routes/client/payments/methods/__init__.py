@@ -15,23 +15,30 @@
 #
 
 
+from mybody_api_client.routes.client.payments.methods.currencies import ClientPaymentMethodCurrencyRoute
 from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class AdminBillingRoute(BaseRoute):
-    prefix = '/billings'
+class ClientPaymentMethodRoute(BaseRoute):
+    prefix = '/methods'
 
-    async def create(
-            self,
-            account_service_id: int,
-            service_cost_id: int,
-    ):
+    currencies = ClientPaymentMethodCurrencyRoute()
+
+    async def get_list(self):
         return await self.request(
-            type_=RequestTypes.POST,
-            prefix='/create',
+            type_=RequestTypes.GET,
+            prefix='/list/get',
+            token_required=False,
+            response_key='payment_methods',
+        )
+
+    async def get_list_by_currency(self, currency: str):
+        return await self.request(
+            type_=RequestTypes.GET,
+            prefix='/list/get',
             parameters={
-                'account_service_id': account_service_id,
-                'service_cost_id': service_cost_id,
+                'currency': currency,
             },
-            response_key='id_str',
+            token_required=False,
+            response_key='payment_methods',
         )

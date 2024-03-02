@@ -18,37 +18,22 @@
 from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class ClientBillingRoute(BaseRoute):
-    prefix = '/billings'
+class AdminPaymentMethodCurrencyRoute(BaseRoute):
+    prefix = '/currencies'
 
     async def create(
             self,
-            account_service_id: int,
-            service_cost_id: int,
+            payment_method: str,
+            currency: str,
     ):
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
-                'account_service_id': account_service_id,
-                'service_cost_id': service_cost_id,
+                'payment_method': payment_method,
+                'currency': currency,
             },
-            response_key='id_str',
-        )
-
-    async def update(
-            self,
-            id_: int,
-            state: str,
-    ):
-        return await self.request(
-            type_=RequestTypes.POST,
-            prefix='/update',
-            parameters={
-                'id': id_,
-                'state': state,
-            },
-            response_key='id_str',
+            response_key='id',
         )
 
     async def delete(
@@ -61,5 +46,5 @@ class ClientBillingRoute(BaseRoute):
             parameters={
                 'id': id_,
             },
-            response_key='id_str',
         )
+

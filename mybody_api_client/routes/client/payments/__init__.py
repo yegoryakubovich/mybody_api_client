@@ -15,27 +15,30 @@
 #
 
 
+from mybody_api_client.routes.client.payments.methods import ClientPaymentMethodRoute
 from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class AdminLanguageRoute(BaseRoute):
-    prefix = '/languages'
+class ClientPaymentRoute(BaseRoute):
+    prefix = '/payments'
 
-    async def create(self, id_str: str):
+    methods = ClientPaymentMethodRoute()
+
+    async def create(
+            self,
+            account_service_id: int,
+            service_cost_id: int,
+            payment_method: str,
+            payment_method_currency_id: int,
+    ):
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
-                'id_str': id_str,
+                'account_service_id': account_service_id,
+                'service_cost_id': service_cost_id,
+                'payment_method': payment_method,
+                'payment_method_currency_id': payment_method_currency_id,
             },
             response_key='id_str',
-        )
-
-    async def delete(self, id_str: str):
-        return await self.request(
-            type_=RequestTypes.POST,
-            prefix='/delete',
-            parameters={
-                'id_str': id_str,
-            },
         )

@@ -15,19 +15,19 @@
 #
 
 
+from mybody_api_client.routes.admin.payments.methods.currencies import AdminPaymentMethodCurrencyRoute
 from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class AdminCountryRoute(BaseRoute):
-    prefix = '/countries'
+class AdminPaymentMethodRoute(BaseRoute):
+    prefix = '/methods'
+
+    currencies = AdminPaymentMethodCurrencyRoute()
 
     async def create(
             self,
             id_str: str,
             name: str,
-            language_default: str,
-            timezone_default: str,
-            currency_default: str,
     ):
         return await self.request(
             type_=RequestTypes.POST,
@@ -35,39 +35,19 @@ class AdminCountryRoute(BaseRoute):
             parameters={
                 'id_str': id_str,
                 'name': name,
-                'language_default': language_default,
-                'timezone_default': timezone_default,
-                'currency_default': currency_default,
             },
-            response_key='id_str',
-        )
-
-    async def update(
-            self,
-            id_str: str,
-            language_default: str,
-            timezone_default: str,
-            currency_default: str,
-    ):
-        return await self.request(
-            type_=RequestTypes.POST,
-            prefix='/update',
-            parameters={
-                'id_str': id_str,
-                'language_default': language_default,
-                'timezone_default': timezone_default,
-                'currency_default': currency_default,
-            },
+            response_key='id',
         )
 
     async def delete(
             self,
-            id_str: str,
+            id_: int,
     ):
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={
-                'id_str': id_str,
+                'id': id_,
             },
         )
+

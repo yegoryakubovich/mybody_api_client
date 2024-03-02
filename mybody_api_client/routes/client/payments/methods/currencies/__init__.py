@@ -18,24 +18,16 @@
 from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class AdminLanguageRoute(BaseRoute):
-    prefix = '/languages'
+class ClientPaymentMethodCurrencyRoute(BaseRoute):
+    prefix = '/currencies'
 
-    async def create(self, id_str: str):
+    async def get_list(self, payment_method: str):
         return await self.request(
-            type_=RequestTypes.POST,
-            prefix='/create',
+            type_=RequestTypes.GET,
+            prefix='/list/get',
             parameters={
-                'id_str': id_str,
+                'payment_method': payment_method,
             },
-            response_key='id_str',
-        )
-
-    async def delete(self, id_str: str):
-        return await self.request(
-            type_=RequestTypes.POST,
-            prefix='/delete',
-            parameters={
-                'id_str': id_str,
-            },
+            token_required=False,
+            response_key='payment_methods',
         )
