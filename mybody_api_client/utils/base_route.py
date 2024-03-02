@@ -62,7 +62,7 @@ class BaseRoute:
 
         have_data = False
         for pk, pv in parameters.items():
-            if isinstance(pv, BufferedReader):
+            if isinstance(pv, BufferedReader) or isinstance(pv, bytes):
                 have_data = True
                 data[pk] = pv
                 continue
