@@ -45,7 +45,6 @@ class AdminRolePermissionRoute(BaseRoute):
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/get',
-            token_required=False,
             parameters={
               'id': id_,
             },
@@ -56,7 +55,6 @@ class AdminRolePermissionRoute(BaseRoute):
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/list/get',
-            token_required=False,
             parameters={
                 'role_id': role_id,
             },

@@ -46,13 +46,15 @@ class AdminPaymentRoute(BaseRoute):
     async def update(
             self,
             id_: int,
-            state: str,
+            state: str = None,
+            data: str = None,
     ):
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/update',
             parameters={
                 'id': id_,
+                'data': data,
                 'state': state,
             },
         )

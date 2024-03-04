@@ -21,13 +21,10 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 class ClientPaymentMethodCurrencyRoute(BaseRoute):
     prefix = '/currencies'
 
-    async def get_list(self, payment_method: str):
+    async def get_list(self):
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/list/get',
-            parameters={
-                'payment_method': payment_method,
-            },
             token_required=False,
-            response_key='payment_methods',
+            response_key='currencies',
         )
