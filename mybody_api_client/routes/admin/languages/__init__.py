@@ -21,12 +21,13 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 class AdminLanguageRoute(BaseRoute):
     prefix = '/languages'
 
-    async def create(self, id_str: str):
+    async def create(self, id_str: str, name: str):
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
                 'id_str': id_str,
+                'name': name,
             },
             response_key='id_str',
         )
