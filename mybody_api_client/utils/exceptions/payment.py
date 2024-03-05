@@ -15,14 +15,14 @@
 #
 
 
-class ApiException(Exception):
-    code: int = 0
-    message: str
-    kwargs: dict = {}
+from .base import ApiException
 
-    def __init__(self, message: str = None, kwargs: dict = None):
-        if not kwargs:
-            kwargs = {}
-        self.kwargs = kwargs
-        if message:
-            self.message = message
+
+class UnpaidBill(ApiException):
+    code = 9000
+    message = "You have an unpaid bill, so you can't create another one"
+
+
+class InvalidPaymentState(ApiException):
+    code = 9001
+    message = "Invalid payment state. Available: {all}"

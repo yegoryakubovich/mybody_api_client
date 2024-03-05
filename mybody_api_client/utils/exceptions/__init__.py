@@ -24,4 +24,6 @@ from .image import InvalidFileType, TooLargeFile
 from .main import ModelAlreadyExist, ModelDoesNotExist, NoRequiredParameters, NotEnoughPermissions
 from .meal import InvalidMealType
 from .product import InvalidProductList, InvalidProductType, InvalidUnit
+from .service import InvalidServiceQuestionList
+from .payment import InvalidPaymentState, UnpaidBill
 
