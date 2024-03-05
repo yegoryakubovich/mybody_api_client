@@ -24,13 +24,13 @@ class ClientServiceRoute(BaseRoute):
 
     costs = ClientServiceCostRoute()
 
-    async def get(self, id_: str):
+    async def get(self, id_str: str):
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/get',
             token_required=False,
             parameters={
-                'id_str': id_,
+                'id_str': id_str,
             },
             response_key='service',
         )

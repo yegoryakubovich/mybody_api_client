@@ -28,7 +28,7 @@ class AdminServiceRoute(BaseRoute):
             self,
             id_str: str,
             name: str,
-            questions: str,
+            questions: str = None,
     ):
         return await self.request(
             type_=RequestTypes.POST,
