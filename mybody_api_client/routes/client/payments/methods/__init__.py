@@ -35,7 +35,7 @@ class ClientPaymentMethodRoute(BaseRoute):
     async def get_list_by_currency(self, currency: str):
         return await self.request(
             type_=RequestTypes.GET,
-            prefix='/list/get',
+            prefix='/list/get/by-currency',
             parameters={
                 'currency': currency,
             },
