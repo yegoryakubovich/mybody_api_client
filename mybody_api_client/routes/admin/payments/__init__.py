@@ -42,7 +42,7 @@ class AdminPaymentRoute(BaseRoute):
                 'payment_method_currency_id': payment_method_currency_id,
                 'promo_code': promo_code,
             },
-            response_key='id_str',
+            response_key='id',
         )
 
     async def update(
@@ -73,3 +73,22 @@ class AdminPaymentRoute(BaseRoute):
             },
         )
 
+    async def get(self, id_: int):
+        return await self.request(
+            type_=RequestTypes.GET,
+            prefix='/get',
+            parameters={
+                'id': id_,
+            },
+            response_key='payment',
+        )
+
+    async def get_list(self, account_service_id: int):
+        return await self.request(
+            type_=RequestTypes.GET,
+            prefix='/list/get',
+            parameters={
+                'account_service_id': account_service_id,
+            },
+            response_key='payments',
+        )
