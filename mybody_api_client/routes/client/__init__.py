@@ -36,7 +36,7 @@ from mybody_api_client.utils import BaseRoute
 class ClientRoute(BaseRoute):
     accounts = ClientAccountRoute()
     articles = ClientArticleRoute()
-    payment = ClientPaymentRoute()
+    payments = ClientPaymentRoute()
     countries = ClientCountryRoute()
     currencies = ClientCurrencyRoute()
     exercises = ClientExerciseRoute()

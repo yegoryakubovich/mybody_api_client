@@ -24,7 +24,7 @@ class ClientServiceCostRoute(BaseRoute):
     async def get_list(self, service: str):
         return await self.request(
             type_=RequestTypes.GET,
-            prefix='list/get',
+            prefix='/list/get',
             token_required=False,
             parameters={
                 'service': service
