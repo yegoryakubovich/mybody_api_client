@@ -18,7 +18,7 @@
 from io import BufferedReader
 
 from addict import Dict
-from aiohttp import ClientSession, ContentTypeError
+from aiohttp import ClientSession, ContentTypeError, FormData
 from furl import furl
 
 from mybody_api_client.utils.exceptions import ApiException
@@ -56,7 +56,7 @@ class BaseRoute:
 
         json = {}
         url_parameters = {}
-        data = {}
+        data = FormData()
         if token_required and self.token:
             url_parameters['token'] = self.token
 
@@ -64,7 +64,7 @@ class BaseRoute:
         for pk, pv in parameters.items():
             if isinstance(pv, BufferedReader) or isinstance(pv, bytes):
                 have_data = True
-                data[pk] = pv
+                data.add_field(name=pk, value=pv, filename='1.jpg', content_type='image/jpeg')
                 continue
 
             url_parameters[pk] = pv
