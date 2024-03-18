@@ -32,6 +32,7 @@ from .services import AdminServiceRoute
 from .texts import AdminTextRoute
 from .timezones import AdminTimezoneRoute
 from .trainings import AdminTrainingRoute
+from .urls import AdminUrlRoute
 
 
 class AdminRoute(BaseRoute):
@@ -53,3 +54,4 @@ class AdminRoute(BaseRoute):
     texts = AdminTextRoute()
     timezones = AdminTimezoneRoute()
     trainings = AdminTrainingRoute()
+    urls = AdminUrlRoute()

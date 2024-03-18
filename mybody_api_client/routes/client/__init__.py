@@ -15,6 +15,7 @@
 #
 
 
+from mybody_api_client.utils import BaseRoute
 from .accounts import ClientAccountRoute
 from .articles import ClientArticleRoute
 from .payments import ClientPaymentRoute
@@ -30,7 +31,7 @@ from .sessions import ClientSessionRoute
 from .texts import ClientTextRoute
 from .timezones import ClientTimezoneRoute
 from .trainings import ClientTrainingRoute
-from mybody_api_client.utils import BaseRoute
+from .urls import ClientUrlRoute
 
 
 class ClientRoute(BaseRoute):
@@ -49,3 +50,4 @@ class ClientRoute(BaseRoute):
     texts = ClientTextRoute()
     timezones = ClientTimezoneRoute()
     trainings = ClientTrainingRoute()
+    urls = ClientUrlRoute()
