@@ -73,6 +73,18 @@ class AdminPaymentRoute(BaseRoute):
             },
         )
 
+    async def cancel(
+            self,
+            id_: int,
+    ):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/cancel',
+            parameters={
+                'id': id_,
+            },
+        )
+
     async def get(self, id_: int):
         return await self.request(
             type_=RequestTypes.GET,
