@@ -30,7 +30,7 @@ class ClientPaymentRoute(BaseRoute):
             service_cost_id: int,
             payment_method: str,
             payment_method_currency_id: int,
-            promo_code: str = None,
+            promocode: str = None,
     ):
         return await self.request(
             type_=RequestTypes.POST,
@@ -40,7 +40,7 @@ class ClientPaymentRoute(BaseRoute):
                 'service_cost_id': service_cost_id,
                 'payment_method': payment_method,
                 'payment_method_currency_id': payment_method_currency_id,
-                'promo_code': promo_code,
+                'promocode': promocode,
             },
             response_key='id',
         )

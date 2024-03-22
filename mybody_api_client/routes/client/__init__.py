@@ -19,6 +19,7 @@ from mybody_api_client.utils import BaseRoute
 from .accounts import ClientAccountRoute
 from .articles import ClientArticleRoute
 from .payments import ClientPaymentRoute
+from .promocodes import ClientPromocodeRoute
 from .countries import ClientCountryRoute
 from .currencies import ClientCurrencyRoute
 from .exercises import ClientExerciseRoute
@@ -38,6 +39,7 @@ class ClientRoute(BaseRoute):
     accounts = ClientAccountRoute()
     articles = ClientArticleRoute()
     payments = ClientPaymentRoute()
+    promocodes = ClientPromocodeRoute()
     countries = ClientCountryRoute()
     currencies = ClientCurrencyRoute()
     exercises = ClientExerciseRoute()
