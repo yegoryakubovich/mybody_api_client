@@ -14,12 +14,14 @@
 # limitations under the License.
 #
 
-
+from mybody_api_client.routes.client.accounts.services.days import ClientAccountServiceDayRoute
 from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class ClientAccountServiceRoute(BaseRoute):
     prefix = '/services'
+
+    days = ClientAccountServiceDayRoute()
 
     async def get(self, id_: int):
         return await self.request(

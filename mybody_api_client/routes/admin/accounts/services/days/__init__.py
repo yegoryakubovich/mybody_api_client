@@ -14,26 +14,20 @@
 # limitations under the License.
 #
 
-
+from mybody_api_client.routes.admin.accounts.services.days.meals import AdminAccountServiceDayMealRoute
 from mybody_api_client.utils import BaseRoute, RequestTypes
-from .products import AdminMealProductRoute
-from .reports import AdminMealReportRoute
 
 
-class AdminMealRoute(BaseRoute):
-    prefix = '/meals'
+class AdminAccountServiceDayRoute(BaseRoute):
+    prefix = '/days'
 
-    products = AdminMealProductRoute()
-    reports = AdminMealReportRoute()
+    meals = AdminAccountServiceDayMealRoute()
 
     async def create(
             self,
             account_service_id: int,
             date: str,
-            type_: str,
-            fats: int,
-            proteins: int,
-            carbohydrates: int,
+            water_amount: int,
     ):
         return await self.request(
             type_=RequestTypes.POST,
@@ -41,10 +35,7 @@ class AdminMealRoute(BaseRoute):
             parameters={
                 'account_service_id': account_service_id,
                 'date': date,
-                'type': type_,
-                'fats': fats,
-                'proteins': proteins,
-                'carbohydrates': carbohydrates,
+                'water_amount': water_amount,
             },
             response_key='id',
         )
@@ -52,25 +43,15 @@ class AdminMealRoute(BaseRoute):
     async def update(
             self,
             id_: int,
-            date: str = None,
-            type_: str = None,
-            fats: int = None,
-            proteins: int = None,
-            carbohydrates: int = None,
+            water_amount: int,
     ):
-        parameters = {
-            'id': id_,
-            'type': type_,
-            'fats': fats,
-            'proteins': proteins,
-            'carbohydrates': carbohydrates,
-        }
-        if date:
-            parameters['date'] = date
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/update',
-            parameters=parameters,
+            parameters={
+                'id': id_,
+                'water_amount': water_amount,
+            },
         )
 
     async def delete(
@@ -88,19 +69,15 @@ class AdminMealRoute(BaseRoute):
     async def duplicate(
             self,
             id_: int,
-            date: str = None,
-            type_: str = None,
+            date: str,
     ):
-        parameters = {
-            'id': id_,
-            'type': type_,
-        }
-        if date:
-            parameters['date'] = date
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/update',
-            parameters=parameters,
+            parameters={
+                'id': id_,
+                'date': date,
+            },
             response_key='id',
         )
 
@@ -114,29 +91,19 @@ class AdminMealRoute(BaseRoute):
             parameters={
                 'id': id_,
             },
-            response_key='meal',
+            response_key='day',
         )
 
     async def get_list(
             self,
             account_service_id: int,
-            date: str = None,
     ):
-        parameters = {
-            'account_service_id': account_service_id,
-        }
-        if date:
-            parameters['date'] = date
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/list/get',
-            parameters=parameters,
-            response_key='meals',
+            parameters={
+                'account_service_id': account_service_id,
+            },
+            response_key='days',
         )
 
-    async def get_list_all(self):
-        return await self.request(
-            type_=RequestTypes.GET,
-            prefix='/list/get/all',
-            response_key='meals',
-        )

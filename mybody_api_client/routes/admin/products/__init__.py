@@ -26,9 +26,10 @@ class AdminProductRoute(BaseRoute):
             name: str,
             type_: str,
             unit: str,
-            fats: int,
-            proteins: int,
-            carbohydrates: int,
+            fats: float,
+            proteins: float,
+            carbohydrates: float,
+            is_main: bool = False,
             calories: int = None,
             article_id: int = None,
     ):
@@ -38,6 +39,7 @@ class AdminProductRoute(BaseRoute):
             parameters={
                 'name': name,
                 'type': type_,
+                'is_main': is_main,
                 'unit': unit,
                 'fats': fats,
                 'proteins': proteins,
@@ -53,9 +55,10 @@ class AdminProductRoute(BaseRoute):
             id_: str,
             type_: str,
             unit: str,
-            fats: int,
-            proteins: int,
-            carbohydrates: int,
+            fats: float,
+            proteins: float,
+            carbohydrates: float,
+            is_main: bool = False,
             calories: int = None,
             article_id: int = None,
     ):
@@ -65,6 +68,7 @@ class AdminProductRoute(BaseRoute):
             parameters={
                 'id': id_,
                 'type': type_,
+                'is_main': is_main,
                 'unit': unit,
                 'fats': fats,
                 'proteins': proteins,
