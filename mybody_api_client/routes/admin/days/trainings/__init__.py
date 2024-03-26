@@ -18,32 +18,46 @@
 from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class ClientAccountServiceDayRoute(BaseRoute):
-    prefix = '/days'
+class AdminDayTrainingRoute(BaseRoute):
+    prefix = '/trainings'
 
-    async def get(
+    async def create(
+            self,
+            day_id: int,
+            training_id: int,
+    ):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/create',
+            parameters={
+                'day_id': day_id,
+                'training_id': training_id,
+            },
+            response_key='id',
+        )
+
+    async def update(
+            self,
+            id_: int,
+            day_id: int,
+    ):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/update',
+            parameters={
+                'id': id_,
+                'day_id': day_id,
+            },
+        )
+
+    async def delete(
             self,
             id_: int,
     ):
         return await self.request(
-            type_=RequestTypes.GET,
-            prefix='/get',
+            type_=RequestTypes.POST,
+            prefix='/delete',
             parameters={
                 'id': id_,
             },
-            response_key='day',
         )
-
-    async def get_list(
-            self,
-            account_service_id: int,
-    ):
-        return await self.request(
-            type_=RequestTypes.GET,
-            prefix='/list/get',
-            parameters={
-                'account_service_id': account_service_id,
-            },
-            response_key='days',
-        )
-

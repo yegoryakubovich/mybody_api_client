@@ -18,6 +18,7 @@
 from mybody_api_client.utils import BaseRoute
 from .accounts import AdminAccountRoute
 from .articles import AdminArticleRoute
+from .days import AdminDayRoute
 from .payments import AdminPaymentRoute
 from .promocodes import AdminPromocodeRoute
 from .countries import AdminCountryRoute
@@ -41,6 +42,7 @@ class AdminRoute(BaseRoute):
 
     accounts = AdminAccountRoute()
     articles = AdminArticleRoute()
+    days = AdminDayRoute()
     payments = AdminPaymentRoute()
     promocodes = AdminPromocodeRoute()
     countries = AdminCountryRoute()

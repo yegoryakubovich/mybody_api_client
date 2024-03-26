@@ -18,22 +18,20 @@
 from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class AdminAccountServiceRoute(BaseRoute):
-    prefix = '/services'
+class AdminDayMealRoute(BaseRoute):
+    prefix = '/meals'
 
     async def create(
             self,
-            account_id: int,
-            service: str,
-            answers: str,
+            day_id: int,
+            meal_id: int,
     ):
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
-                'account_id': account_id,
-                'service': service,
-                'answers': answers,
+                'day_id': day_id,
+                'meal_id': meal_id,
             },
             response_key='id',
         )
@@ -41,20 +39,14 @@ class AdminAccountServiceRoute(BaseRoute):
     async def update(
             self,
             id_: int,
-            answers: str,
-            state: str,
-            datetime_from: str,
-            datetime_to: str,
+            day_id: int,
     ):
         return await self.request(
             type_=RequestTypes.POST,
             prefix='/update',
             parameters={
                 'id': id_,
-                'answers': answers,
-                'state': state,
-                'datetime_from': datetime_from,
-                'datetime_to': datetime_to,
+                'day_id': day_id,
             },
         )
 
@@ -68,30 +60,4 @@ class AdminAccountServiceRoute(BaseRoute):
             parameters={
                 'id': id_,
             },
-        )
-
-    async def get(
-            self,
-            id_: int,
-    ):
-        return await self.request(
-            type_=RequestTypes.GET,
-            prefix='/get',
-            parameters={
-                'id': id_,
-            },
-            response_key='account_service',
-        )
-
-    async def get_list(
-            self,
-            account_id: int = None,
-    ):
-        return await self.request(
-            type_=RequestTypes.GET,
-            prefix='/list/get',
-            parameters={
-                'account_id': account_id,
-            },
-            response_key='account_services',
         )

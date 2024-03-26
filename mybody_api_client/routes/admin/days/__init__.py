@@ -14,14 +14,17 @@
 # limitations under the License.
 #
 
-from mybody_api_client.routes.admin.accounts.services.days.meals import AdminAccountServiceDayMealRoute
+
+from mybody_api_client.routes.admin.days.meals import AdminDayMealRoute
+from mybody_api_client.routes.admin.days.trainings import AdminDayTrainingRoute
 from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class AdminAccountServiceDayRoute(BaseRoute):
+class AdminDayRoute(BaseRoute):
     prefix = '/days'
 
-    meals = AdminAccountServiceDayMealRoute()
+    meals = AdminDayMealRoute()
+    training = AdminDayTrainingRoute()
 
     async def create(
             self,
