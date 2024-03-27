@@ -40,7 +40,6 @@ class AdminDayRoute(BaseRoute):
                 'date': date,
                 'water_amount': water_amount,
             },
-            response_key='id',
         )
 
     async def update(
