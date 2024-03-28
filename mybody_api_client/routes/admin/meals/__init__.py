@@ -99,7 +99,7 @@ class AdminMealRoute(BaseRoute):
             parameters['date'] = date
         return await self.request(
             type_=RequestTypes.POST,
-            prefix='/update',
+            prefix='/duplicate',
             parameters=parameters,
             response_key='id',
         )

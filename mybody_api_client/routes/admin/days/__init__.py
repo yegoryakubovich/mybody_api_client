@@ -76,7 +76,7 @@ class AdminDayRoute(BaseRoute):
     ):
         return await self.request(
             type_=RequestTypes.POST,
-            prefix='/update',
+            prefix='/duplicate',
             parameters={
                 'id': id_,
                 'date': date,
