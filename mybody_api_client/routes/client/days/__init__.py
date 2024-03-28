@@ -34,6 +34,21 @@ class ClientDayRoute(BaseRoute):
             response_key='day',
         )
 
+    async def get_by_date(
+            self,
+            account_service_id: int,
+            date: str,
+    ):
+        return await self.request(
+            type_=RequestTypes.GET,
+            prefix='/by-date/get',
+            parameters={
+                'account_service_id': account_service_id,
+                'date': date,
+            },
+            response_key='day',
+        )
+
     async def get_list(
             self,
             account_service_id: int,

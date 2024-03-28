@@ -40,6 +40,7 @@ class AdminDayRoute(BaseRoute):
                 'date': date,
                 'water_amount': water_amount,
             },
+            response_key='id',
         )
 
     async def update(
@@ -92,6 +93,21 @@ class AdminDayRoute(BaseRoute):
             prefix='/get',
             parameters={
                 'id': id_,
+            },
+            response_key='day',
+        )
+
+    async def get_by_date(
+            self,
+            account_service_id: int,
+            date: str,
+    ):
+        return await self.request(
+            type_=RequestTypes.GET,
+            prefix='/by-date/get',
+            parameters={
+                'account_service_id': account_service_id,
+                'date': date,
             },
             response_key='day',
         )
