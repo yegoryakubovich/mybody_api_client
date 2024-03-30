@@ -33,11 +33,13 @@ from .texts import ClientTextRoute
 from .timezones import ClientTimezoneRoute
 from .trainings import ClientTrainingRoute
 from .urls import ClientUrlRoute
+from .days import ClientDayRoute
 
 
 class ClientRoute(BaseRoute):
     accounts = ClientAccountRoute()
     articles = ClientArticleRoute()
+    days = ClientDayRoute()
     payments = ClientPaymentRoute()
     promocodes = ClientPromocodeRoute()
     countries = ClientCountryRoute()
