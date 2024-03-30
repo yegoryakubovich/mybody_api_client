@@ -26,3 +26,23 @@ class UnpaidBill(ApiException):
 class InvalidPaymentState(ApiException):
     code = 9001
     message = "Invalid payment state. Available: {all}"
+
+
+class PaymentCantBeCancelled(ApiException):
+    code = 9002
+    message = "Payment with id {id} can't be cancelled: payment already paid, cancelled or expired"
+
+
+class PromocodeExpired(ApiException):
+    code = 9003
+    message = "Entered promocode expired"
+
+
+class PromocodeIsNotAvailableForYourCurrency(ApiException):
+    code = 9004
+    message = 'Promocode is not available for your currency'
+
+
+class InvalidPromocodeType(ApiException):
+    code = 9005
+    message = 'Invalid promocode type. Available: {all}'
