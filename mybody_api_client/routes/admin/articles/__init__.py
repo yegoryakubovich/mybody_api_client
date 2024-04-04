@@ -53,6 +53,7 @@ class AdminArticleRoute(BaseRoute):
             self,
             id_: int,
             is_hide: bool = None,
+            can_guest: bool = None,
     ):
         return await self.request(
             type_=RequestTypes.POST,
@@ -60,6 +61,7 @@ class AdminArticleRoute(BaseRoute):
             parameters={
                 'id': id_,
                 'is_hide': is_hide,
+                'can_guest': can_guest,
             },
         )
 
