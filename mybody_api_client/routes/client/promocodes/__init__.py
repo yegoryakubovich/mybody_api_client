@@ -22,7 +22,10 @@ from mybody_api_client.utils import RequestTypes
 class ClientPromocodeRoute(BaseRoute):
     prefix = '/promocodes'
 
-    async def get(self, id_str: str):
+    async def get(
+            self,
+            id_str: str,
+    ):
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/get',
@@ -33,11 +36,18 @@ class ClientPromocodeRoute(BaseRoute):
             response_key='promocode',
         )
 
-    async def check(self, id_str: str):
+    async def check(
+            self,
+            id_str: str,
+            currency_cost_id: int,
+            service_cost_id: int,
+    ):
         return await self.request(
             type_=RequestTypes.GET,
             prefix='/check',
             parameters={
                 'id_str': id_str,
+                'currency_cost_id': currency_cost_id,
+                'service_cost_id': service_cost_id,
             },
         )

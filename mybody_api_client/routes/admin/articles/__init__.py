@@ -70,6 +70,7 @@ class AdminArticleRoute(BaseRoute):
             id_: int,
             md: str,
             language: str = None,
+            name: str = None,
     ):
         return await self.request(
             type_=RequestTypes.POST,
@@ -78,5 +79,6 @@ class AdminArticleRoute(BaseRoute):
                 'id': id_,
                 'language': language,
                 'md': md,
+                'name': name,
             },
         )
