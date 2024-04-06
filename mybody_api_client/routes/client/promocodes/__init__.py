@@ -39,7 +39,7 @@ class ClientPromocodeRoute(BaseRoute):
     async def check(
             self,
             id_str: str,
-            currency_cost_id: int,
+            currency: str,
             service_cost_id: int,
     ):
         return await self.request(
@@ -47,7 +47,7 @@ class ClientPromocodeRoute(BaseRoute):
             prefix='/check',
             parameters={
                 'id_str': id_str,
-                'currency_cost_id': currency_cost_id,
+                'currency': currency,
                 'service_cost_id': service_cost_id,
             },
         )
