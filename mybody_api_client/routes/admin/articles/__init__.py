@@ -52,8 +52,8 @@ class AdminArticleRoute(BaseRoute):
     async def update(
             self,
             id_: int,
-            is_hide: bool = None,
-            can_guest: bool = None,
+            is_hide: bool = False,
+            can_guest: bool = False,
     ):
         return await self.request(
             type_=RequestTypes.POST,
