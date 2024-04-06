@@ -58,7 +58,7 @@ class AdminProductRoute(BaseRoute):
             fats: float,
             proteins: float,
             carbohydrates: float,
-            is_main: bool = False,
+            is_main: bool,
             calories: int = None,
             article_id: int = None,
     ):
