@@ -21,6 +21,20 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 class ClientDayRoute(BaseRoute):
     prefix = '/days'
 
+    async def update_water_intake(
+            self,
+            id_: int,
+            water_intake: int,
+    ):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/water-intake/update',
+            parameters={
+                'id': id_,
+                'water_intake': water_intake,
+            },
+        )
+
     async def get(
             self,
             id_: int,

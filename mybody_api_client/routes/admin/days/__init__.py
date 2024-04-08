@@ -47,6 +47,7 @@ class AdminDayRoute(BaseRoute):
             self,
             id_: int,
             water_amount: int,
+            water_intake: int = None,
     ):
         return await self.request(
             type_=RequestTypes.POST,
@@ -54,6 +55,7 @@ class AdminDayRoute(BaseRoute):
             parameters={
                 'id': id_,
                 'water_amount': water_amount,
+                'water_intake': water_intake,
             },
         )
 
