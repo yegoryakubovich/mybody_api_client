@@ -46,7 +46,7 @@ class AdminDayRoute(BaseRoute):
     async def update(
             self,
             id_: int,
-            water_amount: int,
+            water_amount: int = None,
             water_intake: int = None,
     ):
         return await self.request(

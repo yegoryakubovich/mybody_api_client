@@ -61,6 +61,32 @@ class ClientAccountRoute(BaseRoute):
             response_key='id',
         )
 
+    async def update(
+            self,
+            username: str,
+            firstname: str,
+            lastname: str,
+            surname: str,
+            country: str,
+            language: str,
+            timezone: str,
+            currency: str,
+    ):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/update',
+            parameters={
+                'username': username,
+                'firstname': firstname,
+                'lastname': lastname,
+                'surname': surname,
+                'country': country,
+                'language': language,
+                'timezone': timezone,
+                'currency': currency,
+            },
+        )
+
     async def check_username(self, username: str):
         return await self.request(
             type_=RequestTypes.GET,

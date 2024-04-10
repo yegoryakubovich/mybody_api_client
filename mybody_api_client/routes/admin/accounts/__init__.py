@@ -26,6 +26,34 @@ class AdminAccountRoute(BaseRoute):
     services = AdminAccountServiceRoute()
     roles = AdminAccountRolesRoute()
 
+    async def update(
+            self,
+            id_: int,
+            username: str,
+            firstname: str,
+            lastname: str,
+            surname: str,
+            country: str,
+            language: str,
+            timezone: str,
+            currency: str,
+    ):
+        return await self.request(
+            type_=RequestTypes.POST,
+            prefix='/update',
+            parameters={
+                'id': id_,
+                'username': username,
+                'firstname': firstname,
+                'lastname': lastname,
+                'surname': surname,
+                'country': country,
+                'language': language,
+                'timezone': timezone,
+                'currency': currency,
+            },
+        )
+
     async def get(self, id_: int = None):
         return await self.request(
             type_=RequestTypes.POST,
