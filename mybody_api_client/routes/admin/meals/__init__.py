@@ -34,6 +34,7 @@ class AdminMealRoute(BaseRoute):
             fats: int,
             proteins: int,
             carbohydrates: int,
+            add_main_products: bool = False,
     ):
         return await self.request(
             type_=RequestTypes.POST,
@@ -45,6 +46,7 @@ class AdminMealRoute(BaseRoute):
                 'fats': fats,
                 'proteins': proteins,
                 'carbohydrates': carbohydrates,
+                'add_main_products': add_main_products,
             },
             response_key='id',
         )
