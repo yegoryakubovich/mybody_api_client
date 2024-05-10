@@ -18,80 +18,52 @@
 from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class AdminAccountServiceRoute(BaseRoute):
-    _prefix = '/services'
+class AdminTelegramUrlRoute(BaseRoute):
+    _prefix = '/urls'
 
     async def create(
             self,
-            account_id: int,
-            service: str,
-            answers: str,
+            id_str: str,
     ):
         return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
-                'account_id': account_id,
-                'service': service,
-                'answers': answers,
+                'id_str': id_str,
             },
             response_key='id',
         )
 
-    async def update(
-            self,
-            id_: int,
-            answers: str,
-            state: str,
-            datetime_from: str,
-            datetime_to: str,
-    ):
-        return await self._request(
-            type_=RequestTypes.POST,
-            prefix='/update',
-            parameters={
-                'id': id_,
-                'answers': answers,
-                'state': state,
-                'datetime_from': datetime_from,
-                'datetime_to': datetime_to,
-            },
-        )
-
     async def delete(
             self,
-            id_: int,
+            id_str: str,
     ):
         return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={
-                'id': id_,
+                'id_str': id_str,
             },
         )
 
     async def get(
             self,
-            id_: int,
+            id_str: str,
     ):
         return await self._request(
             type_=RequestTypes.GET,
             prefix='/get',
             parameters={
-                'id': id_,
+                'id_str': id_str,
             },
-            response_key='account_service',
+            response_key='telegram_url',
         )
 
     async def get_list(
             self,
-            account_id: int = None,
     ):
         return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get',
-            parameters={
-                'account_id': account_id,
-            },
-            response_key='account_services',
+            response_key='telegram_urls',
         )

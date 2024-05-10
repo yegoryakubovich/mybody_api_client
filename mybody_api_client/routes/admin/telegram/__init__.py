@@ -13,18 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from mybody_api_client.routes.admin.telegram.urls import AdminTelegramUrlRoute
+from mybody_api_client.routes.admin.telegram.users import AdminTelegramUserRoute
+from mybody_api_client.utils import BaseRoute
 
 
-from mybody_api_client.utils import BaseRoute, RequestTypes
+class AdminTelegramRoute(BaseRoute):
+    _prefix = '/telegram'
 
-
-class ClientPaymentMethodCurrencyRoute(BaseRoute):
-    _prefix = '/currencies'
-
-    async def get_list(self):
-        return await self._request(
-            type_=RequestTypes.GET,
-            prefix='/list/get',
-            token_required=False,
-            response_key='currencies',
-        )
+    urls = AdminTelegramUrlRoute()
+    users = AdminTelegramUserRoute()

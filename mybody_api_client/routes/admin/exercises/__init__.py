@@ -19,10 +19,10 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminExerciseRoute(BaseRoute):
-    prefix = '/exercises'
+    _prefix = '/exercises'
 
     async def create(self, name: str, type_: str):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -33,7 +33,7 @@ class AdminExerciseRoute(BaseRoute):
         )
 
     async def update(self, id_: int, type_: str):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/update',
             parameters={
@@ -43,7 +43,7 @@ class AdminExerciseRoute(BaseRoute):
         )
 
     async def delete(self, id_: int):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={

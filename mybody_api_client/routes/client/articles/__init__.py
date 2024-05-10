@@ -19,10 +19,10 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class ClientArticleRoute(BaseRoute):
-    prefix = '/articles'
+    _prefix = '/articles'
 
     async def get(self, id_: int):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/get',
             parameters={
@@ -32,7 +32,7 @@ class ClientArticleRoute(BaseRoute):
         )
 
     async def get_additional(self, id_: int, language: str = None):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/additional/get',
             parameters={
@@ -43,7 +43,7 @@ class ClientArticleRoute(BaseRoute):
         )
 
     async def get_list(self):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get',
             response_key='articles',

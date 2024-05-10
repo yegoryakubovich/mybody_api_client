@@ -19,14 +19,14 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class ClientDayRoute(BaseRoute):
-    prefix = '/days'
+    _prefix = '/days'
 
     async def update_water_intake(
             self,
             id_: int,
             water_intake: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/water-intake/update',
             parameters={
@@ -39,7 +39,7 @@ class ClientDayRoute(BaseRoute):
             self,
             id_: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/get',
             parameters={
@@ -53,7 +53,7 @@ class ClientDayRoute(BaseRoute):
             account_service_id: int,
             date: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/by-date/get',
             parameters={
@@ -67,7 +67,7 @@ class ClientDayRoute(BaseRoute):
             self,
             account_service_id: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get',
             parameters={

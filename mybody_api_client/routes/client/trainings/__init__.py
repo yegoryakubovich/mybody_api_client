@@ -21,13 +21,13 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class ClientTrainingRoute(BaseRoute):
-    prefix = '/trainings'
+    _prefix = '/trainings'
 
     exercises = ClientTrainingExerciseRoute()
     reports = ClientTrainingReportRoute()
 
     async def get(self, id_: int):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/get',
             parameters={
@@ -41,7 +41,7 @@ class ClientTrainingRoute(BaseRoute):
             account_service_id: int,
             date: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/by-date/get',
             parameters={
@@ -52,7 +52,7 @@ class ClientTrainingRoute(BaseRoute):
         )
 
     async def get_list(self, account_service_id: int):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get',
             parameters={

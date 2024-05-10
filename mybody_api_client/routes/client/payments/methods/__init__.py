@@ -20,12 +20,12 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class ClientPaymentMethodRoute(BaseRoute):
-    prefix = '/methods'
+    _prefix = '/methods'
 
     currencies = ClientPaymentMethodCurrencyRoute()
 
     async def get_list(self):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get',
             token_required=False,
@@ -33,7 +33,7 @@ class ClientPaymentMethodRoute(BaseRoute):
         )
 
     async def get_list_by_currency(self, currency: str):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get/by-currency',
             parameters={

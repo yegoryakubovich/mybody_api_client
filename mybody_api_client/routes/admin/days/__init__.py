@@ -21,7 +21,7 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminDayRoute(BaseRoute):
-    prefix = '/days'
+    _prefix = '/days'
 
     meals = AdminDayMealRoute()
     training = AdminDayTrainingRoute()
@@ -32,7 +32,7 @@ class AdminDayRoute(BaseRoute):
             date: str,
             water_amount: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -49,7 +49,7 @@ class AdminDayRoute(BaseRoute):
             water_amount: int = None,
             water_intake: int = None,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/update',
             parameters={
@@ -63,7 +63,7 @@ class AdminDayRoute(BaseRoute):
             self,
             id_: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={
@@ -76,7 +76,7 @@ class AdminDayRoute(BaseRoute):
             id_: int,
             date: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/duplicate',
             parameters={
@@ -90,7 +90,7 @@ class AdminDayRoute(BaseRoute):
             self,
             id_: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/get',
             parameters={
@@ -104,7 +104,7 @@ class AdminDayRoute(BaseRoute):
             account_service_id: int,
             date: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/by-date/get',
             parameters={
@@ -118,7 +118,7 @@ class AdminDayRoute(BaseRoute):
             self,
             account_service_id: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get',
             parameters={

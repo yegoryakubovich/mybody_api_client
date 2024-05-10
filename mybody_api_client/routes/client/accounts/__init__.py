@@ -20,12 +20,12 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class ClientAccountRoute(BaseRoute):
-    prefix = '/accounts'
+    _prefix = '/accounts'
 
     services = ClientAccountServiceRoute()
 
     async def get(self):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/get',
             response_key='account',
@@ -43,7 +43,7 @@ class ClientAccountRoute(BaseRoute):
             currency: str,
             surname: str = None,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             token_required=False,
@@ -72,7 +72,7 @@ class ClientAccountRoute(BaseRoute):
             timezone: str,
             currency: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/update',
             parameters={
@@ -88,7 +88,7 @@ class ClientAccountRoute(BaseRoute):
         )
 
     async def check_username(self, username: str):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/username/check',
             token_required=False,
@@ -98,7 +98,7 @@ class ClientAccountRoute(BaseRoute):
         )
 
     async def check_password(self, password: str):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/password/check',
             token_required=False,
@@ -108,7 +108,7 @@ class ClientAccountRoute(BaseRoute):
         )
 
     async def change_password(self, current_password: str, new_password: str):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/password/change',
             parameters={

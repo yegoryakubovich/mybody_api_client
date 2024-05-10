@@ -19,7 +19,7 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminImageRoute(BaseRoute):
-    prefix = '/images'
+    _prefix = '/images'
 
     async def create(
             self,
@@ -27,7 +27,7 @@ class AdminImageRoute(BaseRoute):
             model_id: int | str,
             file: bytes,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -42,7 +42,7 @@ class AdminImageRoute(BaseRoute):
             self,
             id_str: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={

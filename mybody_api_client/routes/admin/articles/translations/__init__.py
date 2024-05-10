@@ -19,7 +19,7 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminArticleTranslationRoute(BaseRoute):
-    prefix = '/translations'
+    _prefix = '/translations'
 
     async def create(
             self,
@@ -27,7 +27,7 @@ class AdminArticleTranslationRoute(BaseRoute):
             language: str,
             name: None,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -43,7 +43,7 @@ class AdminArticleTranslationRoute(BaseRoute):
             id_: int,
             language: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={

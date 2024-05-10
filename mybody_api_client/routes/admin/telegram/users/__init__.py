@@ -18,13 +18,26 @@
 from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
-class ClientPaymentMethodCurrencyRoute(BaseRoute):
-    _prefix = '/currencies'
+class AdminTelegramUserRoute(BaseRoute):
+    _prefix = '/users'
 
-    async def get_list(self):
+    async def create(
+            self,
+            tg_id: str,
+            firstname: str,
+            start_url: str,
+            username: str = None,
+            lastname: str = None,
+    ):
         return await self._request(
-            type_=RequestTypes.GET,
-            prefix='/list/get',
-            token_required=False,
-            response_key='currencies',
+            type_=RequestTypes.POST,
+            prefix='/create',
+            parameters={
+                'tg_id': tg_id,
+                'firstname': firstname,
+                'start_url': start_url,
+                'username': username,
+                'lastname': lastname,
+            },
+            response_key='id',
         )

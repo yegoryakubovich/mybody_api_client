@@ -19,10 +19,10 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminTextPackRoute(BaseRoute):
-    prefix = '/packs'
+    _prefix = '/packs'
 
     async def create(self, language: str):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -32,13 +32,13 @@ class AdminTextPackRoute(BaseRoute):
         )
 
     async def create_all(self):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/all/create',
         )
 
     async def delete(self, id_: int):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={

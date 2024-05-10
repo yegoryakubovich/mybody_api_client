@@ -19,14 +19,14 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminTimezoneRoute(BaseRoute):
-    prefix = '/timezones'
+    _prefix = '/timezones'
 
     async def create(
             self,
             id_str: str,
             deviation: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -40,7 +40,7 @@ class AdminTimezoneRoute(BaseRoute):
             self,
             id_str: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={

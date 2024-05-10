@@ -19,7 +19,7 @@ from .currencies import AdminPromocodeCurrencyRoute
 
 
 class AdminPromocodeRoute(BaseRoute):
-    prefix = '/promocodes'
+    _prefix = '/promocodes'
 
     currencies = AdminPromocodeCurrencyRoute()
 
@@ -31,7 +31,7 @@ class AdminPromocodeRoute(BaseRoute):
             date_to: str,
             type_: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -45,7 +45,7 @@ class AdminPromocodeRoute(BaseRoute):
         )
 
     async def delete(self, id_str: str):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={
@@ -54,7 +54,7 @@ class AdminPromocodeRoute(BaseRoute):
         )
 
     async def get_list(self):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get',
             response_key='promocodes',

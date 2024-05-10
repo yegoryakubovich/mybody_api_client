@@ -20,6 +20,6 @@ from mybody_api_client.utils import BaseRoute
 
 
 class ClientTextRoute(BaseRoute):
-    prefix = '/texts'
+    _prefix = '/texts'
 
     packs = ClientTextPackRoute()

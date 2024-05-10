@@ -20,7 +20,7 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminPaymentMethodRoute(BaseRoute):
-    prefix = '/methods'
+    _prefix = '/methods'
 
     currencies = AdminPaymentMethodCurrencyRoute()
 
@@ -29,7 +29,7 @@ class AdminPaymentMethodRoute(BaseRoute):
             id_str: str,
             name: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -43,7 +43,7 @@ class AdminPaymentMethodRoute(BaseRoute):
             self,
             id_: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={

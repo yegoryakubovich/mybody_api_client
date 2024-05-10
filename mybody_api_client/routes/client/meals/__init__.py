@@ -21,13 +21,13 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class ClientMealRoute(BaseRoute):
-    prefix = '/meals'
+    _prefix = '/meals'
 
     products = ClientMealProductRoute()
     reports = ClientMealReportRoute()
 
     async def get(self, id_: int):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/get',
             parameters={
@@ -42,7 +42,7 @@ class ClientMealRoute(BaseRoute):
         }
         if date:
             parameters['date'] = date
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get',
             parameters=parameters,

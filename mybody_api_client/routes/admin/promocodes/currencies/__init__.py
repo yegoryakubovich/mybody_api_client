@@ -19,7 +19,7 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminPromocodeCurrencyRoute(BaseRoute):
-    prefix = '/currencies'
+    _prefix = '/currencies'
 
     async def create(
             self,
@@ -27,7 +27,7 @@ class AdminPromocodeCurrencyRoute(BaseRoute):
             currency: str,
             amount: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -42,7 +42,7 @@ class AdminPromocodeCurrencyRoute(BaseRoute):
             self,
             id_: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={

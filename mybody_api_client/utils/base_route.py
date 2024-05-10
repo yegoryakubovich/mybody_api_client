@@ -31,34 +31,34 @@ class RequestTypes:
 
 
 class BaseRoute:
-    url: str = ''
-    prefix: str = ''
-    token: str = None
+    _url: str = ''
+    _prefix: str = ''
+    _token: str = None
 
     def __init__(self, url: str = None, token: str = None):
         if not url:
             return
 
-        self.url = url + self.prefix
-        self.token = token
+        self._url = url + self._prefix
+        self._token = token
         for i in dir(self):
             if issubclass(eval(f'type(self.{i})'), BaseRoute):
                 route: BaseRoute = eval(f'self.{i}')
-                route.__init__(url=self.url, token=self.token)
+                route.__init__(url=self._url, token=self._token)
 
-    async def create_url(self, prefix: str, parameters: dict) -> str:
-        f = furl(url=self.url+prefix)
+    async def _create_url(self, prefix: str, parameters: dict) -> str:
+        f = furl(url=self._url + prefix)
         f.set(args=parameters)
         return f.url
 
-    async def create_data(self, parameters, token_required, type_):
+    async def _create_data(self, parameters, token_required, type_):
         parameters = parameters or {}
 
         json = {}
         url_parameters = {}
         data = FormData()
-        if token_required and self.token:
-            url_parameters['token'] = self.token
+        if token_required and self._token:
+            url_parameters['token'] = self._token
 
         have_data = False
         for pk, pv in parameters.items():
@@ -75,7 +75,7 @@ class BaseRoute:
 
         return json, url_parameters, data
 
-    async def request(
+    async def _request(
             self,
             type_: str = RequestTypes.GET,
             prefix: str = '/',
@@ -83,13 +83,13 @@ class BaseRoute:
             parameters: dict = None,
             response_key: str = None,
     ):
-        json, url_parameters, data = await self.create_data(
+        json, url_parameters, data = await self._create_data(
             parameters=parameters,
             token_required=token_required,
             type_=type_,
         )
 
-        url = await self.create_url(
+        url = await self._create_url(
             prefix=prefix,
             parameters=url_parameters,
         )

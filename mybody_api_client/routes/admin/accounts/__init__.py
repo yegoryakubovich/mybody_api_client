@@ -21,7 +21,7 @@ from .roles import AdminAccountRolesRoute
 
 
 class AdminAccountRoute(BaseRoute):
-    prefix = '/accounts'
+    _prefix = '/accounts'
 
     services = AdminAccountServiceRoute()
     roles = AdminAccountRolesRoute()
@@ -38,7 +38,7 @@ class AdminAccountRoute(BaseRoute):
             timezone: str,
             currency: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/update',
             parameters={
@@ -55,7 +55,7 @@ class AdminAccountRoute(BaseRoute):
         )
 
     async def get(self, id_: int = None):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/get',
             parameters={
@@ -65,7 +65,7 @@ class AdminAccountRoute(BaseRoute):
         )
 
     async def search(self, id_: int = None, username: str = None, page: int = None):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/search',
             parameters={
@@ -76,7 +76,7 @@ class AdminAccountRoute(BaseRoute):
         )
 
     async def change_password(self, account_id: int):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/password/change',
             parameters={

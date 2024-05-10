@@ -19,7 +19,7 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class ClientImageRoute(BaseRoute):
-    prefix = '/images'
+    _prefix = '/images'
 
     async def create(
             self,
@@ -27,7 +27,7 @@ class ClientImageRoute(BaseRoute):
             model_id: int | str,
             file: bytes,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -39,7 +39,7 @@ class ClientImageRoute(BaseRoute):
         )
 
     async def get(self, id_str: str):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/get',
             token_required=False,

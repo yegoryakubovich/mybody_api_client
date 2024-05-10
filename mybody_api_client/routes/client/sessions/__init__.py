@@ -19,10 +19,10 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class ClientSessionRoute(BaseRoute):
-    prefix = '/sessions'
+    _prefix = '/sessions'
 
     async def create(self, username: str, password: str):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             token_required=False,

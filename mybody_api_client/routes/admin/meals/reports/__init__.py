@@ -20,7 +20,7 @@ from .products import AdminMealReportProductRoute
 
 
 class AdminMealReportRoute(BaseRoute):
-    prefix = '/reports'
+    _prefix = '/reports'
 
     products = AdminMealReportProductRoute()
 
@@ -29,7 +29,7 @@ class AdminMealReportRoute(BaseRoute):
             id_: int,
 
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/get',
             parameters={
@@ -44,7 +44,7 @@ class AdminMealReportRoute(BaseRoute):
             comment: str = None,
             products_dict: str = None,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -59,7 +59,7 @@ class AdminMealReportRoute(BaseRoute):
             self,
             id_: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={

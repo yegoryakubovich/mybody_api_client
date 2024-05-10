@@ -19,10 +19,10 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminLanguageRoute(BaseRoute):
-    prefix = '/languages'
+    _prefix = '/languages'
 
     async def create(self, id_str: str, name: str):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -33,7 +33,7 @@ class AdminLanguageRoute(BaseRoute):
         )
 
     async def delete(self, id_str: str):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={

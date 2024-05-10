@@ -20,7 +20,7 @@ from .translations import AdminArticleTranslationRoute
 
 
 class AdminArticleRoute(BaseRoute):
-    prefix = '/articles'
+    _prefix = '/articles'
 
     translations = AdminArticleTranslationRoute()
 
@@ -28,7 +28,7 @@ class AdminArticleRoute(BaseRoute):
             self,
             name: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -41,7 +41,7 @@ class AdminArticleRoute(BaseRoute):
             self,
             id_: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={
@@ -55,7 +55,7 @@ class AdminArticleRoute(BaseRoute):
             is_hide: bool,
             can_guest: bool,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/update',
             parameters={
@@ -72,7 +72,7 @@ class AdminArticleRoute(BaseRoute):
             language: str = None,
             name: str = None,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/md/update',
             parameters={

@@ -21,7 +21,7 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminTextRoute(BaseRoute):
-    prefix = '/texts'
+    _prefix = '/texts'
 
     translations = AdminTextTranslationRoute()
     packs = AdminTextPackRoute()
@@ -32,7 +32,7 @@ class AdminTextRoute(BaseRoute):
             value_default: str,
             create_text_pack: bool = True,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -50,7 +50,7 @@ class AdminTextRoute(BaseRoute):
             new_key: str = None,
             create_text_pack: bool = True,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/update',
             parameters={
@@ -66,7 +66,7 @@ class AdminTextRoute(BaseRoute):
             key: str,
             create_text_pack: bool = True,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={
@@ -76,7 +76,7 @@ class AdminTextRoute(BaseRoute):
         )
 
     async def get(self, key: str):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/get',
             parameters={
@@ -86,7 +86,7 @@ class AdminTextRoute(BaseRoute):
         )
 
     async def get_list(self):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get',
             response_key='texts',

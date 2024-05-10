@@ -19,10 +19,10 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class ClientTextPackRoute(BaseRoute):
-    prefix = '/packs'
+    _prefix = '/packs'
 
     async def get(self, language: str):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/get',
             token_required=False,

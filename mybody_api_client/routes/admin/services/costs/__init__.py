@@ -19,7 +19,7 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminServiceCostRoute(BaseRoute):
-    prefix = '/costs'
+    _prefix = '/costs'
 
     async def create(
             self,
@@ -27,7 +27,7 @@ class AdminServiceCostRoute(BaseRoute):
             currency: str,
             cost: float,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -43,7 +43,7 @@ class AdminServiceCostRoute(BaseRoute):
             id_: int,
             cost: float,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/update',
             parameters={
@@ -56,7 +56,7 @@ class AdminServiceCostRoute(BaseRoute):
             self,
             id_: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={

@@ -19,7 +19,7 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminCountryRoute(BaseRoute):
-    prefix = '/countries'
+    _prefix = '/countries'
 
     async def create(
             self,
@@ -29,7 +29,7 @@ class AdminCountryRoute(BaseRoute):
             timezone_default: str,
             currency_default: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -49,7 +49,7 @@ class AdminCountryRoute(BaseRoute):
             timezone_default: str,
             currency_default: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/update',
             parameters={
@@ -64,7 +64,7 @@ class AdminCountryRoute(BaseRoute):
             self,
             id_str: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={

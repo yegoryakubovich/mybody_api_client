@@ -31,6 +31,7 @@ from .permissions import AdminPermissionRoute
 from .products import AdminProductRoute
 from .roles import AdminRoleRoute
 from .services import AdminServiceRoute
+from .telegram import AdminTelegramRoute
 from .texts import AdminTextRoute
 from .timezones import AdminTimezoneRoute
 from .trainings import AdminTrainingRoute
@@ -38,7 +39,7 @@ from .urls import AdminUrlRoute
 
 
 class AdminRoute(BaseRoute):
-    prefix = '/admin'
+    _prefix = '/admin'
 
     accounts = AdminAccountRoute()
     articles = AdminArticleRoute()
@@ -59,3 +60,4 @@ class AdminRoute(BaseRoute):
     timezones = AdminTimezoneRoute()
     trainings = AdminTrainingRoute()
     urls = AdminUrlRoute()
+    telegram = AdminTelegramRoute()

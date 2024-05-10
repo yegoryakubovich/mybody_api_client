@@ -20,7 +20,7 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminPaymentRoute(BaseRoute):
-    prefix = '/payments'
+    _prefix = '/payments'
 
     methods = AdminPaymentMethodRoute()
 
@@ -32,7 +32,7 @@ class AdminPaymentRoute(BaseRoute):
             payment_method_currency_id: int,
             promocode: str = None,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -51,7 +51,7 @@ class AdminPaymentRoute(BaseRoute):
             state: str = None,
             data: str = None,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/update',
             parameters={
@@ -65,7 +65,7 @@ class AdminPaymentRoute(BaseRoute):
             self,
             id_: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={
@@ -77,7 +77,7 @@ class AdminPaymentRoute(BaseRoute):
             self,
             id_: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/cancel',
             parameters={
@@ -86,7 +86,7 @@ class AdminPaymentRoute(BaseRoute):
         )
 
     async def get(self, id_: int):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/get',
             parameters={
@@ -96,7 +96,7 @@ class AdminPaymentRoute(BaseRoute):
         )
 
     async def get_list(self, account_service_id: int):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get',
             parameters={

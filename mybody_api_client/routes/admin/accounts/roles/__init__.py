@@ -19,14 +19,14 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminAccountRolesRoute(BaseRoute):
-    prefix = '/roles'
+    _prefix = '/roles'
 
     async def create(
             self,
             account_id: int,
             role_id: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -40,7 +40,7 @@ class AdminAccountRolesRoute(BaseRoute):
             self,
             id_: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={
@@ -52,7 +52,7 @@ class AdminAccountRolesRoute(BaseRoute):
             self,
             account_id: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/get',
             parameters={
@@ -62,7 +62,7 @@ class AdminAccountRolesRoute(BaseRoute):
         )
 
     async def get_list(self):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get',
             response_key='roles',

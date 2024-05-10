@@ -19,10 +19,10 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class ClientProductRoute(BaseRoute):
-    prefix = '/products'
+    _prefix = '/products'
 
     async def get(self, id_: int):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/get',
             token_required=False,
@@ -33,7 +33,7 @@ class ClientProductRoute(BaseRoute):
         )
 
     async def get_list(self, type_: str = None):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get',
             token_required=False,

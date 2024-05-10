@@ -19,13 +19,13 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminCurrencyRoute(BaseRoute):
-    prefix = '/currencies'
+    _prefix = '/currencies'
 
     async def create(
             self,
             id_str: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -38,7 +38,7 @@ class AdminCurrencyRoute(BaseRoute):
             self,
             id_str: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={

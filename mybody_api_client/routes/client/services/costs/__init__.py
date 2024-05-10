@@ -19,10 +19,10 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class ClientServiceCostRoute(BaseRoute):
-    prefix = '/costs'
+    _prefix = '/costs'
 
     async def get_list(self, service: str):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get',
             token_required=False,

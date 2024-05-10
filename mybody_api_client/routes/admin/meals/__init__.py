@@ -21,7 +21,7 @@ from .reports import AdminMealReportRoute
 
 
 class AdminMealRoute(BaseRoute):
-    prefix = '/meals'
+    _prefix = '/meals'
 
     products = AdminMealProductRoute()
     reports = AdminMealReportRoute()
@@ -36,7 +36,7 @@ class AdminMealRoute(BaseRoute):
             carbohydrates: int,
             add_main_products: bool = False,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -69,7 +69,7 @@ class AdminMealRoute(BaseRoute):
         }
         if date:
             parameters['date'] = date
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/update',
             parameters=parameters,
@@ -79,7 +79,7 @@ class AdminMealRoute(BaseRoute):
             self,
             id_: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={
@@ -99,7 +99,7 @@ class AdminMealRoute(BaseRoute):
         }
         if date:
             parameters['date'] = date
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/duplicate',
             parameters=parameters,
@@ -110,7 +110,7 @@ class AdminMealRoute(BaseRoute):
             self,
             id_: int,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/get',
             parameters={
@@ -129,7 +129,7 @@ class AdminMealRoute(BaseRoute):
         }
         if date:
             parameters['date'] = date
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get',
             parameters=parameters,
@@ -137,7 +137,7 @@ class AdminMealRoute(BaseRoute):
         )
 
     async def get_list_all(self):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.GET,
             prefix='/list/get/all',
             response_key='meals',

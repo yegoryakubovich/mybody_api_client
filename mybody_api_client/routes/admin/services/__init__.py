@@ -20,7 +20,7 @@ from .costs import AdminServiceCostRoute
 
 
 class AdminServiceRoute(BaseRoute):
-    prefix = '/services'
+    _prefix = '/services'
 
     costs = AdminServiceCostRoute()
 
@@ -30,7 +30,7 @@ class AdminServiceRoute(BaseRoute):
             name: str,
             questions: str = None,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -47,7 +47,7 @@ class AdminServiceRoute(BaseRoute):
             name: str = None,
             questions: str = None,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/update',
             parameters={
@@ -61,7 +61,7 @@ class AdminServiceRoute(BaseRoute):
             self,
             id_str: str,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={

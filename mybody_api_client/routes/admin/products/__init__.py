@@ -19,7 +19,7 @@ from mybody_api_client.utils import BaseRoute, RequestTypes
 
 
 class AdminProductRoute(BaseRoute):
-    prefix = '/products'
+    _prefix = '/products'
 
     async def create(
             self,
@@ -33,7 +33,7 @@ class AdminProductRoute(BaseRoute):
             calories: int = None,
             article_id: int = None,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/create',
             parameters={
@@ -62,7 +62,7 @@ class AdminProductRoute(BaseRoute):
             calories: int = None,
             article_id: int = None,
     ):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/update',
             parameters={
@@ -79,7 +79,7 @@ class AdminProductRoute(BaseRoute):
         )
 
     async def delete(self, id_: int):
-        return await self.request(
+        return await self._request(
             type_=RequestTypes.POST,
             prefix='/delete',
             parameters={
